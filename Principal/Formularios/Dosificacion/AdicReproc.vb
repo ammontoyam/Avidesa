@@ -2,6 +2,7 @@
 
 Imports System
 Imports System.Data
+Imports ClassLibrary
 
 Public Class AdicReproc
     Private DArt As AdoSQL

@@ -1,4 +1,6 @@
-﻿Public Class FormulacionFylax
+﻿Imports ClassLibrary
+
+Public Class FormulacionFylax
 
     Private DFor As AdoSQL
     Public Sub FormulacionFylax_Load(sender As Object, e As EventArgs) Handles MyBase.Load

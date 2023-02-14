@@ -5,6 +5,7 @@ Imports System.Data
 Imports System.Windows.Forms
 Imports ChronoSoftNet
 Imports System.Threading.Thread
+Imports ClassLibrary
 
 Public Class EntraBache
 

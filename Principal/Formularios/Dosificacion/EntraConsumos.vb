@@ -3,6 +3,7 @@
 Imports System.Data.Common
 Imports System.Windows.Forms
 Imports System.Data
+Imports ClassLibrary
 
 Public Class EntraConsumos
     Private DConsumos As AdoSQL

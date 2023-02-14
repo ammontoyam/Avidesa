@@ -1,8 +1,12 @@
-﻿Public Class ModificaEmpEtiq
+﻿Imports ClassLibrary
+
+Public Class ModificaEmpEtiq
     Private DEmpEtiqDet As AdoSQL
     Private DEmp As AdoSQL
     Private DEtiq As AdoSQL
     Private DVarios As AdoSQL
+
+
 
     Public Sub ModificaEmpEtiq_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try

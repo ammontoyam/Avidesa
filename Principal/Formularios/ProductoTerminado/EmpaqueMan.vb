@@ -2,6 +2,8 @@
 Imports System.Data.Common
 Imports System.Data
 Imports System.IO
+Imports ClassLibrary
+
 Public Class EmpaqueMan
     Private DEmpaque As AdoSQL
     Private DOPs As AdoSQL

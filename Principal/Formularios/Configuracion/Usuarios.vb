@@ -2,7 +2,7 @@
 Imports System.Data.Common
 Imports System.Data
 Imports System.IO
-
+Imports ClassLibrary
 
 Public Class Usuarios
     Private DUsuarios As AdoSQL

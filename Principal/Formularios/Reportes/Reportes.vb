@@ -1,4 +1,6 @@
-﻿Public Class Reportes
+﻿Imports ClassLibrary
+
+Public Class Reportes
     Private DConfigReportes As AdoSQL
     Private DConsultas As AdoSQL
     Private DVarios As AdoSQL

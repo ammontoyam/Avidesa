@@ -1,4 +1,4 @@
-﻿
+﻿Imports ClassLibrary
 
 Public Class UsuariosClave
     Private DUsuarios As AdoSQL
