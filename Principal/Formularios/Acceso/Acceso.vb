@@ -11,6 +11,9 @@ Imports System.IO
 'Imports System.Security
 'Imports System.ComponentModel
 Imports System.Globalization.CultureInfo
+Imports ClassLibrary
+
+
 
 Public Class Acceso
 
@@ -59,7 +62,6 @@ Public Class Acceso
 
             If File.Exists(Ruta + "Ruta.txt") = False Then
                 MsgBox("No existe el archivo ruta el cual contiene el nombre del Motor de Base de Datos", MsgBoxStyle.Information)
-                End
             Else
                 Dim rd As StreamReader = New StreamReader(Ruta + "Ruta.txt", True)
                 ServidorSQL = rd.ReadLine.Trim

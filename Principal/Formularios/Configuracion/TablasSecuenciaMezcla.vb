@@ -2,7 +2,7 @@
 Imports System.Data.Common
 Imports System.Data
 Imports System.IO
-Imports ChronoSoftNet.AdoNet
+Imports ClassLibrary
 
 Public Class TablasSecuenciaMezcla
 

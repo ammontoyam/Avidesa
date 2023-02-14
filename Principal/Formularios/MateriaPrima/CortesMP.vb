@@ -7,6 +7,7 @@ Imports System.Data
 Imports ChronoSoftNet
 Imports System.Text
 Imports System.IO
+Imports ClassLibrary
 
 Public Class CortesMP
     Public cancelarCortes = False

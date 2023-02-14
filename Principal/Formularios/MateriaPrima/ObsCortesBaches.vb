@@ -1,4 +1,6 @@
-﻿Public Class ObsCortesBaches
+﻿Imports ClassLibrary
+
+Public Class ObsCortesBaches
 
     Private DCortesBaches As AdoSQL
     Private DVarios As AdoSQL

@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Data.Common
 Imports System.Windows.Forms
 Imports ChronoSoftNet
+Imports ClassLibrary
 Public Class BasedeDatos
     Private Tipo As String
     Private Consulta As String = ""

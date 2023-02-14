@@ -1,4 +1,7 @@
-﻿Public Class SaldosIni
+﻿Imports ClassLibrary
+
+
+Public Class SaldosIni
 
     Private DProd As AdoSQL
 

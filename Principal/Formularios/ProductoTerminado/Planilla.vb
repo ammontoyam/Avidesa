@@ -6,6 +6,7 @@ Imports System.IO
 Imports System.Data.Common
 Imports System.Data
 Imports System.Threading.Thread
+Imports ClassLibrary
 
 Public Class Planilla
     Private DOPs As AdoSQL

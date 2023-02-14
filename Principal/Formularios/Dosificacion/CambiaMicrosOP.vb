@@ -1,4 +1,6 @@
-﻿Public Class CambiaMicrosOP
+﻿Imports ClassLibrary
+
+Public Class CambiaMicrosOP
 
     Private DOPs As AdoSQL
     Private DConsumosMed As AdoSQL
@@ -109,7 +111,7 @@
                 Return
             End If
 
-            
+
             If Val(TBaches.Text) > (DOPs.RecordSet("META") - DOPs.RecordSet("REALMED")) Then
                 MsgBox("El número de baches ingresados supera los baches pendientes de la OP destino", vbInformation)
                 Return
@@ -131,7 +133,7 @@
                 DOPs.RecordSet("RealMed") -= Val(TBaches.Text)
                 DOPs.Update(Me)
             End If
-            
+
             DOPs.Open("Select * from OPS WHERE OP='" + TOPDest.Text + "'")
 
             If DOPs.Count = 0 Then

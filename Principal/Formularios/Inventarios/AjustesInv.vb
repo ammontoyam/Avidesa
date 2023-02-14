@@ -2,6 +2,7 @@
 Imports System
 Imports System.Data
 Imports System.IO
+Imports ClassLibrary
 
 Public Class AjustesInv
 

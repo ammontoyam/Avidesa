@@ -5,6 +5,8 @@ Imports System.IO
 Imports System.Data.Common
 Imports System.Data
 Imports System.Threading.Thread
+Imports ClassLibrary
+
 
 Public Class Formulacion
     Private DFor As AdoSQL

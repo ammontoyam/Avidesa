@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports ClassLibrary
+
 Public Class ProgramaProd
     Private DProgProd As AdoSQL
     Private DConsultas As AdoSQL
