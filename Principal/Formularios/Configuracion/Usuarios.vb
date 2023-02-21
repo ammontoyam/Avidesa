@@ -13,6 +13,9 @@ Public Class Usuarios
     Private DRolesPermisos As AdoSQL
     Private FormLoad As Boolean
 
+    Private PreviousTabIndex As Byte
+    Private CurrentTabIndex As Byte
+
 
     Private NuevoUsu As Boolean, ModificaUsu As Boolean, NuevoRol As Boolean
     'Private UsuarioSel As String = ""
@@ -120,6 +123,7 @@ Public Class Usuarios
                 If Resp = vbYes Then
                     UsuariosClave.TUsuario.Text = UCase(TUsuario.Text.Trim)
                     UsuariosClave.ShowDialog()
+
                     DUsuarios.Open("select * from USUARIOS where USUARIO='" + TUsuario.Text + "'")
                     'Else
                     ''DUsuarios.RecordSet("ACTIVO") = ChActivo.Checked
@@ -246,12 +250,21 @@ Public Class Usuarios
             BCancelar.Enabled = False
             PanNueUsua.Enabled = False
             PanelPerm.Enabled = False
+            mnNuevo.Enabled = True
+            mnEliminar.Enabled = True
+            mnModificar.Enabled = True
+            TPRoles.Enabled = True
 
             NuevoUsu = False
             ModificaUsu = False
             TUsuario.ReadOnly = True
             TCodigo.ReadOnly = True
+
             ChSelecTodos.Checked = False
+            mnNuevo.Checked = False
+            mnEliminar.Checked = False
+            mnModificar.Checked = False
+
 
         Catch ex As Exception
             MsgError(ex)
@@ -271,36 +284,54 @@ Public Class Usuarios
             'Seccion Usuarios
             '********************************************************
             If TCOpcionUsuarioRol.SelectedIndex = 0 Then
+                DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
+                If DUsuarios.EOF Then Exit Sub
+
                 PanNueUsua.Enabled = True
                 'If Funcion_ManejaRestriccionLineasNegocio Then GBLineaNegocio.Enabled = True
                 CbUsuarios.Enabled = False
                 CbRoles.Enabled = True
                 TUsuario.ReadOnly = False
-                DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
-                If DUsuarios.EOF Then Exit Sub
-                TCodigo.ReadOnly = False
+
                 TUsuario.Text = DUsuarios.RecordSet("USUARIO").ToString
                 TFechaVenc.Text = ""
 
                 PanNueUsua.Text = "Modificar Usuario"
                 ModificaUsu = True
+
+                BAceptar.Enabled = True
+                BCancelar.Enabled = True
+
+                TPRoles.Enabled = False
+
             End If
 
             '********************************************************
             'Seccion roles
             '********************************************************
             If TCOpcionUsuarioRol.SelectedIndex = 1 Then
+                DRoles.Find("ROL='" + CbRolesAdmin.Text + "'")
+                If DRoles.EOF Then Exit Sub
+
                 TRolDescripcion.ReadOnly = False
+
                 BCancelarRol.Enabled = True
                 BAceptarRol.Enabled = True
 
+                TPUsuarios.Enabled = False
+
             End If
+
+            mnNuevo.Enabled = False
+            mnEliminar.Enabled = False
+            mnModificar.Enabled = False
+
+            mnModificar.Checked = True
+
 
         Catch ex As Exception
             MsgError(ex)
-        Finally
-            BAceptar.Enabled = True
-            BCancelar.Enabled = True
+
         End Try
     End Sub
 
@@ -385,13 +416,14 @@ Public Class Usuarios
                 TUsuario.Text = ""
                 NuevoUsu = True
                 TFechaVenc.Text = ""
-                TCodigo.ReadOnly = False
 
                 'BEliminar.Enabled = False
                 'BModificar.Enabled = False
                 BAceptar.Enabled = True
                 BCancelar.Enabled = True
                 CbRoles.Enabled = True
+                TPRoles.Enabled = False
+
             End If
             '********************************************************
             'Seccion roles
@@ -410,8 +442,15 @@ Public Class Usuarios
 
                 BAceptarRol.Enabled = True
                 BCancelarRol.Enabled = True
+                TPUsuarios.Enabled = False
 
             End If
+
+            mnNuevo.Enabled = False
+            mnEliminar.Enabled = False
+            mnModificar.Enabled = False
+
+            mnNuevo.Checked = True
 
         Catch ex As Exception
             MsgError(ex)
@@ -419,9 +458,14 @@ Public Class Usuarios
     End Sub
 
     Private Sub BSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSalir.Click, mnSalir.Click
-        ModificaUsu = False
-        NuevoUsu = False
+        'ModificaUsu = False
+        'NuevoUsu = False
+        BCancelar_Click(Nothing, Nothing)
+        BCancelarRol_Click(Nothing, Nothing)
+        BActualizar_Click(Nothing, Nothing)
+
         Me.Hide()
+
     End Sub
 
     Private Sub AcercaDeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AcercaDeToolStripMenuItem.Click
@@ -763,6 +807,16 @@ Public Class Usuarios
             BCancelarRol.Enabled = False
             CbRolesAdmin.Enabled = True
             PanelPerm.Enabled = False
+            mnNuevo.Enabled = True
+            mnEliminar.Enabled = True
+            mnModificar.Enabled = True
+            TPUsuarios.Enabled = True
+
+            ChSelecTodos.Checked = False
+            mnNuevo.Checked = False
+            mnEliminar.Checked = False
+            mnModificar.Checked = False
+
 
         Catch ex As Exception
             MsgError(ex)
@@ -772,6 +826,9 @@ Public Class Usuarios
 
     Private Sub TCOpcionUsuarioRol_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TCOpcionUsuarioRol.SelectedIndexChanged
         Try
+            If (NuevoUsu = True OrElse ModificaUsu = True) Then Exit Sub
+
+
             For Each Ch As CheckBox In PanelPerm.Controls
                 Ch.Checked = False
             Next
@@ -802,30 +859,7 @@ Public Class Usuarios
         End Try
     End Sub
 
-    'Private Sub BCheckPermisos_Click(sender As Object, e As EventArgs) Handles BCheckPermisos.Click
-    '    Try
-    '        Dim Tpanel = TCOpcionUsuarioRol.SelectedIndex
 
-    '        If Tpanel = 0 Then  'Usuarios
-    '            DVarios.Open("select * from USUARIOSDETALLE where USUARIO='" + CbUsuarios.Text + "'")
-    '        End If
-
-    '        If Tpanel = 1 Then  'Roles
-    '            DVarios.Open("Select * from ROLESPERMISOS where ROL='" + CbRolesAdmin.Text + "'")
-    '        End If
-
-    '        If DVarios.EOF Then Exit Sub
-
-    '        For Each Recordset As DataRow In DVarios.Rows
-    '            Dim nPermiso = PanelPerm.Controls.Find("Ch" + Recordset("PERMISO"), True)
-
-    '            If nPermiso.Length = 0 Then Continue For
-    '            DirectCast(nPermiso(0), System.Windows.Forms.CheckBox).Checked = True 'Recordset("ACTIVO")
-    '        Next
-    '    Catch ex As Exception
-    '        MsgError(ex)
-    '    End Try
-    'End Sub
     Function CheckPermisos(ByVal Dtabla As AdoSQL) As Boolean
         Try
 
@@ -847,7 +881,7 @@ Public Class Usuarios
                 If Ch.Checked = True Then Return True
             Next
 
-            MsgBox("Debe selecvcionar al menos un permiso", MsgBoxStyle.Information)
+            MsgBox("Debe seleccionar al menos un permiso", MsgBoxStyle.Information)
             Return False
 
         Catch ex As Exception
@@ -858,6 +892,7 @@ Public Class Usuarios
     Private Sub CbRolesAdmin_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbRolesAdmin.SelectedIndexChanged
         Try
             If NuevoRol = True Then Exit Sub
+
             If CbRolesAdmin.Text = "" Then Exit Sub
 
             For Each Ch As CheckBox In PanelPerm.Controls

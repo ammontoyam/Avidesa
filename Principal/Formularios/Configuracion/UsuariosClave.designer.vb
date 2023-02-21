@@ -66,7 +66,7 @@ Partial Class UsuariosClave
         Me.TReingClave.Name = "TReingClave"
         Me.TReingClave.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TReingClave.Size = New System.Drawing.Size(157, 20)
-        Me.TReingClave.TabIndex = 8
+        Me.TReingClave.TabIndex = 6
         Me.TReingClave.UseSystemPasswordChar = True
         '
         'TNClave
@@ -148,7 +148,7 @@ Partial Class UsuariosClave
         Me.chPedirClave.Location = New System.Drawing.Point(118, 330)
         Me.chPedirClave.Name = "chPedirClave"
         Me.chPedirClave.Size = New System.Drawing.Size(219, 17)
-        Me.chPedirClave.TabIndex = 6
+        Me.chPedirClave.TabIndex = 8
         Me.chPedirClave.Text = "Solicitar al usuario cambio de contraseña"
         Me.chPedirClave.UseVisualStyleBackColor = True
         Me.chPedirClave.Visible = False
