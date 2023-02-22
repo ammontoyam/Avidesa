@@ -9,11 +9,15 @@ Public Class Usuarios
     Private DUsuariosPermisos As AdoSQL
     Private DUsuariosDetalle As AdoSQL
     Private DVarios As AdoSQL
-    Private DCargos As AdoSQL
+    Private DRoles As AdoSQL
+    Private DRolesPermisos As AdoSQL
     Private FormLoad As Boolean
 
+    Private PreviousTabIndex As Byte
+    Private CurrentTabIndex As Byte
 
-    Private NuevoUsu As Boolean, ModificaUsu As Boolean
+
+    Private NuevoUsu As Boolean, ModificaUsu As Boolean, NuevoRol As Boolean
     'Private UsuarioSel As String = ""
 
     Private Sub Usuarios_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -26,27 +30,27 @@ Public Class Usuarios
                 Return
             End If
 
-            GBLineaNegocio.Enabled = False
-
-
-            DUsuariosPermisos = New AdoSQL("USUARIOSPERMISOS")
-            DUsuariosDetalle = New AdoSQL("USUARIOSDETALLE")
-            DVarios = New AdoSQL("VARIOS")
 
             DUsuarios = New AdoSQL("USUARIOS")
+            DUsuariosPermisos = New AdoSQL("USUARIOSPERMISOS")
+            DUsuariosDetalle = New AdoSQL("USUARIOSDETALLE")
+            DRoles = New AdoSQL("ROLES")
+            DRolesPermisos = New AdoSQL("ROLES")
+            DVarios = New AdoSQL("VARIOS")
+
             DUsuarios.Open("select * from USUARIOS ")
+            DRoles.Open("Select * from ROLES order by ROL")
 
-            DCargos = New AdoSQL("CARGOS")
-            DCargos.Open("Select * from CARGOS order by CODCARGO")
+            LLenaComboBox(CbRoles, DRoles.DataTable, "ROL")
+            LLenaComboBox(CbRolesAdmin, DRoles.DataTable, "ROL")
+            LLenaComboBox(CbUsuarios, DUsuarios.DataTable, "USUARIO")
 
-            LLenaComboBox(CbCargo, DCargos.DataTable, "CARGO")
+            'CbUsuarios.DataSource = DUsuarios.DataTable
+            'CbUsuarios.ValueMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
+            'CbUsuarios.DisplayMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
 
-            CbUsuarios.DataSource = DUsuarios.DataTable
-            CbUsuarios.ValueMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
-            CbUsuarios.DisplayMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
-
-            DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
-            If DUsuarios.EOF Then Exit Sub
+            'DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
+            'If DUsuarios.EOF Then Exit Sub
             ''ChActivo.Checked = True 'DUsuarios.RecordSet("ACTIVO")
 
             DUsuariosPermisos.Open("select * from USUARIOSPERMISOS order by TEXTOBOTON")
@@ -78,6 +82,12 @@ Public Class Usuarios
 
             PanNueUsua.Enabled = False
 
+            BAceptar.Enabled = False
+            BAceptarRol.Enabled = False
+
+            BCancelar.Enabled = False
+            BCancelarRol.Enabled = False
+
             FormLoad = True
 
         Catch ex As Exception
@@ -88,32 +98,36 @@ Public Class Usuarios
 
     Private Sub BAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAceptar.Click
 
-        Dim ChPermiso As String
-
         Try
+            Dim ChPermiso As String
+            Dim PermisoChecked = ValidaCheckingPermisos()
+            If PermisoChecked = False Then Exit Sub
+
             DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
             If DUsuarios.EOF = False Then
                 'Resp = MessageBox.Show("El Usuario ya existe desea Sobre escribirlo", "ChronoSoft", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
                 Resp = MsgBox(DevuelveEvento(CodEvento.USUARIO_EXISTENTE), MessageBoxButtons.YesNo + MessageBoxIcon.Information, "ChronoSoft")
                 If Resp = vbNo Then Exit Sub
 
-                DUsuarios.RecordSet("USUARIO") = TUsuario.Text.Trim 'El update se hace en cascada en la BD (USUARIOS y USUARIOSDETALLE)
-                DUsuarios.RecordSet("CARGO") = UCase(CbCargo.Text.Trim)
+                DUsuarios.RecordSet("USUARIO") = UCase(TUsuario.Text.Trim) 'El update se hace en cascada en la BD (USUARIOS y USUARIOSDETALLE)
+                DUsuarios.RecordSet("CARGO") = UCase(CbRoles.Text.Trim)
                 DUsuarios.RecordSet("CODIGO") = Val(TCodigo.Text)
-                If Funcion_ManejaRestriccionLineasNegocio Then
-                    DUsuarios.RecordSet("LINEANEGOCIO") = TLineaNegocio.Text
-                End If
+                'If Funcion_ManejaRestriccionLineasNegocio Then
+                '    DUsuarios.RecordSet("LINEANEGOCIO") = TLineaNegocio.Text
+                'End If
                 DUsuarios.Update(Me)
 
                 UsuariosLog("Modifica usuario " + TUsuario.Text, "Configuración", "")
+
                 Resp = MsgBox(DevuelveEvento(CodEvento.USUARIO_MODIFICARCLAVE), MessageBoxButtons.YesNo + MessageBoxIcon.Information, "ChronoSoft")
                 If Resp = vbYes Then
-                    UsuariosClave.TUsuario.Text = TUsuario.Text
+                    UsuariosClave.TUsuario.Text = UCase(TUsuario.Text.Trim)
                     UsuariosClave.ShowDialog()
+
                     DUsuarios.Open("select * from USUARIOS where USUARIO='" + TUsuario.Text + "'")
                     'Else
                     ''DUsuarios.RecordSet("ACTIVO") = ChActivo.Checked
-                    'DUsuarios.RecordSet("CARGO") = UCase(CbCargo.Text.Trim)
+                    'DUsuarios.RecordSet("CARGO") = UCase(CBRoles.Text.Trim)
                     'DUsuarios.RecordSet("CODIGO") = Val(TCodigo.Text)
                     'If Funcion_ManejaRestriccionLineasNegocio Then
                     '    DUsuarios.RecordSet("LINEANEGOCIO") = TLineaNegocio.Text
@@ -124,14 +138,14 @@ Public Class Usuarios
             Else
                 DUsuarios.AddNew()
                 UsuariosLog("Crea usuario " + TUsuario.Text, "Configuración", "")
-                DUsuarios.RecordSet("USUARIO") = UCase(TUsuario.Text)
+                DUsuarios.RecordSet("USUARIO") = UCase(TUsuario.Text.Trim)
                 DUsuarios.RecordSet("CLAVE") = "H"      'Por defecto debe ponerse 
-                DUsuarios.RecordSet("CARGO") = UCase(CbCargo.Text.Trim)
+                DUsuarios.RecordSet("CARGO") = UCase(CbRoles.Text.Trim)
                 DUsuarios.RecordSet("CODIGO") = Val(TCodigo.Text)
 
-                If Funcion_ManejaRestriccionLineasNegocio Then
-                    DUsuarios.RecordSet("LINEANEGOCIO") = TLineaNegocio.Text
-                End If
+                'If Funcion_ManejaRestriccionLineasNegocio Then
+                '    DUsuarios.RecordSet("LINEANEGOCIO") = TLineaNegocio.Text
+                'End If
                 ''DUsuarios.RecordSet("ACTIVO") = ChActivo.Checked
                 DUsuarios.Update(Me)
                 UsuariosClave.TUsuario.Text = TUsuario.Text
@@ -146,7 +160,7 @@ Public Class Usuarios
 
                 If DUsuariosDetalle.Count = 0 AndAlso Ch.Checked = True Then
                     DUsuariosDetalle.AddNew()
-                    DUsuariosDetalle.RecordSet("USUARIO") = TUsuario.Text  'CbUsuarios.Text
+                    DUsuariosDetalle.RecordSet("USUARIO") = UCase(TUsuario.Text.Trim)  'CbUsuarios.Text
                     DUsuariosDetalle.RecordSet("PERMISO") = ChPermiso
                     ' DUsuariosDetalle.RecordSet("ACTIVO") = Ch.Checked
                     DUsuariosDetalle.Update(Me)
@@ -165,33 +179,19 @@ Public Class Usuarios
 
             CbUsuarios_SelectedIndexChanged(Nothing, Nothing)
             MsgBox("Los cambios serán aplicados una vez reinicie ChronoSoft", MsgBoxStyle.Information)
-            TUsuario.ReadOnly = True
-            CbCargo.Enabled = False
-            PanNueUsua.Text = "Usuario"
-            BModificar.Enabled = True
-            BEliminar.Enabled = True
-            ChSelecTodos.Checked = False
-            ModificaUsu = False
-            NuevoUsu = False
-            GBLineaNegocio.Enabled = False
-            TCodigo.ReadOnly = True
-            CbUsuarios.Enabled = True
+
+            BCancelar_Click(Nothing, Nothing)
+
 
         Catch ex As Exception
             MsgError(ex)
-        Finally
-            PanelPerm.Enabled = False
-            'TUsuario.Text = ""
-            'TCodigo.Text = ""
-            'TFechaVenc.Text = ""
-
         End Try
     End Sub
 
     Private Sub CbUsuarios_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles CbUsuarios.SelectedIndexChanged
         Try
             If NuevoUsu = True Or ModificaUsu = True Then Exit Sub
-            If CbUsuarios.ValueMember = "" Then Exit Sub
+            If CbUsuarios.Text = "" Then Exit Sub
 
             For Each Ch As CheckBox In PanelPerm.Controls
                 Ch.Checked = False
@@ -203,22 +203,25 @@ Public Class Usuarios
 
             TFechaVenc.Text = DUsuarios.RecordSet("FECHAEXPPASS")
             TUsuario.Text = DUsuarios.RecordSet("USUARIO")
-            CbCargo.Text = DUsuarios.RecordSet("CARGO")
+            CbRoles.Text = DUsuarios.RecordSet("CARGO")
             TCodigo.Text = DUsuarios.RecordSet("CODIGO")
 
-            If Funcion_ManejaRestriccionLineasNegocio Then
-                TLineaNegocio.Text = DUsuarios.RecordSet("LINEANEGOCIO")
-            End If
+            ''If Funcion_ManejaRestriccionLineasNegocio Then
+            ''    TLineaNegocio.Text = DUsuarios.RecordSet("LINEANEGOCIO")
+            ''End If
+
+            'BCheckPermisos_Click(Nothing, Nothing)
 
             DUsuariosDetalle.Open("select * from USUARIOSDETALLE where USUARIO='" + CbUsuarios.Text + "'")
             If DUsuariosDetalle.EOF Then Exit Sub
+            CheckPermisos(DUsuariosDetalle)
 
-            For Each Recordset As DataRow In DUsuariosDetalle.Rows
-                Dim nPermiso = PanelPerm.Controls.Find("Ch" + Recordset("PERMISO"), True)
+            'For Each Recordset As DataRow In DUsuariosDetalle.Rows
+            '    Dim nPermiso = PanelPerm.Controls.Find("Ch" + Recordset("PERMISO"), True)
 
-                If nPermiso.Length = 0 Then Continue For
-                DirectCast(nPermiso(0), System.Windows.Forms.CheckBox).Checked = True 'Recordset("ACTIVO")
-            Next
+            '    If nPermiso.Length = 0 Then Continue For
+            '    DirectCast(nPermiso(0), System.Windows.Forms.CheckBox).Checked = True 'Recordset("ACTIVO")
+            'Next
 
         Catch ex As Exception
             MsgError(ex)
@@ -226,25 +229,157 @@ Public Class Usuarios
 
     End Sub
 
-    Private Sub BEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BEliminar.Click
+    Private Sub BCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancelar.Click
         Try
+            For Each Ch As CheckBox In PanelPerm.Controls
+                Ch.Checked = False
+            Next
 
-            If CbUsuarios.Text.Contains("SERVIDOR") Then
-                MsgBox("Este es un usuario del sistema, no se puede eliminar", vbInformation)
-                Return
+            TUsuario.Text = ""
+            TFechaVenc.Text = ""
+            CbRoles.Items.Add("")
+            CbRoles.Text = ""
+            CbRoles.Items.Remove("")
+            CbUsuarios.Text = ""
+            PanNueUsua.Text = "Usuario"
+            TCodigo.Text = ""
+
+            CbRoles.Enabled = False
+            CbUsuarios.Enabled = True
+            BAceptar.Enabled = False
+            BCancelar.Enabled = False
+            PanNueUsua.Enabled = False
+            PanelPerm.Enabled = False
+            mnNuevo.Enabled = True
+            mnEliminar.Enabled = True
+            mnModificar.Enabled = True
+            TPRoles.Enabled = True
+
+            NuevoUsu = False
+            ModificaUsu = False
+            TUsuario.ReadOnly = True
+            TCodigo.ReadOnly = True
+
+            ChSelecTodos.Checked = False
+            mnNuevo.Checked = False
+            mnEliminar.Checked = False
+            mnModificar.Checked = False
+
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+
+    End Sub
+
+    Private Sub TUsuario_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        TUsuario.CharacterCasing = CharacterCasing.Upper
+    End Sub
+
+    Private Sub mnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnModificar.Click
+        Try
+            PanelPerm.Enabled = True
+
+            '********************************************************
+            'Seccion Usuarios
+            '********************************************************
+            If TCOpcionUsuarioRol.SelectedIndex = 0 Then
+                DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
+                If DUsuarios.EOF Then Exit Sub
+
+                PanNueUsua.Enabled = True
+                'If Funcion_ManejaRestriccionLineasNegocio Then GBLineaNegocio.Enabled = True
+                CbUsuarios.Enabled = False
+                CbRoles.Enabled = True
+                TUsuario.ReadOnly = False
+
+                TUsuario.Text = DUsuarios.RecordSet("USUARIO").ToString
+                TFechaVenc.Text = ""
+
+                PanNueUsua.Text = "Modificar Usuario"
+                ModificaUsu = True
+
+                BAceptar.Enabled = True
+                BCancelar.Enabled = True
+
+                TPRoles.Enabled = False
+
             End If
 
-            Resp = MsgBox("¿Seguro desea eliminar al usuario " + CbUsuarios.Text + " de ChronoSoft?", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
-            If Resp = vbNo Then Return
+            '********************************************************
+            'Seccion roles
+            '********************************************************
+            If TCOpcionUsuarioRol.SelectedIndex = 1 Then
+                DRoles.Find("ROL='" + CbRolesAdmin.Text + "'")
+                If DRoles.EOF Then Exit Sub
 
-            DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
+                TRolDescripcion.ReadOnly = False
 
-            If DUsuarios.EOF Then Exit Sub
+                BCancelarRol.Enabled = True
+                BAceptarRol.Enabled = True
 
-            DVarios.Delete("delete FROM USUARIOS where USUARIO='" + CbUsuarios.Text + "'", Me)
+                TPUsuarios.Enabled = False
 
-            CbUsuarios.Text = ""
-            BCancelar_Click(Nothing, Nothing)
+            End If
+
+            mnNuevo.Enabled = False
+            mnEliminar.Enabled = False
+            mnModificar.Enabled = False
+
+            mnModificar.Checked = True
+
+
+        Catch ex As Exception
+            MsgError(ex)
+
+        End Try
+    End Sub
+
+    Private Sub mnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnEliminar.Click
+        Try
+            '********************************************************
+            'Seccion Usuarios
+            '********************************************************
+            If TCOpcionUsuarioRol.SelectedIndex = 0 Then
+
+                If CbUsuarios.Text.Contains("SERVIDOR") Then
+                    MsgBox("Este es un usuario del sistema, no se puede eliminar", vbInformation)
+                    Return
+                End If
+
+                Resp = MsgBox("¿Seguro desea eliminar al usuario " + CbUsuarios.Text + " de ChronoSoft?", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
+                If Resp = vbNo Then Return
+
+                DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
+
+                If DUsuarios.EOF Then Exit Sub
+
+                DVarios.Delete("delete FROM USUARIOS where USUARIO='" + CbUsuarios.Text + "'", Me)
+
+                CbUsuarios.Text = ""
+                BCancelar_Click(Nothing, Nothing)
+
+                'MsgBox("Proceso Finalizado", vbInformation)
+
+                'Usuarios_Load(Nothing, Nothing)
+            End If
+
+            '********************************************************
+            'Seccion roles
+            '********************************************************
+            If TCOpcionUsuarioRol.SelectedIndex = 1 Then
+                Resp = MsgBox("¿Seguro desea eliminar el rol " + CbRolesAdmin.Text + " de ChronoSoft?", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
+                If Resp = vbNo Then Return
+                DRoles.Find("ROL='" + CbRolesAdmin.Text + "'")
+
+                If DRoles.EOF Then Exit Sub
+
+                'La BD tiene eliminacion en cascada. Tambien se elimina en la tabla ROLESPERMISOS
+                DRoles.Delete("delete FROM ROLES where ROL='" + CbRolesAdmin.Text + "'", Me)
+
+                BCancelarRol_Click(Nothing, Nothing)
+            End If
+
 
             MsgBox("Proceso Finalizado", vbInformation)
 
@@ -254,120 +389,83 @@ Public Class Usuarios
             MsgError(ex)
         End Try
     End Sub
-    Private Sub BCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancelar.Click
-        Try
-
-            TUsuario.Text = ""
-            TFechaVenc.Text = ""
-            CbCargo.Items.Add("")
-            CbCargo.Text = ""
-            CbCargo.Items.Remove("")
-            CbUsuarios.Text = ""
-            CbUsuarios.Enabled = True
-            TUsuario.ReadOnly = True
-            CbCargo.Enabled = False
-            PanelPerm.Enabled = False
-            TCodigo.Text = ""
-
-            For Each Ch As CheckBox In PanelPerm.Controls
-                Ch.Checked = False
-            Next
-
-            GBLineaNegocio.Enabled = False
-            PanNueUsua.Text = "Usuario"
-            NuevoUsu = False
-            ModificaUsu = False
-            BEliminar.Enabled = True
-            BModificar.Enabled = True
-            BNuevo.Enabled = True
-            BAceptar.Enabled = False
-            BCancelar.Enabled = False
-            PanNueUsua.Enabled = False
-            TCodigo.ReadOnly = True
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-
-    End Sub
-
-    Private Sub TUsuario_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TUsuario.TextChanged
-        TUsuario.CharacterCasing = CharacterCasing.Upper
-    End Sub
-
-    Private Sub BModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BModificar.Click
-        Try
-            PanNueUsua.Enabled = True
-            PanelPerm.Enabled = True
-            If Funcion_ManejaRestriccionLineasNegocio Then GBLineaNegocio.Enabled = True
-            CbUsuarios.Enabled = False
-            CbCargo.Enabled = True
-            TUsuario.ReadOnly = False
-            DUsuarios.Find("USUARIO='" + CbUsuarios.Text + "'")
-            If DUsuarios.EOF Then Exit Sub
-            TCodigo.ReadOnly = False
-            TUsuario.Text = DUsuarios.RecordSet("USUARIO").ToString
-            TFechaVenc.Text = ""
-
-            PanNueUsua.Text = "Modificar Usuario"
-            ModificaUsu = True
-
-        Catch ex As Exception
-            MsgError(ex)
-        Finally
-            BAceptar.Enabled = True
-            BCancelar.Enabled = True
-        End Try
-
-    End Sub
-
-
-    Private Sub BNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BNuevo.Click
-        Try
-            PanelPerm.Enabled = True
-            TUsuario.ReadOnly = False
-            If Funcion_ManejaRestriccionLineasNegocio Then GBLineaNegocio.Enabled = True
-
-            For Each Ch As CheckBox In PanelPerm.Controls
-                Ch.Checked = False
-            Next
-
-            CbUsuarios.Enabled = False
-            CbUsuarios.Text = ""
-            PanNueUsua.Enabled = True
-            PanNueUsua.Text = "Nuevo Usuario"
-            TUsuario.Text = ""
-            NuevoUsu = True
-            TFechaVenc.Text = ""
-            TCodigo.ReadOnly = False
-
-            BEliminar.Enabled = False
-            BModificar.Enabled = False
-            BAceptar.Enabled = True
-            BCancelar.Enabled = True
-            CbCargo.Enabled = True
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
-
-    Private Sub mnModificar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnModificar.Click
-        BModificar_Click(Nothing, Nothing)
-    End Sub
-
-    Private Sub mnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnEliminar.Click
-        BEliminar_Click(Nothing, Nothing)
-    End Sub
 
     Private Sub mnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnNuevo.Click
-        BNuevo_Click(Nothing, Nothing)
+        Try
+
+            PanelPerm.Enabled = True
+
+            For Each Ch As CheckBox In PanelPerm.Controls
+                Ch.Checked = False
+            Next
+
+            '********************************************************
+            'Seccion Usuarios
+            '********************************************************
+            If TCOpcionUsuarioRol.SelectedIndex = 0 Then
+                TRol.ReadOnly = True
+                TRolDescripcion.ReadOnly = True
+
+                TUsuario.ReadOnly = False
+                'If Funcion_ManejaRestriccionLineasNegocio Then GBLineaNegocio.Enabled = True
+
+                CbUsuarios.Enabled = False
+                CbUsuarios.Text = ""
+                PanNueUsua.Enabled = True
+                PanNueUsua.Text = "Nuevo Usuario"
+                TUsuario.Text = ""
+                NuevoUsu = True
+                TFechaVenc.Text = ""
+
+                'BEliminar.Enabled = False
+                'BModificar.Enabled = False
+                BAceptar.Enabled = True
+                BCancelar.Enabled = True
+                CbRoles.Enabled = True
+                TPRoles.Enabled = False
+
+            End If
+            '********************************************************
+            'Seccion roles
+            '********************************************************
+            If TCOpcionUsuarioRol.SelectedIndex = 1 Then
+                NuevoRol = True
+                CbRolesAdmin.Items.Add("")
+                CbRolesAdmin.Text = ""
+                CbRolesAdmin.Items.Remove("")
+                CbRolesAdmin.Enabled = False
+
+                TRol.Text = ""
+                TRolDescripcion.Text = ""
+                TRol.ReadOnly = False
+                TRolDescripcion.ReadOnly = False
+
+                BAceptarRol.Enabled = True
+                BCancelarRol.Enabled = True
+                TPUsuarios.Enabled = False
+
+            End If
+
+            mnNuevo.Enabled = False
+            mnEliminar.Enabled = False
+            mnModificar.Enabled = False
+
+            mnNuevo.Checked = True
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
     End Sub
 
     Private Sub BSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSalir.Click, mnSalir.Click
-        ModificaUsu = False
-        NuevoUsu = False
+        'ModificaUsu = False
+        'NuevoUsu = False
+        BCancelar_Click(Nothing, Nothing)
+        BCancelarRol_Click(Nothing, Nothing)
+        BActualizar_Click(Nothing, Nothing)
+
         Me.Hide()
+
     End Sub
 
     Private Sub AcercaDeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AcercaDeToolStripMenuItem.Click
@@ -434,7 +532,7 @@ Public Class Usuarios
         End Try
     End Sub
 
-    Private Sub TUsuario_KeyUp(sender As Object, e As KeyEventArgs) Handles TUsuario.KeyUp
+    Private Sub TUsuario_KeyUp(sender As Object, e As KeyEventArgs)
         If e.KeyCode <> Keys.Enter Then Return
         SendKeys.Send("{TAB}")
     End Sub
@@ -583,31 +681,243 @@ Public Class Usuarios
 
     Private Sub BActualizar_Click(sender As Object, e As EventArgs) Handles BActualizar.Click
         Try
-            DUsuariosPermisos = New AdoSQL("USUARIOSPERMISOS")
-            DUsuariosDetalle = New AdoSQL("USUARIOSDETALLE")
-            DVarios = New AdoSQL("VARIOS")
 
-            DUsuarios = New AdoSQL("USUARIOS")
             DUsuarios.Open("select * from USUARIOS ")
+            DRoles.Open("Select * from ROLES order by ROL")
 
-            DCargos = New AdoSQL("CARGOS")
-            DCargos.Open("Select * from CARGOS order by CODCARGO")
+            LLenaComboBox(CbRoles, DRoles.DataTable, "ROL")
+            LLenaComboBox(CbRolesAdmin, DRoles.DataTable, "ROL")
+            LLenaComboBox(CbUsuarios, DUsuarios.DataTable, "USUARIO")
 
-            LLenaComboBox(CbCargo, DCargos.DataTable, "CARGO")
-
-            CbUsuarios.DataSource = DUsuarios.DataTable
-            CbUsuarios.ValueMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
-            CbUsuarios.DisplayMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
+            CbUsuarios_SelectedIndexChanged(Nothing, Nothing)
+            'CbUsuarios.DataSource = DUsuarios.DataTable
+            'CbUsuarios.ValueMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
+            'CbUsuarios.DisplayMember = DUsuarios.DataTable.Columns("USUARIO").ToString()
         Catch ex As Exception
             MsgError(ex)
         End Try
     End Sub
 
-    Private Sub CbCargo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbCargo.SelectedIndexChanged
-        If CbCargo.SelectedItem = "DOSIFICADOR" AndAlso (ModificaUsu = True Or NuevoUsu = True) Then
-            TCodigo.ReadOnly = False
-        End If
+    Private Sub CBRoles_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbRoles.SelectedIndexChanged
+        Try
+
+            If ((ModificaUsu = True Or NuevoUsu = True)) Then
+                DRolesPermisos.Open("Select * from ROLESPERMISOS where ROL='" + CbRoles.Text + "'")
+                If DRolesPermisos.EOF Then Exit Sub
+
+                CheckPermisos(DRolesPermisos)
+
+                If CbRoles.SelectedItem = "DOSIFICADOR" AndAlso (ModificaUsu = True Or NuevoUsu = True) Then
+                    TCodigo.ReadOnly = False
+                End If
+            End If
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+
     End Sub
+
+    Private Sub BAceptarRol_Click(sender As Object, e As EventArgs) Handles BAceptarRol.Click
+
+        Try
+            Dim ChPermiso As String
+            Dim PermisoChecked = ValidaCheckingPermisos()
+            If PermisoChecked = False Then Exit Sub
+
+            DRoles.Find("ROL='" + TRol.Text + "'")
+            If DRoles.EOF = False Then
+                'Resp = MessageBox.Show("El Usuario ya existe desea Sobre escribirlo", "ChronoSoft", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                Resp = MsgBox(DevuelveEvento(CodEvento.USUARIO_EXISTENTE), MessageBoxButtons.YesNo + MessageBoxIcon.Information, "ChronoSoft")
+                If Resp = vbNo Then Exit Sub
+
+                'DRoles.RecordSet("ROL") = TRol.Text.Trim 'El update se hace en cascada en la BD (USUARIOS y USUARIOSDETALLE)                
+
+                DRoles.RecordSet("DESCRIPCION") = TRolDescripcion.Text
+                DRoles.Update(Me)
+
+                UsuariosLog("Modifica rol" + TRol.Text, "Configuración", "")
+
+            Else
+                DRoles.AddNew()
+                DRoles.RecordSet("ROL") = UCase(TRol.Text)
+                DRoles.RecordSet("DESCRIPCION") = TRolDescripcion.Text
+
+                DRoles.Update(Me)
+
+                DRoles.Open("select * from ROLES where ROL='" + TRol.Text + "'")
+            End If
+
+            For Each Ch As CheckBox In PanelPerm.Controls
+                ChPermiso = Ch.Name.Substring(2)
+                ''If ChPermiso = "Activo" Then Continue For
+                DRolesPermisos.Open("select * from ROLESPERMISOS where ROL='" + TRol.Text + "' and PERMISO='" + ChPermiso + "'")
+
+                If DRolesPermisos.Count = 0 AndAlso Ch.Checked = True Then
+                    DRolesPermisos.AddNew()
+                    DRolesPermisos.RecordSet("ROL") = UCase(TRol.Text)  'CbUsuarios.Text
+                    DRolesPermisos.RecordSet("PERMISO") = ChPermiso
+                    ' DUsuariosDetalle.RecordSet("ACTIVO") = Ch.Checked
+                    DRolesPermisos.Update(Me)
+                ElseIf DRolesPermisos.Count > 0 AndAlso Ch.Checked = False Then
+                    For Each Fila As DataRow In DRolesPermisos.Rows
+                        'Si por algun motivo existen permisos iguales para el mismo rol
+                        DRolesPermisos.Delete("delete from ROLESPERMISOS where ID = " + Fila("ID").ToString, Me)
+                    Next
+
+                End If
+            Next
+
+            CbUsuarios_SelectedIndexChanged(Nothing, Nothing)
+            MsgBox("Los cambios serán aplicados una vez reinicie ChronoSoft o de clic en el botón Actualizar", MsgBoxStyle.Information)
+
+            ChSelecTodos.Checked = False
+
+            'GBLineaNegocio.Enabled = False
+            'TRol.ReadOnly = True
+            'TRolDescripcion.ReadOnly = True
+            BCancelarRol_Click(Nothing, Nothing)
+
+            CbRolesAdmin.Enabled = True
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+    End Sub
+
+    Private Sub BCancelarRol_Click(sender As Object, e As EventArgs) Handles BCancelarRol.Click
+        Try
+            NuevoRol = False
+
+            For Each Ch As CheckBox In PanelPerm.Controls
+                Ch.Checked = False
+            Next
+
+            TRol.Text = ""
+            TRolDescripcion.Text = ""
+
+            CbRolesAdmin.Items.Add("")
+            CbRolesAdmin.Text = ""
+            CbRolesAdmin.Items.Remove("")
+
+            TRol.ReadOnly = True
+            TRolDescripcion.ReadOnly = True
+
+            BAceptarRol.Enabled = False
+            BCancelarRol.Enabled = False
+            CbRolesAdmin.Enabled = True
+            PanelPerm.Enabled = False
+            mnNuevo.Enabled = True
+            mnEliminar.Enabled = True
+            mnModificar.Enabled = True
+            TPUsuarios.Enabled = True
+
+            ChSelecTodos.Checked = False
+            mnNuevo.Checked = False
+            mnEliminar.Checked = False
+            mnModificar.Checked = False
+
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+
+    End Sub
+
+    Private Sub TCOpcionUsuarioRol_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TCOpcionUsuarioRol.SelectedIndexChanged
+        Try
+            If (NuevoUsu = True OrElse ModificaUsu = True) Then Exit Sub
+
+
+            For Each Ch As CheckBox In PanelPerm.Controls
+                Ch.Checked = False
+            Next
+
+            If TCOpcionUsuarioRol.SelectedIndex = 0 Then    'Usuarios
+
+                If CbUsuarios.Text = "" Then Return
+                'BCheckPermisos_Click(Nothing, Nothing)
+                DUsuariosDetalle.Open("select * from USUARIOSDETALLE where USUARIO='" + CbUsuarios.Text + "'")
+                If DUsuariosDetalle.EOF Then Exit Sub
+
+                CheckPermisos(DUsuariosDetalle)
+
+            End If
+
+            If TCOpcionUsuarioRol.SelectedIndex = 1 Then    'Roles
+
+                If CbRolesAdmin.Text = "" Then Return
+                'BCheckPermisos_Click(Nothing, Nothing)
+                DRolesPermisos.Open("Select * from ROLESPERMISOS where ROL='" + CbRolesAdmin.Text + "'")
+                If DRolesPermisos.EOF Then Exit Sub
+
+                CheckPermisos(DRolesPermisos)
+
+            End If
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+    End Sub
+
+
+    Function CheckPermisos(ByVal Dtabla As AdoSQL) As Boolean
+        Try
+
+            For Each Recordset As DataRow In Dtabla.Rows
+                Dim nPermiso = PanelPerm.Controls.Find("Ch" + Recordset("PERMISO"), True)
+
+                If nPermiso.Length = 0 Then Continue For
+                DirectCast(nPermiso(0), System.Windows.Forms.CheckBox).Checked = True 'Recordset("ACTIVO")
+            Next
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+    End Function
+
+    Function ValidaCheckingPermisos() As Boolean
+        Try
+            For Each Ch As CheckBox In PanelPerm.Controls
+                If Ch.Checked = True Then Return True
+            Next
+
+            MsgBox("Debe seleccionar al menos un permiso", MsgBoxStyle.Information)
+            Return False
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+    End Function
+
+    Private Sub CbRolesAdmin_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CbRolesAdmin.SelectedIndexChanged
+        Try
+            If NuevoRol = True Then Exit Sub
+
+            If CbRolesAdmin.Text = "" Then Exit Sub
+
+            For Each Ch As CheckBox In PanelPerm.Controls
+                Ch.Checked = False
+            Next
+
+            DRoles.Find("Rol='" + CbRolesAdmin.Text + "'")
+            If DRoles.EOF Then Exit Sub
+            TRol.Text = DRoles.RecordSet("ROL")
+            TRolDescripcion.Text = DRoles.RecordSet("DESCRIPCION")
+
+            'BCheckPermisos_Click(Nothing, Nothing)
+
+            DRolesPermisos.Open("Select * from ROLESPERMISOS where ROL='" + CbRolesAdmin.Text + "'")
+            If DRolesPermisos.EOF Then Exit Sub
+
+            CheckPermisos(DRolesPermisos)
+
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+    End Sub
+
+
 
     'Esta función no quedó en la versión 1910.24a.G se pone acá para que entre en el próximo cambio
     Private Sub BRulesPass_Click(sender As System.Object, e As System.EventArgs) Handles BRulesPass.Click
