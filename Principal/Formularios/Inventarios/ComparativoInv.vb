@@ -3,7 +3,7 @@ Imports System
 Imports System.Windows.Forms
 Imports System.Threading.Thread
 Imports System.IO
-
+Imports ClassLibrary
 
 Public Class ComparativoInv
     Private BSResInvent As BindingSource

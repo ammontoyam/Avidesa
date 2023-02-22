@@ -2,7 +2,7 @@
 Imports System.Drawing
 Imports System.IO
 
-Module InputBox
+Public Module InputBox
     Public Function InputBox(ByVal title As String, ByVal promptText As String, ByRef value As String, Optional ByVal Ver As Boolean = True) As DialogResult
         Dim form As New Form()
         Dim label As New Label()

@@ -3,6 +3,7 @@
 Imports System.Data.Common
 Imports System.Data
 Imports System.Windows.Forms
+Imports ClassLibrary
 
 Public Class FormulacionDet
     Private DFor As AdoSQL

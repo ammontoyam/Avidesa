@@ -1,5 +1,6 @@
 ﻿Option Explicit On
 
+Imports ClassLibrary
 
 Public Class TablaLineasProd
 

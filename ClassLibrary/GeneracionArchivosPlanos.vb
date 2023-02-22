@@ -5,7 +5,7 @@ Imports System.IO
 Imports System.Text
 
 
-Module GeneracionArchivosPlanos
+Public Module GeneracionArchivosPlanos
 
 
 
@@ -13,9 +13,10 @@ Module GeneracionArchivosPlanos
     Public Sub Evento(ByVal Frase As String, Optional Modulo As Windows.Forms.Form = Nothing)
         Try
             Dim NombreForm As String = ""
-            If Modulo Is Nothing = False Then
-                NombreForm = Modulo.Name
-            End If
+            If Modulo Is Nothing Then Return
+
+            NombreForm = Modulo.Name
+            
             Dim Archivo As FileStream
             Frase = UCase(Frase)
             Dim byteData() As Byte

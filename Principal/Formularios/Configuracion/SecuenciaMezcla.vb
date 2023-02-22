@@ -4,6 +4,7 @@ Imports System.Windows.Forms
 Imports System.Data.Common
 Imports System.Threading.Thread
 Imports System.Data
+Imports ClassLibrary
 
 Public Class SecuenciaMezcla
     Private DEspecies As AdoSQL

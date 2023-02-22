@@ -2,6 +2,8 @@
 
 Imports System
 Imports System.Data
+Imports ClassLibrary
+
 
 Public Class CargueMan
     Private DTolvas As AdoSQL

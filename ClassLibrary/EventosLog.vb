@@ -7,7 +7,7 @@ Imports System.Threading.Thread
 Imports System.Text
 Imports System.Collections.Generic
 
-Module EventosLog
+Public Module EventosLog
     'Tabla para manejo de eventos
     Public TablaEventos As Dictionary(Of String, String)
 

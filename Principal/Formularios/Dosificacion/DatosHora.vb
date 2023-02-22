@@ -1,4 +1,7 @@
-﻿Public Class DatosHora
+﻿Imports ClassLibrary
+
+
+Public Class DatosHora
     Private DCons As AdoSQL
     Private DOPs As AdoSQL
     Private DEmp As AdoSQL

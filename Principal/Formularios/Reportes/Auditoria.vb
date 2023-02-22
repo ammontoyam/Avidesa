@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.Reporting.WinForms
 Imports System.Reflection
+Imports ClassLibrary
 
 Public Class Auditoria
 

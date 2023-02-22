@@ -1,4 +1,6 @@
-﻿Public Class EquivFormProd
+﻿Imports ClassLibrary
+
+Public Class EquivFormProd
 
     Private DEquivFormProd As AdoSQL
     Private DFor As AdoSQL

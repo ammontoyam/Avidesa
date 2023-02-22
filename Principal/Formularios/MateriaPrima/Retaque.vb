@@ -5,6 +5,8 @@ Imports System.Windows.Forms
 Imports System.IO
 Imports System.Data.Common
 Imports System.Data
+Imports ClassLibrary
+
 Public Class Retaque
 
     Private DTolvas As AdoSQL

@@ -2,6 +2,8 @@
 Imports System
 Imports System.Data
 Imports System.IO
+Imports ClassLibrary
+
 Public Class Inventarios
     Private DArt As AdoSQL
     Private DUbic As AdoSQL

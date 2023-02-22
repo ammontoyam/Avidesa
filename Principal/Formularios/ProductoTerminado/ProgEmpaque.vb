@@ -1,4 +1,6 @@
-﻿Public Class ProgEmpaque
+﻿Imports ClassLibrary
+
+Public Class ProgEmpaque
 
     Private DOPs As AdoSQL
     Private DBaches As AdoSQL
@@ -77,7 +79,7 @@
 
             OP = DGOPs.Rows(DGOPs.CurrentRow.Index).DataBoundItem("OP").ToString
             FTraeDatosOP(OP)
-            
+
         Catch ex As Exception
             MsgError(ex)
         End Try

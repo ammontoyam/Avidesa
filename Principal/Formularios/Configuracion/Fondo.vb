@@ -8,6 +8,7 @@ Imports System.IO
 Imports System.Data.Common
 Imports System.Drawing.Drawing2D
 Imports System.Drawing.Text
+Imports ClassLibrary
 
 Public Class Fondo
     Protected currentGradientShift As Integer = 10

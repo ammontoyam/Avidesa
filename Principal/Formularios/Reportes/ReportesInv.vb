@@ -1,7 +1,7 @@
 ﻿Option Explicit On
 Imports System
 Imports System.Windows.Forms
-
+Imports ClassLibrary
 
 Public Class ReportesInv
 

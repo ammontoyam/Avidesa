@@ -1,4 +1,4 @@
-﻿Option Explicit On
+Option Explicit On
 Imports System.Data.SqlClient
 Imports System.Runtime.CompilerServices ' Espacio para capturar la traza de errores
 Imports System.Data.Common  ' Espacio que permite la conexion bilateral Acces o Sql
@@ -6,7 +6,7 @@ Imports System.IO
 Imports System.Text
 Imports System.Text.RegularExpressions
 
-Module VariablesGlobales
+Public Module VariablesGlobales
 
 #Region "Declaracion de Variables En el módulo"
 
@@ -1956,11 +1956,11 @@ SigOP:
         Next
 
         'Posicionamos el filtro OPTodos despues de la posicion del ultimo filtro
-        If Formulario.Name.ToUpper = "FORMULACION" Then
-            Formulacion.OPTodos.Location = New Point(PosIniX + X, PosIniY * Y)
-        Else
-            FormulacionDet.OPTodos.Location = New Point(PosIniX + X, PosIniY * Y)
-        End If
+        'If Formulario.Name.ToUpper = "FORMULACION" Then
+        '    Formulacion.OPTodos.Location = New Point(PosIniX + X, PosIniY * Y)
+        'Else
+        '    FormulacionDet.OPTodos.Location = New Point(PosIniX + X, PosIniY * Y)
+        'End If
 
 
     End Sub
@@ -2543,4 +2543,3 @@ DescartaFra:
 
 
 End Module
-

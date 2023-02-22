@@ -4,7 +4,7 @@ Imports System.Windows.Forms
 Imports System.Data.Common
 Imports System.Data
 Imports ChronoSoftNet
-
+Imports ClassLibrary
 Public Class DetBache
     Private DConsumos As AdoSQL
     Private DBaches As AdoSQL
