@@ -1,0 +1,60 @@
+                                                              Solution Report
+                                       Plant : AVIBU - AVIDESA MAC POLLO BUCARAMANGA        Page : 1
+                                   Pricing Plant : AVIBU - AVIDESA MAC POLLO BUCARAMANGA
+
+MARZO 10 A 16 2023
+
+Formula             Description
+Code
+1                   PREINICIADOR POLLITO
+Code        Name                                       Amount        Per.      Cost
+2           MAIZ  BR PLATON                      1.542,9660         51,43    1.717,
+11          T.SOYA AM DORISYA                        776,1188       25,87    2.975,
+53          F.SOYA AM ALORA                          518,7451       17,29    3.405,
+29          FOSFATO MONODICALCIC                      41,7746        1,39    5.162,
+19          CALCIO MALLA 12                           29,1674        0,97 154,00
+60          HARINA DE VISCERAS M3-0                   15,0000        0,50    1.415,
+28          DL-METIONINA                              13,4137        0,45 12.824
+2009        NPVMA PREINICIO INICIO B                  11,7000        0,39 41.152
+30          LISINA-HCL.                               11,1967        0,37    9.110,
+12          CLORURO DE COLINA                          7,0000        0,23    6.827,
+40          TREONINA                                   6,4842        0,22    7.310,
+9008        BIOCARB                                    5,9549        0,20    3.347,
+27          SAL MARINA                                 3,9122        0,13 532,00
+47          L-VALINA                                   3,4553        0,12 14.108
+46          ARGININA                                   3,1243        0,10 24.929
+6           LUCTASALM                                  3,0000        0,10    8.455,
+6504        TRIB MAX                                   3,0000        0,10 20.315
+15174       INACTIVATOR                                3,0000        0,10 19.530
+2501        BOOSTER VIT MIN AA 002                     0,9870        0,03 40.359
+                                                 ---------------             ---------
+                                                 3.000,0000                  2.716.
+        Nutrient Name                Actual Units
+1       Peso                         1,0000 Kilos
+2       Energia Metabo        2.980,0000 Kcal./kg
+5       Proteina Cruda              23,0000 %
+12      Grasa                        6,1813 %
+13      Fibra                        2,6020 %
+14      Ceniza                       5,2207 %
+15      Calcio                       0,7680 %
+17      Fosforo Disponi              0,4300 %
+18      Sodio                        0,1600 %
+19      Potasio                      0,9652 %
+20      Cloro                        0,2500 %
+25      Bal.Electrolitico          245,9053 Mq./Kg.
+26      Cloruro de Sodi              0,4100 %
+34      Humedad                     10,3940 %
+42      Xanthophyll                  6,8765 Mg/kg
+75      Cal/Fos                      1,7860
+86      Lisina Digestibl             1,4000
+87      Metionina Diges              0,7400
+88      Azufrados Dige               1,0209
+89      Treonina Digest              0,9400
+90      Triptofano Dig.              0,2513
+91      Arginina Digesti             1,5100
+94      Isole Digestible             0,8463
+95      Valina Digestibl             1,0400
+97      Leu Digestible               1,6127
+10      In. Trip                     2,2770 TIU/mg
+
+
