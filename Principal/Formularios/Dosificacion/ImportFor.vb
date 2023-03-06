@@ -25,7 +25,8 @@ Public Class ImportFor
 
     Private RutaArchivo As String = vbNullString
     Private Renglon, CodFormula, NomFormula, Lp, FechaFor, TolSup, TolInf,
-        CodMat, PesoMeta, Bascula, CodMatB, NomMat, Especie, Grupo, Cantidad, Fecha, TipoMat, A, CodForB, TiempoMSeca, TiempoMHumeda As String
+        CodMat, PesoMeta, Bascula, CodMatB, NomMat, Especie, Grupo, Cantidad,
+        Fecha, TipoMat, A, CodForB, TiempoMSeca, TiempoMHumeda As String
     'Private CodEstablecimiento As String
     Private TiempoMSecaDef As String
     Private TiempoMHumedaDef As String
@@ -195,6 +196,7 @@ Public Class ImportFor
             Dim NomNut As String = ""
             Dim item As UShort = 0
             Dim unidad As String = ""
+            Dim MotoNave As String = ""
 
             Posi = 0
 
@@ -369,6 +371,7 @@ Public Class ImportFor
                             TolInf = 0
                             If DArt.Count > 0 Then
                                 CodMatB = DArt.RecordSet("CODEXT")
+                                MotoNave = DArt.RecordSet("MOTONAVE")
                                 NomMat = DArt.RecordSet("NOMBRE")
                                 TipoMat = DArt.RecordSet("TIPOMAT")
                                 Bascula = DArt.RecordSet("BASCULA")
@@ -377,7 +380,7 @@ Public Class ImportFor
                                 TolInf = DArt.RecordSet("TOLMINKG")
                             Else
                                 DArt.AddNew()
-                                DArt.RecordSet("CodInt") = CodMat
+                                DArt.RecordSet("CODINT") = CodMat
                                 'DArt.RecordSet("CodExt") = CodMat
                                 DArt.RecordSet("NOMBRE") = CLeft(NomMat, 30)
                                 DArt.RecordSet("TOLMINKG") = 0
@@ -395,26 +398,28 @@ Public Class ImportFor
                                 TipoMat = 0
                                 Bascula = 0
                                 A = "-"
+                                MotoNave = 0
 
                             End If
 
                             If Val(PesoMeta) > 0 And CodMat > 0 Then
                                 DDatosFor.AddNew()
 
-                                DDatosFor.RecordSet("CodFor") = CodFormula
-                                DDatosFor.RecordSet("CodForB") = CLeft(CodForB, 15)
-                                DDatosFor.RecordSet("CodMatB") = CodMatB.Trim
-                                DDatosFor.RecordSet("CodMat") = CodMat.Trim
-                                DDatosFor.RecordSet("NomMat") = CLeft(NomMat, 30)
+                                DDatosFor.RecordSet("CODFOR") = CodFormula
+                                DDatosFor.RecordSet("CODFORB") = CLeft(CodForB, 15)
+                                DDatosFor.RecordSet("CODMATB") = CodMatB.Trim
+                                DDatosFor.RecordSet("CODMAT") = CodMat.Trim
+                                DDatosFor.RecordSet("NOMMAT") = CLeft(NomMat, 30)
                                 DDatosFor.RecordSet("PESOMETA") = Eval(PesoMeta)
                                 DDatosFor.RecordSet("PESOMETAB") = Eval(PesoMeta)
-                                DDatosFor.RecordSet("Paso") = Paso
+                                DDatosFor.RecordSet("PASO") = Paso
                                 DDatosFor.RecordSet("LP") = Lp
                                 DDatosFor.RecordSet("TIPOMAT") = TipoMat
                                 DDatosFor.RecordSet("BASCULA") = Bascula
                                 DDatosFor.RecordSet("A") = A
                                 DDatosFor.RecordSet("TOLSUP") = Eval(TolSup)
                                 DDatosFor.RecordSet("TOLINF") = Eval(TolInf)
+                                DDatosFor.RecordSet("MOTONAVE") = MotoNave
 
                                 'Buscamos el material en la matriz de tolvas para actualizarle la tolva
                                 DTolvas.Refresh()
