@@ -231,29 +231,29 @@ Public Class PDosifica
             LP = DOPs.RecordSet("LP")
 
             'Verifica el total de la formula contra el que deberia ser
-            DVarios.Open("select sum(VALOR) as TotFor from DATOSFOR where CODFOR='" + CodFor + "' and LP='" + LP + "' and TIPON<>6")
+            DVarios.Open("select sum(PESOMETA) as TotFor from DATOSFOR where CODFOR='" + CodFor + "' and LP='" + LP + "' and TIPON<>6")
 
             Dim TotalFor As Int16 = 0
             If Not IsDBNull(DVarios.RecordSet("TOTFOR")) Then
                 TotalFor = DVarios.RecordSet("TOTFOR")
                 DFor.Open("select * from FORMULAS where CODFOR='" + CodFor + "' and LP='" + LP + "'")
                 If DFor.RecordCount Then
-                    If Math.Abs(DFor.RecordSet("PESOMETABACHE") - TotalFor) > 0.5 Then
-                        RespInput = MsgBox("ATENCION la suma de ingredientes no coincide con el total que debería tener el bache (PesoMetaBache)" + vbCrLf + _
+                    If Math.Abs(DFor.RecordSet("PESOMETA") - TotalFor) > 0.5 Then
+                        RespInput = MsgBox("ATENCION la suma de ingredientes no coincide con el total que debería tener el bache (PesoMetaBache)" + vbCrLf +
                                            "Deberia ser " + DFor.RecordSet("PESOMETABACHE").ToString + " Desea Continuar?", vbYesNo + vbInformation)
                         If RespInput = vbNo Then Return
-                        Evento("PesoMetaBache distinto al total de ingredientes. Usuario decide continuar. Igreds: " + TotalFor.ToString + " PMBache: " + DFor.RecordSet("PESOMETABACHE").ToString)
+                        Evento("PesoMetaBache distinto al total de ingredientes. Usuario decide continuar. Igreds: " + TotalFor.ToString + " PMBache: " + DFor.RecordSet("PESOMETA").ToString)
                     End If
-                    If DFor.RecordSet("PESOMETABACHE") > 3001 Then
+                    If DFor.RecordSet("PESOMETA") > 3001 Then
                         RespInput = MsgBox("Peso meta Bache Mayor a 3000 kg. Desea Continuar?", vbYesNo + vbInformation)
                         If RespInput = vbNo Then Return
-                        Evento("Peso Meta Bache mayor a 3000 : " + DFor.RecordSet("PESOMETABACHE").ToString)
+                        Evento("Peso Meta Bache mayor a 3000 : " + DFor.RecordSet("PESOMETA").ToString)
                     End If
 
-                    If DFor.RecordSet("PESOMETABACHE") < 3000 Then
+                    If DFor.RecordSet("PESOMETA") < 3000 Then
                         RespInput = MsgBox("Peso meta Bache menor a 3000 kg. Desea Continuar?", vbYesNo + vbInformation)
                         If RespInput = vbNo Then Return
-                        Evento("Peso Meta Bache menor a 3000 : " + DFor.RecordSet("PESOMETABACHE").ToString)
+                        Evento("Peso Meta Bache menor a 3000 : " + DFor.RecordSet("PESOMETA").ToString)
                     End If
 
                     If TotalFor < 3000 Then
@@ -287,14 +287,14 @@ Public Class PDosifica
                 'End If
 
                 'Automáticos
-                If InStr(RDatosFor("A"), "B") Then
+                If InStr(RDatosFor("A"), "A") Then
                     BascG = RDatosFor("BASCULA")
                     If BascG = 0 Then
                         MsgBox("Ingrediente con báscula 0: " + RDatosFor("NOMMAT").ToString, vbInformation)
                         Exit Sub
                     End If
 
-                    DTolvas.Open("select * from TOLVASDOSIF where BASCULA=0" + RDatosFor("BASCULA").ToString + " and CODINT='" + RDatosFor("CODMAT").ToString + "' and ACTIVA='X'")
+                    DTolvas.Open("select * from TOLVAS where PROCESO='DOSIFICACION' and BASCULA=" + RDatosFor("BASCULA").ToString + " and CODINT='" + RDatosFor("CODMAT").ToString + "' and ACTIVA='X'")
                     If DTolvas.RecordCount = 0 Then
                         MsgBox("No se econtró Tolva para " + RDatosFor("NOMMAT").ToString, vbInformation)
                         Exit Sub
