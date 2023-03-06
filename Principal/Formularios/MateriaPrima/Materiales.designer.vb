@@ -76,6 +76,7 @@ Partial Class Materiales
         Me.BCancelar = New System.Windows.Forms.Button()
         Me.BAceptar = New System.Windows.Forms.Button()
         Me.GBNombre = New System.Windows.Forms.GroupBox()
+        Me.ChAlarmaCorteSinAbrir = New System.Windows.Forms.CheckBox()
         Me.ChLiquidoExt = New System.Windows.Forms.CheckBox()
         Me.ChActivo = New System.Windows.Forms.CheckBox()
         Me.ChManejaCorteLote = New System.Windows.Forms.CheckBox()
@@ -97,7 +98,6 @@ Partial Class Materiales
         Me.a = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Activo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.FRefrescaDG = New System.Windows.Forms.Button()
-        Me.ChAlarmaCorteSinAbrir = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.PanelDatos.SuspendLayout()
@@ -331,6 +331,7 @@ Partial Class Materiales
         Me.mnInterfazArt.Name = "mnInterfazArt"
         Me.mnInterfazArt.Size = New System.Drawing.Size(114, 20)
         Me.mnInterfazArt.Text = "Interfaz Artículos"
+        Me.mnInterfazArt.Visible = False
         '
         'PanelDatos
         '
@@ -561,6 +562,19 @@ Partial Class Materiales
         Me.GBNombre.TabIndex = 18
         Me.GBNombre.TabStop = False
         '
+        'ChAlarmaCorteSinAbrir
+        '
+        Me.ChAlarmaCorteSinAbrir.AutoSize = True
+        Me.ChAlarmaCorteSinAbrir.Enabled = False
+        Me.ChAlarmaCorteSinAbrir.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.ChAlarmaCorteSinAbrir.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.ChAlarmaCorteSinAbrir.Location = New System.Drawing.Point(152, 198)
+        Me.ChAlarmaCorteSinAbrir.Name = "ChAlarmaCorteSinAbrir"
+        Me.ChAlarmaCorteSinAbrir.Size = New System.Drawing.Size(150, 18)
+        Me.ChAlarmaCorteSinAbrir.TabIndex = 50
+        Me.ChAlarmaCorteSinAbrir.Text = "Alarma Corte Sin Abrir"
+        Me.ChAlarmaCorteSinAbrir.UseVisualStyleBackColor = True
+        '
         'ChLiquidoExt
         '
         Me.ChLiquidoExt.AutoSize = True
@@ -780,19 +794,6 @@ Partial Class Materiales
         Me.FRefrescaDG.Text = "FRefrescaDG"
         Me.FRefrescaDG.UseVisualStyleBackColor = True
         Me.FRefrescaDG.Visible = False
-        '
-        'ChAlarmaCorteSinAbrir
-        '
-        Me.ChAlarmaCorteSinAbrir.AutoSize = True
-        Me.ChAlarmaCorteSinAbrir.Enabled = False
-        Me.ChAlarmaCorteSinAbrir.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.ChAlarmaCorteSinAbrir.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ChAlarmaCorteSinAbrir.Location = New System.Drawing.Point(152, 198)
-        Me.ChAlarmaCorteSinAbrir.Name = "ChAlarmaCorteSinAbrir"
-        Me.ChAlarmaCorteSinAbrir.Size = New System.Drawing.Size(150, 18)
-        Me.ChAlarmaCorteSinAbrir.TabIndex = 50
-        Me.ChAlarmaCorteSinAbrir.Text = "Alarma Corte Sin Abrir"
-        Me.ChAlarmaCorteSinAbrir.UseVisualStyleBackColor = True
         '
         'Materiales
         '

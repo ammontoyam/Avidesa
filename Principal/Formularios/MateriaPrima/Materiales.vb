@@ -99,7 +99,7 @@ Public Class Materiales
 
             InicializacionTablasContCruzada()
 
-            If Funcion_FuncionesPlantaPremezclas Then ChVehiculo.Enabled = False
+            'If Funcion_FuncionesPlantaPremezclas Then ChVehiculo.Enabled = False
 
 
             FormLoad = True
