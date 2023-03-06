@@ -37,10 +37,6 @@ Partial Class ImportFor
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnSalir = New System.Windows.Forms.ToolStripMenuItem()
         Me.DGFor = New System.Windows.Forms.DataGridView()
-        Me.CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NomFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Version = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Establecimiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TRuta = New System.Windows.Forms.TextBox()
         Me.BTraerFor = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -50,6 +46,10 @@ Partial Class ImportFor
         Me.ProgresBar = New System.Windows.Forms.ToolStripProgressBar()
         Me.TMensaje = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NomFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Version = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaForm = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DGFor, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,7 +131,7 @@ Partial Class ImportFor
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DGFor.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DGFor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DGFor.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CodFor, Me.NomFor, Me.Version, Me.Establecimiento})
+        Me.DGFor.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CodFor, Me.NomFor, Me.Version, Me.FechaForm})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -156,39 +156,6 @@ Partial Class ImportFor
         Me.DGFor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGFor.Size = New System.Drawing.Size(602, 401)
         Me.DGFor.TabIndex = 25
-        '
-        'CodFor
-        '
-        Me.CodFor.HeaderText = "Código"
-        Me.CodFor.Name = "CodFor"
-        Me.CodFor.ReadOnly = True
-        Me.CodFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CodFor.ToolTipText = "Código"
-        '
-        'NomFor
-        '
-        Me.NomFor.HeaderText = "    Nombre"
-        Me.NomFor.Name = "NomFor"
-        Me.NomFor.ReadOnly = True
-        Me.NomFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.NomFor.Width = 250
-        '
-        'Version
-        '
-        Me.Version.HeaderText = "Versión"
-        Me.Version.Name = "Version"
-        Me.Version.ReadOnly = True
-        Me.Version.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Version.Width = 80
-        '
-        'Establecimiento
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Establecimiento.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Establecimiento.HeaderText = "Establecimiento"
-        Me.Establecimiento.Name = "Establecimiento"
-        Me.Establecimiento.ReadOnly = True
-        Me.Establecimiento.Width = 110
         '
         'TRuta
         '
@@ -250,6 +217,39 @@ Partial Class ImportFor
         Me.Label1.TabIndex = 30
         Me.Label1.Text = "Ruta archivo plano importación "
         '
+        'CodFor
+        '
+        Me.CodFor.HeaderText = "Código"
+        Me.CodFor.Name = "CodFor"
+        Me.CodFor.ReadOnly = True
+        Me.CodFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CodFor.ToolTipText = "Código"
+        '
+        'NomFor
+        '
+        Me.NomFor.HeaderText = "    Nombre"
+        Me.NomFor.Name = "NomFor"
+        Me.NomFor.ReadOnly = True
+        Me.NomFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.NomFor.Width = 250
+        '
+        'Version
+        '
+        Me.Version.HeaderText = "Versión"
+        Me.Version.Name = "Version"
+        Me.Version.ReadOnly = True
+        Me.Version.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Version.Width = 80
+        '
+        'FechaForm
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FechaForm.DefaultCellStyle = DataGridViewCellStyle2
+        Me.FechaForm.HeaderText = "Fecha"
+        Me.FechaForm.Name = "FechaForm"
+        Me.FechaForm.ReadOnly = True
+        Me.FechaForm.Width = 110
+        '
         'ImportFor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -297,9 +297,9 @@ Partial Class ImportFor
     Friend WithEvents ProgresBar As System.Windows.Forms.ToolStripProgressBar
     Friend WithEvents TMensaje As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents BImportar As System.Windows.Forms.Button
+    Friend WithEvents Label1 As Label
     Friend WithEvents CodFor As DataGridViewTextBoxColumn
     Friend WithEvents NomFor As DataGridViewTextBoxColumn
     Friend WithEvents Version As DataGridViewTextBoxColumn
-    Friend WithEvents Establecimiento As DataGridViewTextBoxColumn
-    Friend WithEvents Label1 As Label
+    Friend WithEvents FechaForm As DataGridViewTextBoxColumn
 End Class

@@ -535,6 +535,9 @@ Public Class Formulacion
 
     Public Sub BActualizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BActualizar.Click
         Try
+            'DGFor.DataSource = ""
+
+
             If Funcion_ManejaRestriccionLineasNegocio And ServComM = False Then
                 'Se revisa en la tabla restricciones si hay restriccion para esa linea de negocio
                 'En el campo restriccion se encuentra la sentencia de filtro
@@ -543,7 +546,12 @@ Public Class Formulacion
                 DFor.Open("select * from FORMULAS order by NOMFOR")
             End If
             AsignaDataGrid(DGFor, DFor.DataTable)
-            If DFor.Count = 0 Then Return
+            If DFor.Count = 0 Then
+                'DDatosFor.Open("select * from DATOSFOR where TIPOMAT<40 and CODFOR='0' and LP='0' order by PASO")
+                'AsignaDataGrid(DGDatosFor, DDatosFor.DataTable, True)
+                DGDatosFor.Rows.Clear() 'Si no hay fórmulas no debe haber ingredientes en el DataGrid
+                Return
+            End If
             DGFor.Rows(0).Selected = True
             DGFor.CurrentCell = DGFor(0, 0)
             DGFor.FirstDisplayedScrollingRowIndex = 0
@@ -1237,6 +1245,8 @@ Public Class Formulacion
 
                 DBorrarForm.Delete("Delete from DATOSFOR where CODFOR='" + CodForBorrar + "' and LP='" + LPBorrar + "'", Me)
                 DBorrarForm.Delete("Delete from FORMULAS where CODFOR='" + CodForBorrar + "' and LP='" + LPBorrar + "'", Me)
+                DBorrarForm.Delete("Delete from NUTFOR where CODFOR='" + CodForBorrar + "' and LP='" + LPBorrar + "'", Me)
+
                 Sleep(100)
             Next
 
