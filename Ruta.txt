@@ -2,6 +2,13 @@
 ChrItaStr_UnoE
 
 
+pruebasavidesa.database.windows.net
+ChrAviGir
+
+
+
+
+
 
 
 

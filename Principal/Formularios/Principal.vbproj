@@ -299,6 +299,12 @@
     <Compile Include="Dosificacion\DatosMuestras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MateriaPrima\MermaMaquila.Designer.vb">
+      <DependentUpon>MermaMaquila.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaPrima\MermaMaquila.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ProductoTerminado\Despachos.Designer.vb">
       <DependentUpon>Despachos.vb</DependentUpon>
     </Compile>
@@ -639,6 +645,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dosificacion\DatosMuestras.resx">
       <DependentUpon>DatosMuestras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MateriaPrima\MermaMaquila.resx">
+      <DependentUpon>MermaMaquila.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductoTerminado\Despachos.resx">
       <DependentUpon>Despachos.vb</DependentUpon>

@@ -147,10 +147,10 @@ Public Class ImportFor
                     NomFormula = Mid(RenglonAux(i), 10).Trim
                     Lp = "-" 'Eval(Renglon)
 
-                    If Val(CodFormula) < 1 Or Val(CodFormula) > 2680 Then
-                        MsgBox("Número de fórmula no válido para el equipo de dosificación", vbInformation)
-                        Continue For
-                    End If
+                    'If Val(CodFormula) < 1 Or Val(CodFormula) > 2680 Then
+                    '    MsgBox("Número de fórmula no válido para el equipo de dosificación", vbInformation)
+                    '    Continue For
+                    'End If
 
                     DGFor.Rows.Add()
                     DGFor.Rows(DGFor.Rows.Count - 1).Cells("CodFor").Value = CodFormula
