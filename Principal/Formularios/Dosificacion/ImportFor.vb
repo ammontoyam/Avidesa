@@ -231,289 +231,292 @@ Public Class ImportFor
                 Next
 
 
-                'ASIGNACIÓN AUTOMÁTICA DE LA VERSIÓN POR FÓRMULA IMPORTADA
-                DConfigVar.Find("CAMPO = 'VersionFor'")
-                    If DConfigVar.EOF Then 'Formula Nueva
-                        'RespInput = InputBox.InputBox("Indique la VERSIÓN que le dará a la fórmula " + CodForB + " " + NomFormula, "ChronoSoft", "")
-                        If InputBox.InputBox("Importar Fórmula", "Ingrese la versión de la fórmula seleccionada", RespInput) = DialogResult.Cancel Then
-                            Continue For
-                        End If
-                        Lp = Val(RespInput)
-                    Else
-                        Lp = Val(DConfigVar.RecordSet("VersionFor")) + 1
+                'ASIGNACIÓN AUTOMÁTICA DE LA VERSIÓN POR FÓRMULA IMPORTADA       
+                'DConfigVar.Find("CAMPO = 'VersionFor'")
+                'If DConfigVar.EOF Then 'Formula Nueva
+                If Val(ConfigParametros("VersionFor")) = 0 Then
+                    'RespInput = InputBox.InputBox("Indique la VERSIÓN que le dará a la fórmula " + CodForB + " " + NomFormula, "ChronoSoft", "")
+                    If InputBox.InputBox("Importar Fórmula", "Ingrese la versión de la fórmula seleccionada", RespInput) = DialogResult.Cancel Then
+                        Continue For
                     End If
+                    Lp = Val(RespInput)
+                Else
+                    'Lp = Val(DConfigVar.RecordSet("VersionFor")) + 1
+                    Lp = Val(ConfigParametros("VersionFor")) + 1
+                End If
 
-                    DVarios.Open("select * from FORMULAS where CODFOR=" + Trim(CodFormula) + " and LP=" + Trim(Lp))
+                DVarios.Open("select * from FORMULAS where CODFOR=" + Trim(CodFormula) + " and LP=" + Trim(Lp))
 
-                    If DVarios.Count > 0 Then
-                        MsgBox(" La Fórmula " + CodFormula + " " + NomFormula + " Ya tiene asignada la Versión Ingresada, debe ingresar una versión válida", vbCritical)
-                        Exit Sub
+                If DVarios.Count > 0 Then
+                    MsgBox(" La Fórmula " + CodFormula + " " + NomFormula + " Ya tiene asignada la Versión Ingresada, debe ingresar una versión válida", vbCritical)
+                    Exit Sub
+                End If
+
+                CodPrem = "0"
+                CodForB = CodFormula
+                Especie = "0"
+                Grupo = "0"
+                ManejaPx = False
+                'Por Defecto estos valores
+                TiempoMSeca = TiempoMSecaDef
+                TiempoMHumeda = TiempoMHumedaDef
+
+
+                'Recuperamos la especie y el grupo de Formula
+                'DFor.Open("select top 1 * from FORMULAS where CODFOR=" + Trim(CodFormula))
+                DFor.Open("select top 1 * from FORMULAS where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
+
+                If DFor.Count Then
+                    Resp = MessageBox.Show(" La Fórmula " + CodFormula.Trim + " " + NomFormula.ToString.Trim + " ya existe, desea reemplazarla ", "ChronoSoft Net", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+                    If Resp = vbNo Then
+                        Continue For
                     End If
+                    Especie = DFor.RecordSet("CODESPECIE")
+                    Grupo = DFor.RecordSet("CODGRPFOR")
+                    CodPrem = DFor.RecordSet("CODPREMEZCLA")
+                    TiempoMSeca = DFor.RecordSet("TMSECA")
+                    TiempoMHumeda = DFor.RecordSet("TMHUMEDA")
+                    DFor.RecordSet.Delete()
 
-                    CodPrem = "0"
-                    CodForB = CodFormula
-                    Especie = "0"
-                    Grupo = "0"
-                    ManejaPx = False
-                    'Por Defecto estos valores
-                    TiempoMSeca = TiempoMSecaDef
-                    TiempoMHumeda = TiempoMHumedaDef
+                    DFor.Update()
 
+                    DDatosFor.Delete("delete from DATOSFOR where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
+                    DFor.Delete("delete from FORMULAS where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
+                    'Eliminamos la composicion nutricional de la Fórmula
+                    DNutFor.Open("delete from NUTFOR where CODFOR=" + CodFormula.Trim + " and LP=" + Lp)
+                End If
 
-                    'Recuperamos la especie y el grupo de Formula
-                    'DFor.Open("select top 1 * from FORMULAS where CODFOR=" + Trim(CodFormula))
-                    DFor.Open("select top 1 * from FORMULAS where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
+                RespInput = ""
 
-                    If DFor.Count Then
-                        Resp = MessageBox.Show(" La Fórmula " + CodFormula.Trim + " " + NomFormula.ToString.Trim + " ya existe, desea reemplazarla ", "ChronoSoft Net", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                        If Resp = vbNo Then
-                            Continue For
-                        End If
-                        Especie = DFor.RecordSet("CODESPECIE")
-                        Grupo = DFor.RecordSet("CODGRPFOR")
-                        CodPrem = DFor.RecordSet("CODPREMEZCLA")
-                        TiempoMSeca = DFor.RecordSet("TMSECA")
-                        TiempoMHumeda = DFor.RecordSet("TMHUMEDA")
-                        DFor.RecordSet.Delete()
+                DFor.AddNew()
+                DFor.RecordSet("CODFOR") = CodFormula
+                DFor.RecordSet("CODFORB") = CodForB
+                DFor.RecordSet("NOMFOR") = CLeft(NomFormula.ToUpper, 30)
+                'DFor.RecordSet("TOTALFOR") = TamBache
+                DFor.RecordSet("CODESPECIE") = Especie
+                DFor.RecordSet("CODGRPFOR") = Grupo
+                DFor.RecordSet("TMSECA") = TiempoMSeca
+                DFor.RecordSet("TMHUMEDA") = TiempoMHumeda
+                'DFor.RecordSet("MANEJAPX") = ManejaPx
+                DFor.RecordSet("CODPREMEZCLA") = CodPrem
+                DFor.RecordSet("FECHAFOR") = FechaFor
+                DFor.RecordSet("USUARIOIMPFOR") = CLeft(UsuarioPrincipal, 20)
+                'DFor.RecordSet("CODESTABLECIMIENTO") = CodEstablecimiento
+                DFor.RecordSet("LP") = Lp
+                DFor.RecordSet("FECHAIMPFOR") = FechaC()
+                'DFor.RecordSet("MEZCEXT") = MezcExt
 
-                        DFor.Update()
+                DFor.Update(Me)
 
-                        DDatosFor.Delete("delete from DATOSFOR where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
-                        DFor.Delete("delete from FORMULAS where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
-                        'Eliminamos la composicion nutricional de la Fórmula
-                        DNutFor.Open("delete from NUTFOR where CODFOR=" + CodFormula.Trim + " and LP=" + Lp)
-                    End If
+                If Funcion_AprobarFormulaImportada Then
+                    'Quitamos el aprobado a todas las formulas del mismo código menos a la versión que acabamos 
+                    'de importar
+                    'DVarios.Open("Update FORMULAS set ESTADO='-' where CODESTABLECIMIENTO='" + CodEstablecimiento + "' and CODFOR='" + CodFormula + "' AND LP<>'" + Lp + "'")
+                    DVarios.Open("Update FORMULAS set ESTADO='-' where CODFOR='" + CodFormula + "' AND LP<>'" + Lp + "'")
+                End If
 
-                    RespInput = ""
+                Paso = 1
 
-                    DFor.AddNew()
-                    DFor.RecordSet("CODFOR") = CodFormula
-                    DFor.RecordSet("CODFORB") = CodForB
-                    DFor.RecordSet("NOMFOR") = CLeft(NomFormula.ToUpper, 30)
-                    'DFor.RecordSet("TOTALFOR") = TamBache
-                    DFor.RecordSet("CODESPECIE") = Especie
-                    DFor.RecordSet("CODGRPFOR") = Grupo
-                    DFor.RecordSet("TMSECA") = TiempoMSeca
-                    DFor.RecordSet("TMHUMEDA") = TiempoMHumeda
-                    'DFor.RecordSet("MANEJAPX") = ManejaPx
-                    DFor.RecordSet("CODPREMEZCLA") = CodPrem
-                    DFor.RecordSet("FECHAFOR") = FechaFor
-                    DFor.RecordSet("USUARIOIMPFOR") = CLeft(UsuarioPrincipal, 20)
-                    'DFor.RecordSet("CODESTABLECIMIENTO") = CodEstablecimiento
-                    DFor.RecordSet("LP") = Lp
-                    DFor.RecordSet("FECHAIMPFOR") = FechaC()
-                    'DFor.RecordSet("MEZCEXT") = MezcExt
-
-                    DFor.Update(Me)
-
-                    If Funcion_AprobarFormulaImportada Then
-                        'Quitamos el aprobado a todas las formulas del mismo código menos a la versión que acabamos 
-                        'de importar
-                        'DVarios.Open("Update FORMULAS set ESTADO='-' where CODESTABLECIMIENTO='" + CodEstablecimiento + "' and CODFOR='" + CodFormula + "' AND LP<>'" + Lp + "'")
-                        DVarios.Open("Update FORMULAS set ESTADO='-' where CODFOR='" + CodFormula + "' AND LP<>'" + Lp + "'")
-                    End If
-
-                    Paso = 1
-
-                    '---------------------------------------------LLENA LA TABLA DATOSFOR------------------------------------------------------------------------------------------
-                    RenglonAux = Split(Contenido, vbCrLf)
+                '---------------------------------------------LLENA LA TABLA DATOSFOR------------------------------------------------------------------------------------------
+                RenglonAux = Split(Contenido, vbCrLf)
 
 
-                    For i As UShort = 0 To RenglonAux.Length - 1
+                For i As UShort = 0 To RenglonAux.Length - 1
 
-                        Posi = InStr(1, RenglonAux(i), NomFormula)
-                        Posi2 = InStr(1, RenglonAux(i), Trim(CodFormula))
+                    Posi = InStr(1, RenglonAux(i), NomFormula)
+                    Posi2 = InStr(1, RenglonAux(i), Trim(CodFormula))
 
-                        If ((Posi > 0 And Posi2 = 1) AndAlso (Posi2 < Posi)) Then  'Se acota que renglón tenga nombre de fórmula, y el código de fórmula posicionado en la primera columna
-                            For k As UShort = i + 2 To RenglonAux.Length - 1
+                    If ((Posi > 0 And Posi2 = 1) AndAlso (Posi2 < Posi)) Then  'Se acota que renglón tenga nombre de fórmula, y el código de fórmula posicionado en la primera columna
+                        For k As UShort = i + 2 To RenglonAux.Length - 1
 
 
-                                If InStr(1, RenglonAux(k), "---------------") > 0 Then
-                                    k = k + 1
-                                    i = k
-                                    Renglon = RenglonAux(k)
-                                    Renglon = Replace(Renglon, ".", "")
-                                    TamBache = Eval(Renglon)
-                                    Exit For
+                            If InStr(1, RenglonAux(k), "---------------") > 0 Then
+                                k = k + 1
+                                i = k
+                                Renglon = RenglonAux(k)
+                                Renglon = Replace(Renglon, ".", "")
+                                TamBache = Eval(Renglon)
+                                Exit For
+                            End If
+                            Renglon = RenglonAux(k)
+
+                            CodMat = Eval(Renglon)
+                            Posi = InStr(1, Renglon, " ")
+                            Renglon = Trim(Mid(Renglon, Posi))
+
+                            'Encontrar la primera "," hacia la derecha y luego el primer espacio de ese resultado hacia la izquierda
+                            Posi = InStrRev(Renglon, " ", InStr(1, Renglon, ","))
+
+                            NomMat = Trim(Mid(Renglon, 1, Posi))
+                            Renglon = Trim(Mid(Renglon, Posi))
+                            Posi = InStr(1, Renglon, " ")
+                            PesoMeta = Trim(Mid(Renglon, 1, Posi))
+                            PesoMeta = Replace(PesoMeta, ".", "")
+                            PesoMeta = Replace(PesoMeta, ",", ".")
+
+                            If PesoMeta > 25 Then 'If Valor > 15 Then
+                                PesoMeta = Math.Round(CDec(PesoMeta), 0)
+                            Else
+                                PesoMeta = Math.Round(CDec(PesoMeta), 2)
+                                'AJUSTE REDONDEO DE DECIMALES A 2 DIGITOS
+                                PesoMeta = Int((PesoMeta * 10 ^ 2) + 0.5) / 10 ^ 2
+                                'If (Valor - Int(Valor)) * 100 Mod 2 <> 0 Then Valor = Int(Valor) + ((Valor - Int(Valor)) * 100 + 1) / 100
+                            End If
+
+                            If Val(PesoMeta) = 0 Then
+                                MsgBox("No se puede importar la Fórmula, ya que el archivo no tiene el formato " + vbCrLf + Renglon, vbCritical)
+                                Evento("No se puede importar la Fórmula, ya que el archivo no tiene el formato " + Renglon)
+                                Exit Sub
+                            End If
+
+                            DArt.Open("select * from ARTICULOS where CODINT='" + CodMat + "'")
+                            CodMatB = CodMat
+                            TolSup = 0
+                            TolInf = 0
+                            If DArt.Count > 0 Then
+                                CodMatB = DArt.RecordSet("CODEXT")
+                                MotoNave = DArt.RecordSet("MOTONAVE")
+                                NomMat = DArt.RecordSet("NOMBRE")
+                                TipoMat = DArt.RecordSet("TIPOMAT")
+                                Bascula = DArt.RecordSet("BASCULA")
+                                A = DArt.RecordSet("A")
+                                TolSup = DArt.RecordSet("TOLMAXKG")
+                                TolInf = DArt.RecordSet("TOLMINKG")
+                            Else
+                                DArt.AddNew()
+                                DArt.RecordSet("CODINT") = CodMat
+                                'DArt.RecordSet("CodExt") = CodMat
+                                DArt.RecordSet("NOMBRE") = CLeft(NomMat, 30)
+                                DArt.RecordSet("TOLMINKG") = 0
+                                DArt.RecordSet("TOLINFPORC") = 0
+                                DArt.RecordSet("TOLMAXKG") = 0
+                                DArt.RecordSet("TOLSUPPORC") = 0
+                                DArt.RecordSet("CODGRPMAT") = 0
+                                DArt.RecordSet("TIPO") = "MP"
+                                DArt.RecordSet("BASCULA") = 0
+                                DArt.RecordSet("TIPOMAT") = 0
+                                DArt.RecordSet("A") = "-"
+                                DArt.Update(Me)
+
+                                CodMatB = CodMat
+                                TipoMat = 0
+                                Bascula = 0
+                                A = "-"
+                                MotoNave = 0
+
+                            End If
+
+                            If Val(PesoMeta) > 0 And CodMat > 0 Then
+                                DDatosFor.AddNew()
+
+                                DDatosFor.RecordSet("CODFOR") = CodFormula
+                                DDatosFor.RecordSet("CODFORB") = CLeft(CodForB, 15)
+                                DDatosFor.RecordSet("CODMATB") = CodMatB.Trim
+                                DDatosFor.RecordSet("CODMAT") = CodMat.Trim
+                                DDatosFor.RecordSet("NOMMAT") = CLeft(NomMat, 30)
+                                DDatosFor.RecordSet("PESOMETA") = Eval(PesoMeta)
+                                DDatosFor.RecordSet("PESOMETAB") = Eval(PesoMeta)
+                                DDatosFor.RecordSet("PASO") = Paso
+                                DDatosFor.RecordSet("LP") = Lp
+                                DDatosFor.RecordSet("TIPOMAT") = TipoMat
+                                DDatosFor.RecordSet("BASCULA") = Bascula
+                                DDatosFor.RecordSet("A") = A
+                                DDatosFor.RecordSet("TOLSUP") = Eval(TolSup)
+                                DDatosFor.RecordSet("TOLINF") = Eval(TolInf)
+                                DDatosFor.RecordSet("MOTONAVE") = MotoNave
+
+                                'Buscamos el material en la matriz de tolvas para actualizarle la tolva
+                                DTolvas.Refresh()
+                                DTolvas.Find("CODINT='" + CodMat + "'")
+                                If Not DTolvas.EOF Then
+                                    DDatosFor.RecordSet("TOLVA") = DTolvas.RecordSet("TOLVA")
+                                    DDatosFor.RecordSet("BASCULA") = DTolvas.RecordSet("BASCULA")
                                 End If
+
+                                DDatosFor.Update(Me)
+
+                            End If
+
+                            'ValorMetaTot = Val(ValorMetaTot) + Val(Valor)
+                            Paso += 1
+
+                        Next
+
+                        'Actualizamos pesometa/bache en fórmula
+                        DFor.Open("select top 1 * from FORMULAS where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
+                        If DFor.Count Then
+                            DFor.RecordSet("TOTALFOR") = TamBache
+                            DFor.Update()
+                        End If
+
+                        DNutFor.Open("select * from NUTFOR where CODFOR=" + CodFormula.Trim + " and LP=" + Lp)
+                        If DNutFor.Count > 0 Then
+                            MsgBox("Ya existe informacion nutricional para la fórmula " + CodFormula.Trim + "versión " + Lp, vbCritical)
+                        End If
+
+                        'informacion nutricional
+                        i = i + 1
+                        Renglon = RenglonAux(i)
+                        Posi = InStr(1, Renglon, "Nutrient Name")
+                        If Posi > 0 Then
+                            'For k = i + 1 To RenglonAux.Length - 1
+                            For k As UShort = i + 1 To RenglonAux.Length - 1
+
                                 Renglon = RenglonAux(k)
 
-                                CodMat = Eval(Renglon)
+                                If Trim(Renglon) = "" Then
+                                    Exit For
+                                End If
+
+                                item = Eval(Renglon)
                                 Posi = InStr(1, Renglon, " ")
                                 Renglon = Trim(Mid(Renglon, Posi))
 
                                 'Encontrar la primera "," hacia la derecha y luego el primer espacio de ese resultado hacia la izquierda
                                 Posi = InStrRev(Renglon, " ", InStr(1, Renglon, ","))
 
-                                NomMat = Trim(Mid(Renglon, 1, Posi))
+                                NomNut = Trim(Mid(Renglon, 1, Posi))
                                 Renglon = Trim(Mid(Renglon, Posi))
                                 Posi = InStr(1, Renglon, " ")
-                                PesoMeta = Trim(Mid(Renglon, 1, Posi))
-                                PesoMeta = Replace(PesoMeta, ".", "")
-                                PesoMeta = Replace(PesoMeta, ",", ".")
 
-                                If PesoMeta > 25 Then 'If Valor > 15 Then
-                                    PesoMeta = Math.Round(CDec(PesoMeta), 0)
+                                If Posi > 0 Then
+                                    Cantidad = Trim(Mid(Renglon, 1, Posi))
                                 Else
-                                    PesoMeta = Math.Round(CDec(PesoMeta), 2)
-                                    'AJUSTE REDONDEO DE DECIMALES A 2 DIGITOS
-                                    PesoMeta = Int((PesoMeta * 10 ^ 2) + 0.5) / 10 ^ 2
-                                    'If (Valor - Int(Valor)) * 100 Mod 2 <> 0 Then Valor = Int(Valor) + ((Valor - Int(Valor)) * 100 + 1) / 100
+                                    Cantidad = Renglon.Trim
                                 End If
 
-                                If Val(PesoMeta) = 0 Then
-                                    MsgBox("No se puede importar la Fórmula, ya que el archivo no tiene el formato " + vbCrLf + Renglon, vbCritical)
-                                    Evento("No se puede importar la Fórmula, ya que el archivo no tiene el formato " + Renglon)
-                                    Exit Sub
-                                End If
+                                Cantidad = Replace(Cantidad, ".", "")
+                                Cantidad = Replace(Cantidad, ",", ".")
 
-                                DArt.Open("select * from ARTICULOS where CODINT='" + CodMat + "'")
-                                CodMatB = CodMat
-                                TolSup = 0
-                                TolInf = 0
-                                If DArt.Count > 0 Then
-                                    CodMatB = DArt.RecordSet("CODEXT")
-                                    MotoNave = DArt.RecordSet("MOTONAVE")
-                                    NomMat = DArt.RecordSet("NOMBRE")
-                                    TipoMat = DArt.RecordSet("TIPOMAT")
-                                    Bascula = DArt.RecordSet("BASCULA")
-                                    A = DArt.RecordSet("A")
-                                    TolSup = DArt.RecordSet("TOLMAXKG")
-                                    TolInf = DArt.RecordSet("TOLMINKG")
+                                Posi = InStr(1, Renglon, " ")
+                                If Posi > 0 Then
+                                    Renglon = Trim(Mid(Renglon, Posi))
+                                    unidad = Renglon.Trim
                                 Else
-                                    DArt.AddNew()
-                                    DArt.RecordSet("CODINT") = CodMat
-                                    'DArt.RecordSet("CodExt") = CodMat
-                                    DArt.RecordSet("NOMBRE") = CLeft(NomMat, 30)
-                                    DArt.RecordSet("TOLMINKG") = 0
-                                    DArt.RecordSet("TOLINFPORC") = 0
-                                    DArt.RecordSet("TOLMAXKG") = 0
-                                    DArt.RecordSet("TOLSUPPORC") = 0
-                                    DArt.RecordSet("CODGRPMAT") = 0
-                                    DArt.RecordSet("TIPO") = "MP"
-                                    DArt.RecordSet("BASCULA") = 0
-                                    DArt.RecordSet("TIPOMAT") = 0
-                                    DArt.RecordSet("A") = "-"
-                                    DArt.Update(Me)
-
-                                    CodMatB = CodMat
-                                    TipoMat = 0
-                                    Bascula = 0
-                                    A = "-"
-                                    MotoNave = 0
-
+                                    unidad = "-"
                                 End If
 
-                                If Val(PesoMeta) > 0 And CodMat > 0 Then
-                                    DDatosFor.AddNew()
-
-                                    DDatosFor.RecordSet("CODFOR") = CodFormula
-                                    DDatosFor.RecordSet("CODFORB") = CLeft(CodForB, 15)
-                                    DDatosFor.RecordSet("CODMATB") = CodMatB.Trim
-                                    DDatosFor.RecordSet("CODMAT") = CodMat.Trim
-                                    DDatosFor.RecordSet("NOMMAT") = CLeft(NomMat, 30)
-                                    DDatosFor.RecordSet("PESOMETA") = Eval(PesoMeta)
-                                    DDatosFor.RecordSet("PESOMETAB") = Eval(PesoMeta)
-                                    DDatosFor.RecordSet("PASO") = Paso
-                                    DDatosFor.RecordSet("LP") = Lp
-                                    DDatosFor.RecordSet("TIPOMAT") = TipoMat
-                                    DDatosFor.RecordSet("BASCULA") = Bascula
-                                    DDatosFor.RecordSet("A") = A
-                                    DDatosFor.RecordSet("TOLSUP") = Eval(TolSup)
-                                    DDatosFor.RecordSet("TOLINF") = Eval(TolInf)
-                                    DDatosFor.RecordSet("MOTONAVE") = MotoNave
-
-                                    'Buscamos el material en la matriz de tolvas para actualizarle la tolva
-                                    DTolvas.Refresh()
-                                    DTolvas.Find("CODINT='" + CodMat + "'")
-                                    If Not DTolvas.EOF Then
-                                        DDatosFor.RecordSet("TOLVA") = DTolvas.RecordSet("TOLVA")
-                                        DDatosFor.RecordSet("BASCULA") = DTolvas.RecordSet("BASCULA")
-                                    End If
-
-                                    DDatosFor.Update(Me)
-
-                                End If
-
-                                'ValorMetaTot = Val(ValorMetaTot) + Val(Valor)
-                                Paso += 1
+                                DNutFor.AddNew()
+                                DNutFor.RecordSet("CODFOR") = CodFormula
+                                DNutFor.RecordSet("LP") = Lp
+                                DNutFor.RecordSet("ITEM") = item
+                                DNutFor.RecordSet("NOMNUT") = NomNut
+                                DNutFor.RecordSet("CANTIDAD") = Cantidad
+                                DNutFor.RecordSet("UNDS") = unidad
+                                DNutFor.Update()
+                                i = k
 
                             Next
-
-                            'Actualizamos pesometa/bache en fórmula
-                            DFor.Open("select top 1 * from FORMULAS where CODFOR='" + CodFormula.Trim + "' and LP='" + Lp + "'")
-                            If DFor.Count Then
-                                DFor.RecordSet("TOTALFOR") = TamBache
-                                DFor.Update()
-                            End If
-
-                            DNutFor.Open("select * from NUTFOR where CODFOR=" + CodFormula.Trim + " and LP=" + Lp)
-                            If DNutFor.Count > 0 Then
-                                MsgBox("Ya existe informacion nutricional para la fórmula " + CodFormula.Trim + "versión " + Lp, vbCritical)
-                            End If
-
-                            'informacion nutricional
-                            i = i + 1
-                            Renglon = RenglonAux(i)
-                            Posi = InStr(1, Renglon, "Nutrient Name")
-                            If Posi > 0 Then
-                                'For k = i + 1 To RenglonAux.Length - 1
-                                For k As UShort = i + 1 To RenglonAux.Length - 1
-
-                                    Renglon = RenglonAux(k)
-
-                                    If Trim(Renglon) = "" Then
-                                        Exit For
-                                    End If
-
-                                    item = Eval(Renglon)
-                                    Posi = InStr(1, Renglon, " ")
-                                    Renglon = Trim(Mid(Renglon, Posi))
-
-                                    'Encontrar la primera "," hacia la derecha y luego el primer espacio de ese resultado hacia la izquierda
-                                    Posi = InStrRev(Renglon, " ", InStr(1, Renglon, ","))
-
-                                    NomNut = Trim(Mid(Renglon, 1, Posi))
-                                    Renglon = Trim(Mid(Renglon, Posi))
-                                    Posi = InStr(1, Renglon, " ")
-
-                                    If Posi > 0 Then
-                                        Cantidad = Trim(Mid(Renglon, 1, Posi))
-                                    Else
-                                        Cantidad = Renglon.Trim
-                                    End If
-
-                                    Cantidad = Replace(Cantidad, ".", "")
-                                    Cantidad = Replace(Cantidad, ",", ".")
-
-                                    Posi = InStr(1, Renglon, " ")
-                                    If Posi > 0 Then
-                                        Renglon = Trim(Mid(Renglon, Posi))
-                                        unidad = Renglon.Trim
-                                    Else
-                                        unidad = "-"
-                                    End If
-
-                                    DNutFor.AddNew()
-                                    DNutFor.RecordSet("CODFOR") = CodFormula
-                                    DNutFor.RecordSet("LP") = Lp
-                                    DNutFor.RecordSet("ITEM") = item
-                                    DNutFor.RecordSet("NOMNUT") = NomNut
-                                    DNutFor.RecordSet("CANTIDAD") = Cantidad
-                                    DNutFor.RecordSet("UNDS") = unidad
-                                    DNutFor.Update()
-                                    i = k
-
-                                Next
-                            End If
                         End If
-                    Next
+                    End If
                 Next
+            Next
 
-                MessageBox.Show(DevuelveEvento(CodEvento.SISTEMA_PROCESOFINALIZADO), "Importación de Fórmulas ChronoSoft", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show(DevuelveEvento(CodEvento.SISTEMA_PROCESOFINALIZADO), "Importación de Fórmulas ChronoSoft", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             Formulacion.BActualizar_Click(Nothing, Nothing)
             Formulacion.BBuscaForm_Click(Nothing, Nothing, CodFormula, Lp)
+            WriteConfigParametros("VersionFor", Val(ConfigParametros("VersionFor")) + 1)
 
         Catch ex As Exception
             MsgError(ex)
