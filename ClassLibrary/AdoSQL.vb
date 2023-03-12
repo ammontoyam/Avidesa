@@ -171,6 +171,7 @@ Public Class AdoSQL
         End Try
     End Sub
 
+
     Public Sub Update(Optional nForm As Windows.Forms.Form = Nothing)
 
         Dim EstadoReg As String
@@ -344,6 +345,29 @@ Public Class AdoSQL
         End If
         NewReg = "NEW"
         RecordSet = Datatabla.NewRow
+    End Sub
+
+
+    Public Sub SpSQL(ConsultaSP As String)
+        Try
+            Dim queryText As String
+            If String.IsNullOrEmpty(ConsultaSP) Then
+                Throw New ArgumentException("La Consulta no puede ser una cadena vacía")
+            End If
+            queryText = "execute " + ConsultaSP
+            Adaptador = New SqlDataAdapter(queryText, Conexion)
+            CBuiler = New SqlCommandBuilder(Adaptador)
+
+            Datatabla = New DataTable
+            Adaptador.Fill(Datatabla)
+            NewReg = ""
+            RecordSet = Nothing
+            If Datatabla.Rows.Count > 0 Then RecordSet = Datatabla.Rows(0)
+            UltimaConsulta = queryText
+
+        Catch ex As Exception
+            MsgError(ex, m_Nombre + " " + DevuelveCadenaConexion(Conexion))
+        End Try
     End Sub
 
 #Region "Propiedades de la Clase AdoSql"
