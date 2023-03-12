@@ -919,7 +919,7 @@ Partial Class Fondo
         Me.Label3.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Label3.Font = New System.Drawing.Font("Arial", 10.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Navy
-        Me.Label3.Location = New System.Drawing.Point(484, 390)
+        Me.Label3.Location = New System.Drawing.Point(484, 430)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(119, 16)
         Me.Label3.TabIndex = 23
@@ -933,7 +933,7 @@ Partial Class Fondo
         Me.Label4.FlatStyle = System.Windows.Forms.FlatStyle.Popup
         Me.Label4.Font = New System.Drawing.Font("Arial", 14.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Navy
-        Me.Label4.Location = New System.Drawing.Point(456, 406)
+        Me.Label4.Location = New System.Drawing.Point(459, 446)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(169, 23)
         Me.Label4.TabIndex = 22
@@ -943,9 +943,9 @@ Partial Class Fondo
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(476, 307)
+        Me.PictureBox1.Location = New System.Drawing.Point(437, 307)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(135, 72)
+        Me.PictureBox1.Size = New System.Drawing.Size(212, 110)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 17
         Me.PictureBox1.TabStop = False
@@ -954,13 +954,12 @@ Partial Class Fondo
         '
         Me.TPlanta.AutoSize = True
         Me.TPlanta.Font = New System.Drawing.Font("Arial", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TPlanta.Location = New System.Drawing.Point(381, 284)
+        Me.TPlanta.Location = New System.Drawing.Point(458, 284)
         Me.TPlanta.Name = "TPlanta"
         Me.TPlanta.Size = New System.Drawing.Size(13, 17)
         Me.TPlanta.TabIndex = 16
         Me.TPlanta.Text = "-"
-        Me.TPlanta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.TPlanta.Visible = False
+        Me.TPlanta.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label2
         '
