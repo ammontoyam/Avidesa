@@ -156,7 +156,7 @@ Partial Class AcercaD
         Me.TPlanta.Name = "TPlanta"
         Me.TPlanta.Size = New System.Drawing.Size(199, 17)
         Me.TPlanta.TabIndex = 17
-        Me.TPlanta.Text = "ITALCOL BUCARAMANGA"
+        Me.TPlanta.Text = "-"
         Me.TPlanta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'AcercaD
