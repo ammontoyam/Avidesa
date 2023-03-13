@@ -77,8 +77,8 @@ Public Class Acceso
 
 
             'Credenciales para acceso a base de base de datos
-            UserDB = "Admin"
-            PWD = "NEP"
+            UserDB = "sa" '"Admin"
+            PWD = "v1w8QU@83&M#aiz8TRV2" '"NEP"
             'Carpeta donde se encuentran alojados los reportes
             RutaRep = Ruta + "DB\"
             'Conexión principal a base de datos de cada planta
