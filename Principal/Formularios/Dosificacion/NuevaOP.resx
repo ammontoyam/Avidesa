@@ -118,35 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="BCancelarEmps.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA64AAAOuAFqQfVbAAABnUlE
-        QVQ4T42TPUhCURiGbz8YYQTSjwS1ZBDUUGtQi2VIIP3Q0tBkewVBc9DeUElUtNTW3qhDEA1SIRRCS4Qa
-        hVfc9OrtvN336DH/64UPvXqe9/0+/Y6mZOqfyNwHUXxsqPRtCDxbfCzoO60juelBYqEL6atAQ5OP8wAi
-        rjZEV2aRS+mFc+ZXHPq2F5mzNZg3u4gtOqFfHNWYEI5OdsLccCHl7ZMm2UQcGttmMmERPIB56cebx1Fh
-        omDDPwLhH4Wx5ES4twWpUHFkts1kwuJ6B/nDZbxO2UGQ9TJmk8ksw9ePyFAH3gPHlV0ykcmExck6cnsz
-        MlUly7Lgp4HWWliJJkwmLPbnkd+akC3Ltv+CldS8hJUBZyYcOzttDlPVM4vVQeTnHP8zUHBpZiuZsJju
-        Rnbchge71niEcrh8ZhZhMdwOo0dDWKtjouau/rXZMovJhIXNerUMKky421zPZv8z30sTC1R1Z5VcJK4j
-        15LryZnrLoklfsZkwkmrHt3uwipTvBjPPrdcz3qwEr9jMuHSZVLiFS3tdhPxzO911rQf0ietSD8PAjAA
-        AAAASUVORK5CYII=
-</value>
-  </data>
-  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="BAdicionarEmps.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
-        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA64AAAOuAFqQfVbAAABKElE
-        QVQ4T2PABmRbhf9r9SjCMYgPlSIOgDRNvNb0f93DxWAaxIdKEQdAGiZfb/m//P5sME2WAb1Xa//PuNkF
-        pskyoO1S6f/OK5VgGq8Bks38YAXI2GKy/v/GC/n/q89ngmkQH10NSB/cgLIzyf8rzqai4KpzGf9zTkaA
-        aXS5aqAYmgFJ/0MO2PyPPeIOxvFHPP4nHPUEYxAbJg7CYQftgYamoxpQdDoOjEvPJP6vvZD5v/Vy4f/K
-        C8n/Aw+a/C8/l/i/6VI+WBNIHqYWxQB0DPJjxcXY//6Hdf6Xno+G+xkdgw3ABkAamq6l/o85Zf6//koy
-        2ACoFHEApKHndu7/rIuO/ztuZpFnwLQHpf/Lrnv/779bQJ4By561g/HcRw2kG0BSgFEGGBgAo90bdwkP
-        4A4AAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="BCancelar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         R0lGODlhGAAYAIcAALAsI7QqIrcqIrIyKrMyKrQxKbQ1LbY0LbwxKr86KLY6Mrw/ML1HL79ML79OLb5E
@@ -639,6 +610,9 @@
         RU5ErkJggg==
 </value>
   </data>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="ToolTip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>340, 17</value>
   </metadata>
