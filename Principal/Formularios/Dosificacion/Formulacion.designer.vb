@@ -25,13 +25,13 @@ Partial Class Formulacion
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Formulacion))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ContexMenuFor = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CBNuevo = New System.Windows.Forms.ToolStripMenuItem()
         Me.CBEliminar = New System.Windows.Forms.ToolStripMenuItem()
@@ -126,20 +126,17 @@ Partial Class Formulacion
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnVerFormAfectadas = New System.Windows.Forms.ToolStripMenuItem()
         Me.DGFor = New System.Windows.Forms.DataGridView()
-        Me.CodEstablecimiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Codforb = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NomFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LP = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.HumedadFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.GrasaFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaImpFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Estado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TmpoBache = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.UsuarioImpFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ManejaPx = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGDatosFor = New System.Windows.Forms.DataGridView()
+        Me.DGDatosFor_CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_TipoMat = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_Paso = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_CodMat = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_NomMat = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_PesoMeta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_A = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_Bascula = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_Tolva = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DGDatosFor_NomTolva = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BCDate = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -176,16 +173,19 @@ Partial Class Formulacion
         Me.OPTodos = New System.Windows.Forms.RadioButton()
         Me.OPFiltro = New System.Windows.Forms.RadioButton()
         Me.FTotalBasc = New System.Windows.Forms.Button()
-        Me.DGDatosFor_CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_TipoMat = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_Paso = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_CodMat = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_NomMat = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_PesoMeta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_A = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_Bascula = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_Tolva = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DGDatosFor_NomTolva = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CodEstablecimiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Codforb = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NomFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LP = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.HumedadFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.GrasaFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaImpFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Estado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TmpoBache = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.UsuarioImpFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ManejaPx = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ContexMenuFor.SuspendLayout()
         Me.Panel4.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -960,101 +960,6 @@ Partial Class Formulacion
         Me.DGFor.Size = New System.Drawing.Size(817, 410)
         Me.DGFor.TabIndex = 33
         '
-        'CodEstablecimiento
-        '
-        Me.CodEstablecimiento.HeaderText = "Est."
-        Me.CodEstablecimiento.Name = "CodEstablecimiento"
-        Me.CodEstablecimiento.ReadOnly = True
-        Me.CodEstablecimiento.Width = 30
-        '
-        'CodFor
-        '
-        Me.CodFor.HeaderText = "Cód.Int"
-        Me.CodFor.Name = "CodFor"
-        Me.CodFor.ReadOnly = True
-        Me.CodFor.Width = 60
-        '
-        'Codforb
-        '
-        Me.Codforb.HeaderText = "Cód.Ext."
-        Me.Codforb.Name = "Codforb"
-        Me.Codforb.ReadOnly = True
-        Me.Codforb.Width = 60
-        '
-        'NomFor
-        '
-        Me.NomFor.HeaderText = "Nombre"
-        Me.NomFor.Name = "NomFor"
-        Me.NomFor.ReadOnly = True
-        Me.NomFor.Width = 160
-        '
-        'LP
-        '
-        Me.LP.HeaderText = "No.Orden"
-        Me.LP.Name = "LP"
-        Me.LP.ReadOnly = True
-        Me.LP.Width = 70
-        '
-        'HumedadFor
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.HumedadFor.DefaultCellStyle = DataGridViewCellStyle2
-        Me.HumedadFor.HeaderText = "Hunedad Formulada"
-        Me.HumedadFor.Name = "HumedadFor"
-        Me.HumedadFor.ReadOnly = True
-        Me.HumedadFor.Width = 70
-        '
-        'GrasaFor
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.GrasaFor.DefaultCellStyle = DataGridViewCellStyle3
-        Me.GrasaFor.HeaderText = "Grasa Formulada"
-        Me.GrasaFor.Name = "GrasaFor"
-        Me.GrasaFor.ReadOnly = True
-        Me.GrasaFor.Visible = False
-        Me.GrasaFor.Width = 70
-        '
-        'FechaFor
-        '
-        Me.FechaFor.HeaderText = "Fecha Fórmula"
-        Me.FechaFor.Name = "FechaFor"
-        Me.FechaFor.ReadOnly = True
-        Me.FechaFor.Width = 80
-        '
-        'FechaImpFor
-        '
-        Me.FechaImpFor.HeaderText = "Fecha Importación"
-        Me.FechaImpFor.Name = "FechaImpFor"
-        Me.FechaImpFor.ReadOnly = True
-        '
-        'Estado
-        '
-        Me.Estado.HeaderText = "Estado"
-        Me.Estado.Name = "Estado"
-        Me.Estado.ReadOnly = True
-        Me.Estado.Width = 70
-        '
-        'TmpoBache
-        '
-        Me.TmpoBache.HeaderText = "Tmpo.Bache"
-        Me.TmpoBache.Name = "TmpoBache"
-        Me.TmpoBache.ReadOnly = True
-        Me.TmpoBache.Visible = False
-        Me.TmpoBache.Width = 80
-        '
-        'UsuarioImpFor
-        '
-        Me.UsuarioImpFor.HeaderText = "Usu.ImpFor"
-        Me.UsuarioImpFor.Name = "UsuarioImpFor"
-        Me.UsuarioImpFor.ReadOnly = True
-        '
-        'ManejaPx
-        '
-        Me.ManejaPx.HeaderText = "ManejaPx"
-        Me.ManejaPx.Name = "ManejaPx"
-        Me.ManejaPx.ReadOnly = True
-        Me.ManejaPx.Visible = False
-        '
         'DGDatosFor
         '
         Me.DGDatosFor.AllowUserToAddRows = False
@@ -1070,6 +975,87 @@ Partial Class Formulacion
         Me.DGDatosFor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGDatosFor.Size = New System.Drawing.Size(556, 410)
         Me.DGDatosFor.TabIndex = 36
+        '
+        'DGDatosFor_CodFor
+        '
+        Me.DGDatosFor_CodFor.HeaderText = "Código"
+        Me.DGDatosFor_CodFor.Name = "DGDatosFor_CodFor"
+        Me.DGDatosFor_CodFor.ReadOnly = True
+        Me.DGDatosFor_CodFor.Visible = False
+        Me.DGDatosFor_CodFor.Width = 60
+        '
+        'DGDatosFor_TipoMat
+        '
+        Me.DGDatosFor_TipoMat.HeaderText = "tipomat"
+        Me.DGDatosFor_TipoMat.Name = "DGDatosFor_TipoMat"
+        Me.DGDatosFor_TipoMat.ReadOnly = True
+        Me.DGDatosFor_TipoMat.Visible = False
+        '
+        'DGDatosFor_Paso
+        '
+        Me.DGDatosFor_Paso.HeaderText = "Paso"
+        Me.DGDatosFor_Paso.Name = "DGDatosFor_Paso"
+        Me.DGDatosFor_Paso.ReadOnly = True
+        Me.DGDatosFor_Paso.Width = 40
+        '
+        'DGDatosFor_CodMat
+        '
+        Me.DGDatosFor_CodMat.HeaderText = "Cód Int."
+        Me.DGDatosFor_CodMat.Name = "DGDatosFor_CodMat"
+        Me.DGDatosFor_CodMat.ReadOnly = True
+        Me.DGDatosFor_CodMat.Width = 67
+        '
+        'DGDatosFor_NomMat
+        '
+        Me.DGDatosFor_NomMat.HeaderText = "Nombre"
+        Me.DGDatosFor_NomMat.Name = "DGDatosFor_NomMat"
+        Me.DGDatosFor_NomMat.ReadOnly = True
+        Me.DGDatosFor_NomMat.Width = 150
+        '
+        'DGDatosFor_PesoMeta
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.DGDatosFor_PesoMeta.DefaultCellStyle = DataGridViewCellStyle4
+        Me.DGDatosFor_PesoMeta.HeaderText = "PesoMeta"
+        Me.DGDatosFor_PesoMeta.Name = "DGDatosFor_PesoMeta"
+        Me.DGDatosFor_PesoMeta.ReadOnly = True
+        Me.DGDatosFor_PesoMeta.Width = 70
+        '
+        'DGDatosFor_A
+        '
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DGDatosFor_A.DefaultCellStyle = DataGridViewCellStyle5
+        Me.DGDatosFor_A.HeaderText = "A"
+        Me.DGDatosFor_A.Name = "DGDatosFor_A"
+        Me.DGDatosFor_A.ReadOnly = True
+        Me.DGDatosFor_A.Width = 32
+        '
+        'DGDatosFor_Bascula
+        '
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DGDatosFor_Bascula.DefaultCellStyle = DataGridViewCellStyle6
+        Me.DGDatosFor_Bascula.HeaderText = "Báscula"
+        Me.DGDatosFor_Bascula.Name = "DGDatosFor_Bascula"
+        Me.DGDatosFor_Bascula.ReadOnly = True
+        Me.DGDatosFor_Bascula.Width = 50
+        '
+        'DGDatosFor_Tolva
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DGDatosFor_Tolva.DefaultCellStyle = DataGridViewCellStyle7
+        Me.DGDatosFor_Tolva.HeaderText = "Tolva"
+        Me.DGDatosFor_Tolva.Name = "DGDatosFor_Tolva"
+        Me.DGDatosFor_Tolva.ReadOnly = True
+        Me.DGDatosFor_Tolva.Width = 40
+        '
+        'DGDatosFor_NomTolva
+        '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DGDatosFor_NomTolva.DefaultCellStyle = DataGridViewCellStyle8
+        Me.DGDatosFor_NomTolva.HeaderText = "Nom"
+        Me.DGDatosFor_NomTolva.Name = "DGDatosFor_NomTolva"
+        Me.DGDatosFor_NomTolva.ReadOnly = True
+        Me.DGDatosFor_NomTolva.Width = 60
         '
         'BCDate
         '
@@ -1454,86 +1440,100 @@ Partial Class Formulacion
         Me.FTotalBasc.UseVisualStyleBackColor = True
         Me.FTotalBasc.Visible = False
         '
-        'DGDatosFor_CodFor
+        'CodEstablecimiento
         '
-        Me.DGDatosFor_CodFor.HeaderText = "Código"
-        Me.DGDatosFor_CodFor.Name = "DGDatosFor_CodFor"
-        Me.DGDatosFor_CodFor.ReadOnly = True
-        Me.DGDatosFor_CodFor.Visible = False
-        Me.DGDatosFor_CodFor.Width = 60
+        Me.CodEstablecimiento.HeaderText = "Est."
+        Me.CodEstablecimiento.Name = "CodEstablecimiento"
+        Me.CodEstablecimiento.ReadOnly = True
+        Me.CodEstablecimiento.Width = 30
         '
-        'DGDatosFor_TipoMat
+        'CodFor
         '
-        Me.DGDatosFor_TipoMat.HeaderText = "tipomat"
-        Me.DGDatosFor_TipoMat.Name = "DGDatosFor_TipoMat"
-        Me.DGDatosFor_TipoMat.ReadOnly = True
-        Me.DGDatosFor_TipoMat.Visible = False
+        Me.CodFor.HeaderText = "Cód.Int"
+        Me.CodFor.Name = "CodFor"
+        Me.CodFor.ReadOnly = True
+        Me.CodFor.Width = 60
         '
-        'DGDatosFor_Paso
+        'Codforb
         '
-        Me.DGDatosFor_Paso.HeaderText = "Paso"
-        Me.DGDatosFor_Paso.Name = "DGDatosFor_Paso"
-        Me.DGDatosFor_Paso.ReadOnly = True
-        Me.DGDatosFor_Paso.Width = 40
+        Me.Codforb.HeaderText = "Cód.Ext."
+        Me.Codforb.Name = "Codforb"
+        Me.Codforb.ReadOnly = True
+        Me.Codforb.Width = 60
         '
-        'DGDatosFor_CodMat
+        'NomFor
         '
-        Me.DGDatosFor_CodMat.HeaderText = "Cód Int."
-        Me.DGDatosFor_CodMat.Name = "DGDatosFor_CodMat"
-        Me.DGDatosFor_CodMat.ReadOnly = True
-        Me.DGDatosFor_CodMat.Width = 67
+        Me.NomFor.HeaderText = "Nombre"
+        Me.NomFor.Name = "NomFor"
+        Me.NomFor.ReadOnly = True
+        Me.NomFor.Width = 160
         '
-        'DGDatosFor_NomMat
+        'LP
         '
-        Me.DGDatosFor_NomMat.HeaderText = "Nombre"
-        Me.DGDatosFor_NomMat.Name = "DGDatosFor_NomMat"
-        Me.DGDatosFor_NomMat.ReadOnly = True
-        Me.DGDatosFor_NomMat.Width = 150
+        Me.LP.HeaderText = "Versión"
+        Me.LP.Name = "LP"
+        Me.LP.ReadOnly = True
+        Me.LP.Width = 70
         '
-        'DGDatosFor_PesoMeta
+        'HumedadFor
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.DGDatosFor_PesoMeta.DefaultCellStyle = DataGridViewCellStyle4
-        Me.DGDatosFor_PesoMeta.HeaderText = "PesoMeta"
-        Me.DGDatosFor_PesoMeta.Name = "DGDatosFor_PesoMeta"
-        Me.DGDatosFor_PesoMeta.ReadOnly = True
-        Me.DGDatosFor_PesoMeta.Width = 70
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.HumedadFor.DefaultCellStyle = DataGridViewCellStyle2
+        Me.HumedadFor.HeaderText = "Hunedad Formulada"
+        Me.HumedadFor.Name = "HumedadFor"
+        Me.HumedadFor.ReadOnly = True
+        Me.HumedadFor.Width = 70
         '
-        'DGDatosFor_A
+        'GrasaFor
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DGDatosFor_A.DefaultCellStyle = DataGridViewCellStyle5
-        Me.DGDatosFor_A.HeaderText = "A"
-        Me.DGDatosFor_A.Name = "DGDatosFor_A"
-        Me.DGDatosFor_A.ReadOnly = True
-        Me.DGDatosFor_A.Width = 32
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.GrasaFor.DefaultCellStyle = DataGridViewCellStyle3
+        Me.GrasaFor.HeaderText = "Grasa Formulada"
+        Me.GrasaFor.Name = "GrasaFor"
+        Me.GrasaFor.ReadOnly = True
+        Me.GrasaFor.Visible = False
+        Me.GrasaFor.Width = 70
         '
-        'DGDatosFor_Bascula
+        'FechaFor
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DGDatosFor_Bascula.DefaultCellStyle = DataGridViewCellStyle6
-        Me.DGDatosFor_Bascula.HeaderText = "Báscula"
-        Me.DGDatosFor_Bascula.Name = "DGDatosFor_Bascula"
-        Me.DGDatosFor_Bascula.ReadOnly = True
-        Me.DGDatosFor_Bascula.Width = 50
+        Me.FechaFor.HeaderText = "Fecha Fórmula"
+        Me.FechaFor.Name = "FechaFor"
+        Me.FechaFor.ReadOnly = True
+        Me.FechaFor.Width = 80
         '
-        'DGDatosFor_Tolva
+        'FechaImpFor
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DGDatosFor_Tolva.DefaultCellStyle = DataGridViewCellStyle7
-        Me.DGDatosFor_Tolva.HeaderText = "Tolva"
-        Me.DGDatosFor_Tolva.Name = "DGDatosFor_Tolva"
-        Me.DGDatosFor_Tolva.ReadOnly = True
-        Me.DGDatosFor_Tolva.Width = 40
+        Me.FechaImpFor.HeaderText = "Fecha Importación"
+        Me.FechaImpFor.Name = "FechaImpFor"
+        Me.FechaImpFor.ReadOnly = True
         '
-        'DGDatosFor_NomTolva
+        'Estado
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DGDatosFor_NomTolva.DefaultCellStyle = DataGridViewCellStyle8
-        Me.DGDatosFor_NomTolva.HeaderText = "Nom"
-        Me.DGDatosFor_NomTolva.Name = "DGDatosFor_NomTolva"
-        Me.DGDatosFor_NomTolva.ReadOnly = True
-        Me.DGDatosFor_NomTolva.Width = 60
+        Me.Estado.HeaderText = "Estado"
+        Me.Estado.Name = "Estado"
+        Me.Estado.ReadOnly = True
+        Me.Estado.Width = 70
+        '
+        'TmpoBache
+        '
+        Me.TmpoBache.HeaderText = "Tmpo.Bache"
+        Me.TmpoBache.Name = "TmpoBache"
+        Me.TmpoBache.ReadOnly = True
+        Me.TmpoBache.Visible = False
+        Me.TmpoBache.Width = 80
+        '
+        'UsuarioImpFor
+        '
+        Me.UsuarioImpFor.HeaderText = "Usu.ImpFor"
+        Me.UsuarioImpFor.Name = "UsuarioImpFor"
+        Me.UsuarioImpFor.ReadOnly = True
+        '
+        'ManejaPx
+        '
+        Me.ManejaPx.HeaderText = "ManejaPx"
+        Me.ManejaPx.Name = "ManejaPx"
+        Me.ManejaPx.ReadOnly = True
+        Me.ManejaPx.Visible = False
         '
         'Formulacion
         '
@@ -1710,6 +1710,16 @@ End Sub
     Friend WithEvents mnVerFormAfectadas As ToolStripMenuItem
     Friend WithEvents mnTodos As ToolStripMenuItem
     Friend WithEvents mnAgrupado As ToolStripMenuItem
+    Friend WithEvents DGDatosFor_CodFor As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_TipoMat As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_Paso As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_CodMat As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_NomMat As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_PesoMeta As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_A As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_Bascula As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_Tolva As DataGridViewTextBoxColumn
+    Friend WithEvents DGDatosFor_NomTolva As DataGridViewTextBoxColumn
     Friend WithEvents CodEstablecimiento As DataGridViewTextBoxColumn
     Friend WithEvents CodFor As DataGridViewTextBoxColumn
     Friend WithEvents Codforb As DataGridViewTextBoxColumn
@@ -1723,14 +1733,4 @@ End Sub
     Friend WithEvents TmpoBache As DataGridViewTextBoxColumn
     Friend WithEvents UsuarioImpFor As DataGridViewTextBoxColumn
     Friend WithEvents ManejaPx As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_CodFor As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_TipoMat As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_Paso As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_CodMat As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_NomMat As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_PesoMeta As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_A As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_Bascula As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_Tolva As DataGridViewTextBoxColumn
-    Friend WithEvents DGDatosFor_NomTolva As DataGridViewTextBoxColumn
 End Class
