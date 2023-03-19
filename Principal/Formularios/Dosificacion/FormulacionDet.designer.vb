@@ -610,7 +610,7 @@ Partial Class FormulacionDet
         Me.BarraFor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripTextBox1, Me.ToolStripSeparator12, Me.LCodFor, Me.ToolStripSeparator4, Me.TCodFor, Me.ToolStripSeparator1, Me.LCodForB, Me.ToolStripSeparator3, Me.TCodForB, Me.ToolStripSeparator2, Me.LNomFor, Me.ToolStripSeparator7, Me.TNomFor, Me.ToolStripSeparator11, Me.ToolStripLabel1, Me.ToolStripSeparator10, Me.TLP, Me.ToolStripSeparator5, Me.ToolStripLabel2, Me.TEstado})
         Me.BarraFor.Location = New System.Drawing.Point(3, 9)
         Me.BarraFor.Name = "BarraFor"
-        Me.BarraFor.Size = New System.Drawing.Size(993, 25)
+        Me.BarraFor.Size = New System.Drawing.Size(985, 25)
         Me.BarraFor.TabIndex = 2
         Me.BarraFor.Text = "ToolStrip2"
         '
@@ -701,8 +701,8 @@ Partial Class FormulacionDet
         Me.ToolStripLabel1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.ToolStripLabel1.ForeColor = System.Drawing.Color.Blue
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(58, 22)
-        Me.ToolStripLabel1.Text = "No.Orden"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(50, 22)
+        Me.ToolStripLabel1.Text = "Versión"
         '
         'ToolStripSeparator10
         '
