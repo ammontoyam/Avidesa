@@ -24,6 +24,7 @@ Public Class Productos
     Private DVarios As AdoSQL
     Private DEmpaques As AdoSQL
     Private DArtDet As AdoSQL
+    Private DArtTextura As AdoSQL
     Private FormLoad As Boolean
 
 
@@ -35,34 +36,37 @@ Public Class Productos
                 Return
             End If
 
-            If Funcion_VencimientoPorProducto Then TVencxProd.Enabled = True
-            If Funcion_ObligaLineaInvent Then GBLinea.Enabled = True
+            'If Funcion_VencimientoPorProducto Then TVencxProd.Enabled = True
+            'If Funcion_ObligaLineaInvent Then GBLinea.Enabled = True
 
-            If Funcion_ManejaPaqueteo Then
-                LPesoEquiv.Visible = True
-                TPresKgEquiv.Visible = True
-            Else
-                LPesoEquiv.Visible = False
-                TPresKgEquiv.Visible = False
-            End If
+            'If Funcion_ManejaPaqueteo Then
+            '    LPesoEquiv.Visible = True
+            '    TPresKgEquiv.Visible = True
+            'Else
+            '    LPesoEquiv.Visible = False
+            '    TPresKgEquiv.Visible = False
+            'End If
 
             DArt = New AdoSQL("Articulos")
             DArt.Open("Select * From Articulos where TIPO='PT' order by Nombre")
 
             DArtDet = New AdoSQL("ArticulosDet")
 
+            'DCodEmpEtiq = New AdoSQL("Articulos tipo EM o ET")
 
-            DCodEmpEtiq = New AdoSQL("Articulos tipo EM o ET")
+            DArtTextura = New AdoSQL("TEXTURA")
+            DArtTextura.Open("Select Distinct(PRESTEXT) From Articulos where TIPO='PT' order by PRESTEXT")
+            LLenaComboBox(CBTextura, DArtTextura.DataTable, "PRESTEXT")
 
-            DLineasProd = New AdoSQL("LINEASPROD")
-            DLineasProd.Open("Select * from LINEASPROD where TIPO='PT'")
+            'DLineasProd = New AdoSQL("LINEASPROD")
+            'DLineasProd.Open("Select * from LINEASPROD where TIPO='PT'")
 
-            DEquivalencias = New AdoSQL("ProdEquivalentes")
-            DVarios = New AdoSQL("Varios")
+            'DEquivalencias = New AdoSQL("ProdEquivalentes")
+            'DVarios = New AdoSQL("Varios")
 
 
-            LLenaComboBox(CLinea, DLineasProd.DataTable, "LINEA")
-            CLinea.Items.Add("-")
+            'LLenaComboBox(CLinea, DLineasProd.DataTable, "LINEA")
+            'CLinea.Items.Add("-")
 
             FRefrescaDG_Click(Nothing, Nothing)
 
@@ -76,8 +80,6 @@ Public Class Productos
             'Busqueda codigos de empaque
             Campos2 = {"CodInt@Cód.Emp", "Nombre@Nombre"}
             Campos2 = AsignaItemsCB(Campos2, CBBuscarEmp.ComboBox, DEmpaques.DataTable)
-
-
 
             FRefrescaDGEmp_Click(Nothing, Nothing)
 
@@ -100,60 +102,63 @@ Public Class Productos
             If DArt.Count = 0 Then Exit Sub
 
             TNombre.Text = DArt.RecordSet("NOMBRE").ToString
-            TCodInt.Text = DArt.RecordSet("CodInt").ToString
+            TCodInt.Text = DArt.RecordSet("CODINT").ToString
             CBTextura.Text = DArt.RecordSet("PRESTEXT").ToString
-            CBEmpaque.Text = DArt.RecordSet("PRESEMP").ToString
+            'CBEmpaque.Text = DArt.RecordSet("PRESEMP").ToString
             CBPreskg.Text = DArt.RecordSet("PRESKG").ToString
             TRef.Text = DArt.RecordSet("REF").ToString
             TCodEmp.Text = DArt.RecordSet("CODEMP").ToString
             TCodEtiq.Text = DArt.RecordSet("CODETIQ").ToString
-            CLinea.Text = DArt.RecordSet("LINEA").ToString
-            TCodMaq.Text = DArt.RecordSet("CODMAQ").ToString
+            TCodHilo.Text = DArt.RecordSet("CODHILO").ToString
+            CCodDescarga.Text = DArt.RecordSet("CODDESC").ToString
+            ChGranel.Checked = DArt.RecordSet("GRANEL").ToString
+            'CLinea.Text = DArt.RecordSet("LINEA").ToString
+            'TCodMaq.Text = DArt.RecordSet("CODMAQ").ToString
 
-            TRegIca.Text = DArt.RecordSet("REGICA").ToString
+            'TRegIca.Text = DArt.RecordSet("REGICA").ToString
             TObserv.Text = DArt.RecordSet("OBSERVACIONES").ToString
             ChActivo.Checked = DArt.RecordSet("ACTIVO")
-            TDensidad.Text = DArt.RecordSet("DENSIDAD")
+            'TDensidad.Text = DArt.RecordSet("DENSIDAD")
 
-            If Funcion_VencimientoPorProducto Then TVencxProd.Text = DArt.RecordSet("MESESVENC").ToString
+            'If Funcion_VencimientoPorProducto Then TVencxProd.Text = DArt.RecordSet("MESESVENC").ToString
 
-            'Parametros de tamizado para los productos terminados
-            TMalla6.Text = DArt.RecordSet("ParmPorcMalla6")
-            TMalla8.Text = DArt.RecordSet("ParmPorcMalla8")
-            TMalla12.Text = DArt.RecordSet("ParmPorcMalla12")
-            TMalla16.Text = DArt.RecordSet("ParmPorcMalla16")
-            TMalla30.Text = DArt.RecordSet("ParmPorcMalla30")
-            TPorcPlato.Text = DArt.RecordSet("ParmPorcPlato")
-            TDurabilidad.Text = DArt.RecordSet("ParmDurabilidad")
-            TDureza.Text = DArt.RecordSet("ParmDureza")
+            ''Parametros de tamizado para los productos terminados
+            'TMalla6.Text = DArt.RecordSet("ParmPorcMalla6")
+            'TMalla8.Text = DArt.RecordSet("ParmPorcMalla8")
+            'TMalla12.Text = DArt.RecordSet("ParmPorcMalla12")
+            'TMalla16.Text = DArt.RecordSet("ParmPorcMalla16")
+            'TMalla30.Text = DArt.RecordSet("ParmPorcMalla30")
+            'TPorcPlato.Text = DArt.RecordSet("ParmPorcPlato")
+            'TDurabilidad.Text = DArt.RecordSet("ParmDurabilidad")
+            'TDureza.Text = DArt.RecordSet("ParmDureza")
 
-            If Funcion_ManejaPaqueteo Then
-                TUdsPaca.Text = DArt.RecordSet("UDSPACA")
-                TCodEmpBolsa.Text = DArt.RecordSet("CODEMPBOLSA")
-                TCodEtiqBolsa.Text = DArt.RecordSet("CodEtiqBolsa")
-                ChPaqueteo.Checked = DArt.RecordSet("PAQUETEO")
+            'If Funcion_ManejaPaqueteo Then
+            '    TUdsPaca.Text = DArt.RecordSet("UDSPACA")
+            '    TCodEmpBolsa.Text = DArt.RecordSet("CODEMPBOLSA")
+            '    TCodEtiqBolsa.Text = DArt.RecordSet("CodEtiqBolsa")
+            '    ChPaqueteo.Checked = DArt.RecordSet("PAQUETEO")
 
-                'If ChPaqueteo.Checked Then
-                '    GBPaqueteo.Visible = True
-                'Else
-                '    GBPaqueteo.Visible = False
-                'End If
+            '    'If ChPaqueteo.Checked Then
+            '    '    GBPaqueteo.Visible = True
+            '    'Else
+            '    '    GBPaqueteo.Visible = False
+            '    'End If
 
-            End If
+            'End If
 
-            LPesoEquiv.Visible = False
-            TPresKgEquiv.Visible = False
-            DEquivalencias.Open("Select * from PRODEQUIVALENTES where CODPROD='" + TCodInt.Text + "'")
-            AsignaDataGrid(DGEquivalencias, DEquivalencias.DataTable, True)
+            'LPesoEquiv.Visible = False
+            'TPresKgEquiv.Visible = False
+            'DEquivalencias.Open("Select * from PRODEQUIVALENTES where CODPROD='" + TCodInt.Text + "'")
+            'AsignaDataGrid(DGEquivalencias, DEquivalencias.DataTable, True)
 
-            If DGEquivalencias.RowCount > 0 Then
-                DGEquivalencias_CellClick(Nothing, Nothing)
-            Else
-                TEquivalencia.Text = ""
-                CBPresent.Items.Add("")
-                CBPresent.Text = ""
-                CBPresent.Items.Remove("")
-            End If
+            'If DGEquivalencias.RowCount > 0 Then
+            '    DGEquivalencias_CellClick(Nothing, Nothing)
+            'Else
+            '    TEquivalencia.Text = ""
+            '    CBPresent.Items.Add("")
+            '    CBPresent.Text = ""
+            '    CBPresent.Items.Remove("")
+            'End If
 
             FRefrescaDGArticulosDet_Click(Nothing, Nothing)
 
