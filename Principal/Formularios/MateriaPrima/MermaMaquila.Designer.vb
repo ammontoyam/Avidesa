@@ -22,6 +22,7 @@ Partial Class MermaMaquila
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MermaMaquila))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -45,6 +46,7 @@ Partial Class MermaMaquila
         Me.CentroTrabajo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PorcMerma = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.GBNombre.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DGMermaMaq, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,6 +160,7 @@ Partial Class MermaMaquila
         Me.BCancelar.Name = "BCancelar"
         Me.BCancelar.Size = New System.Drawing.Size(35, 31)
         Me.BCancelar.TabIndex = 25
+        Me.ToolTip1.SetToolTip(Me.BCancelar, "Cancelar cambios")
         Me.BCancelar.UseVisualStyleBackColor = True
         '
         'BAceptar
@@ -168,6 +171,7 @@ Partial Class MermaMaquila
         Me.BAceptar.Name = "BAceptar"
         Me.BAceptar.Size = New System.Drawing.Size(35, 31)
         Me.BAceptar.TabIndex = 24
+        Me.ToolTip1.SetToolTip(Me.BAceptar, "Guardar cambios")
         Me.BAceptar.UseVisualStyleBackColor = True
         '
         'ToolStrip1
@@ -266,6 +270,7 @@ Partial Class MermaMaquila
         Me.Controls.Add(Me.DGMermaMaq)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.GBNombre)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "MermaMaquila"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "MermaMaquila"
@@ -301,4 +306,5 @@ Partial Class MermaMaquila
     Friend WithEvents CentroTrabajo As DataGridViewTextBoxColumn
     Friend WithEvents PorcMerma As DataGridViewTextBoxColumn
     Friend WithEvents Fecha As DataGridViewTextBoxColumn
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
