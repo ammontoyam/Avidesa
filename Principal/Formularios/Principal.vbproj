@@ -299,6 +299,12 @@
     <Compile Include="Dosificacion\DatosMuestras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MateriaPrima\Maquilas.Designer.vb">
+      <DependentUpon>Maquilas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaPrima\Maquilas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MateriaPrima\MermaMaquila.Designer.vb">
       <DependentUpon>MermaMaquila.vb</DependentUpon>
     </Compile>
@@ -646,6 +652,9 @@
     <EmbeddedResource Include="Dosificacion\DatosMuestras.resx">
       <DependentUpon>DatosMuestras.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MateriaPrima\Maquilas.resx">
+      <DependentUpon>Maquilas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MateriaPrima\MermaMaquila.resx">
       <DependentUpon>MermaMaquila.vb</DependentUpon>
     </EmbeddedResource>
@@ -832,6 +841,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="02 Network.ico" />
+    <None Include="Resources\maquila.jpg" />
     <None Include="Resources\logo_mac_pollo.png" />
     <None Include="Web References\wsCentralbascula\Central.disco" />
   </ItemGroup>

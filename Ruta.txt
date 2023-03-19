@@ -1,12 +1,12 @@
+192.168.31.128\SQLEXPRESS
+ChrAviGir
+
+
 192.168.55.9
 ChrAviGir
 
 192.168.31.128\SQLEXPRESS
-ChrAviGir
-
-192.168.31.128\SQLEXPRESS
 ChrItaStr_UnoE
-
 
 pruebasavidesa.database.windows.net
 ChrAviGir
