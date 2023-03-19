@@ -9,6 +9,7 @@ Imports ClassLibrary
 
 
 Public Class Formulacion
+    Private DNutFor As AdoSQL
     Private DFor As AdoSQL
     Private DDatosFor As AdoSQL
     Private DVarios As AdoSQL
@@ -110,6 +111,7 @@ Public Class Formulacion
             DBasc = New AdoSQL("Basculas")
             DModosImprimir = New AdoSQL("Basculas")
             DRestricciones = New AdoSQL("Restricciones")
+            DNutFor = New AdoSQL("NUTFOR")
 
             'Se abre este objeto para imprimir solo los modos seleccionados 
             DModosImprimir.Open("Select * from BASCULAS where IMPRIMIR=1")
@@ -316,7 +318,8 @@ Public Class Formulacion
 
 
             'Revisa que los ultimos baches no sean de la fórmula a editar
-            DBaches.Open("select TOP 5 * from BACHES WHERE LINEAINVENT<>'SALES' and NOMFOR NOT LIKE '%LIMPIEZA%' AND ESTADO<10 ORDER by FECHA desc")
+            'DBaches.Open("select TOP 5 * from BACHES WHERE LINEAINVENT<>'SALES' and NOMFOR NOT LIKE '%LIMPIEZA%' AND ESTADO<10 ORDER by FECHA desc")
+            DBaches.Open("select TOP 5 * from BACHES ORDER by FECHA desc")
 
             For Each RSBaches As DataRow In DBaches.Rows
                 If (RSBaches("CODFOR") = CFor AndAlso RSBaches("LP") = CLP) Then
@@ -781,7 +784,7 @@ Public Class Formulacion
             DFor.AddNew()
             DFor.RecordSet("CODFOR") = CLeft(CodForNew, 15)
             DFor.RecordSet("CODFORB") = CLeft(CodForBNew, 15)
-            DFor.RecordSet("NOMFOR") = CLeft(NomForNew, 30)
+            DFor.RecordSet("NOMFOR") = CLeft(NomForNew.ToUpper, 30)
             DFor.RecordSet("TOTALFOR") = Eval(TSumaIng.Text)
             DFor.RecordSet("CODESPECIE") = DVarios.RecordSet("CODESPECIE")
             DFor.RecordSet("CODGRPFOR") = DVarios.RecordSet("CODGRPFOR")
@@ -793,14 +796,15 @@ Public Class Formulacion
             DFor.RecordSet("USUARIOIMPFOR") = UsuarioPrincipal
             DFor.RecordSet("CODESTABLECIMIENTO") = DVarios.RecordSet("CODESTABLECIMIENTO")
             DFor.RecordSet("LP") = LPNew
-            If Funcion_ManejaFylax Then
-                DFor.RecordSet("PORCADICFILAX") = DVarios.RecordSet("PORCADICFILAX")
-                DFor.RecordSet("TIPOALIMENTO") = DVarios.RecordSet("TIPOALIMENTO")
-                DFor.RecordSet("HABCORRHUM") = DVarios.RecordSet("HABCORRHUM")
-                DFor.RecordSet("NUMRECETA") = DVarios.RecordSet("NUMRECETA")
-                DFor.RecordSet("SPHUMEDAD") = DVarios.RecordSet("SPHUMEDAD")
-                DFor.RecordSet("PORCADICAGUA") = DVarios.RecordSet("PORCADICAGUA")
-            End If
+
+            'If Funcion_ManejaFylax Then
+            '    DFor.RecordSet("PORCADICFILAX") = DVarios.RecordSet("PORCADICFILAX")
+            '    DFor.RecordSet("TIPOALIMENTO") = DVarios.RecordSet("TIPOALIMENTO")
+            '    DFor.RecordSet("HABCORRHUM") = DVarios.RecordSet("HABCORRHUM")
+            '    DFor.RecordSet("NUMRECETA") = DVarios.RecordSet("NUMRECETA")
+            '    DFor.RecordSet("SPHUMEDAD") = DVarios.RecordSet("SPHUMEDAD")
+            '    DFor.RecordSet("PORCADICAGUA") = DVarios.RecordSet("PORCADICAGUA")
+            'End If
 
             DFor.RecordSet("HUMEDADFOR") = DVarios.RecordSet("HUMEDADFOR")
 
@@ -829,6 +833,21 @@ Public Class Formulacion
                 DDatosFor.RecordSet("TOLSUP") = RecordSet("TOLSUP")
 
                 DDatosFor.Update(Me)
+            Next
+
+            DVarios.Open("select * from NUTFOR where CODFOR='" + CodForAct + "' and LP='" + LPAct + "'")
+            DNutFor.Open("select * from NUTFOR where CODFOR='" + CodForNew + "' and LP='" + LPNew + "'")
+
+            For Each RecordSet In DVarios.Rows
+                DNutFor.AddNew()
+                DNutFor.RecordSet("CODFOR") = CodForNew
+                DNutFor.RecordSet("LP") = LPNew
+                DNutFor.RecordSet("ITEM") = RecordSet("ITEM")
+                DNutFor.RecordSet("NOMNUT") = RecordSet("NOMNUT")
+                DNutFor.RecordSet("CANTIDAD") = RecordSet("CANTIDAD")
+                DNutFor.RecordSet("UNDS") = RecordSet("UNDS")
+                DNutFor.Update()
+
             Next
 
             EventoAuditoria(DevuelveEvento(CodEvento.FORMULA_DUPLICAR), Me, Accion.DUPLICAR, "Formulas", "CodFor", CodForAct)

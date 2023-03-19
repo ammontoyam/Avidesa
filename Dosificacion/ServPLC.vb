@@ -695,7 +695,7 @@ Public Class ServPLC
                 DFor.Open("select * from FORMULAS where CODFOR='" + CodFor + "' and LP='" + LP + "'")
                 If DFor.RecordCount > 0 Then
                     DBaches.RecordSet("CODFORB") = DFor.RecordSet("CODFORB")
-                    DBaches.RecordSet("NOMFORB") = DFor.RecordSet("NOMFOR")
+                    DBaches.RecordSet("NOMFOR") = DFor.RecordSet("NOMFOR")
                     DBaches.RecordSet("PASOS") = DFor.RecordCount
                     DBaches.RecordSet("PESOMETA") = DFor.RecordSet("TOTALFOR")
                 End If
@@ -715,7 +715,7 @@ Public Class ServPLC
                         DTMuertos.AddNew()
                         UsuarioDosificacion = ReadConfigVar("UsuarioDosif")
                         DTMuertos.RecordSet("CONT") = Contador
-                        DTMuertos.RecordSet("FECHAINI") = DBaches.RecordSet("Fecha")
+                        DTMuertos.RecordSet("FECHA") = DBaches.RecordSet("Fecha")
                         DTMuertos.RecordSet("PROCESO") = "DOSIF"
                         DTMuertos.RecordSet("TIEMPO") = Minutos - DConfig.RecordSet("TMPOBACHE")
                         DTMuertos.RecordSet("Usuario") = UsuarioDosificacion  ' CLeft(DRUsuario("USUARIO"), 10)
@@ -791,8 +791,8 @@ Public Class ServPLC
                         DCons.RecordSet("CodFor") = CodFor
                         DCons.RecordSet("CodForB") = RecordSet("CODFORB")
                         DCons.RecordSet("CodMat") = RecordSet("CODMAT")
-                        DCons.RecordSet("PESOREAL") = Eval(RecordSet("VALOR") * PorcBache / 100)
-                        DCons.RecordSet("PesoMeta") = Eval(RecordSet("VALOR") * PorcBache / 100)
+                        DCons.RecordSet("PESOREAL") = Eval(RecordSet("PESOMETA") * PorcBache / 100)
+                        DCons.RecordSet("PesoMeta") = Eval(RecordSet("PESOMETA") * PorcBache / 100)
 
                         'Si está empezando el cambio de tolva, el peso meta se iguala al real para que no salga tanto error en los reportes.
                         If PesoParcial(BascRep) Then
@@ -805,10 +805,10 @@ Public Class ServPLC
                         DCons.RecordSet("POSICIONSAP") = 0
                         DCons.RecordSet("TERMINADO") = "S"
                         'DCons.RecordSet("Tolva") = Tolva
-                        If DCons.RecordSet("PESOREAL") = 0 Then DCons.RecordSet("PESOREAL") = DCons.RecordSet("PesoMeta")
+                        'If DCons.RecordSet("PESOREAL") = 0 Then DCons.RecordSet("PESOREAL") = DCons.RecordSet("PesoMeta")
                         DCons.RecordSet("CodMatB") = RecordSet("CODMATB")
 
-                        DArt.Open("select * from MATPESADOS where CODMAT='" + RecordSet("CODMAT").ToString + "'")
+                        DArt.Open("select * from ARTICULOS where TIPO='MP' and CODINT='" + RecordSet("CODMAT").ToString + "'")
                         If DArt.RecordCount Then
                             DCons.RecordSet("NOMMAT") = DArt.RecordSet("NOMMAT")
                             DCons.RecordSet("COD3") = DArt.RecordSet("COD3")
@@ -885,6 +885,7 @@ Public Class ServPLC
                 DCons.RecordSet("Tolva") = Tolva
                 DCons.RecordSet("Bascula") = BascRep
                 DCons.RecordSet("OP") = OP
+                DCons.RecordSet("A") = DDatosFor.RecordSet("A")
                 DCons.RecordSet("Est") = DDatosFor.RecordSet("A")
                 DCons.RecordSet("POSICIONSAP") = 0
                 DCons.RecordSet("TERMINADO") = "S"
@@ -893,10 +894,10 @@ Public Class ServPLC
                 DBaches.Update("Baches CaptRep 1")
                 'Pone el valor de alarmas por defecto para el siguiente ingrediente
 
-                If DCons.RecordSet("PESOREAL") = 0 Then DCons.RecordSet("PESOREAL") = DCons.RecordSet("PesoMeta")
+                'If DCons.RecordSet("PESOREAL") = 0 Then DCons.RecordSet("PESOREAL") = DCons.RecordSet("PesoMeta")
                 DCons.RecordSet("CodMatB") = DDatosFor.RecordSet("CODMATB")
 
-                DArt.Open("select * from MATPESADOS where CODMAT='" + CodMat + "'")
+                DArt.Open("select * from ARTICULOS where TIPO='MP' and CODINT='" + CodMat + "'")
                 If DArt.RecordCount Then
                     DCons.RecordSet("NOMMAT") = DArt.RecordSet("NOMMAT")
                     DCons.RecordSet("COD3") = DArt.RecordSet("COD3")
@@ -914,11 +915,10 @@ Public Class ServPLC
                 DBaches.Refresh()
 
                 'Compensación Automática
-                DTolvasD.Open("select * from TOLVASDOSIF where TOLVA=0" + Tolva.ToString)
+                DTolvasD.Open("select * from TOLVAS where PROCESO='DOSIFICACION' and TOLVA=" + Tolva.ToString)
                 If DTolvasD.RecordCount Then
                     If DTolvasD.RecordSet("COMPENSAUTO") = "X" Then
                         DifCompens = Real - Meta
- 
                         DTolvasD.RecordSet("COMPENS") = Math.Round(DTolvasD.RecordSet("COMPENS") + DifCompens * 0.5, 2)
                         If DTolvasD.RecordSet("COMPENS") < 0 Then DTolvasD.RecordSet("COMPENS") = 0
                         If DTolvasD.RecordSet("COMPENS") > DTolvasD.RecordSet("AFINA") Then DTolvasD.RecordSet("COMPENS") = DTolvasD.RecordSet("AFINA") * 0.5

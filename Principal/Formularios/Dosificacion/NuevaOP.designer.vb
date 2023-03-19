@@ -39,39 +39,9 @@ Partial Class NuevaOP
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.PanelDatos = New System.Windows.Forms.Panel()
-        Me.GBEmpEtiqAdic = New System.Windows.Forms.GroupBox()
-        Me.BCancelarEmps = New System.Windows.Forms.Button()
-        Me.BAdicionarEmps = New System.Windows.Forms.Button()
-        Me.TTipo = New System.Windows.Forms.TextBox()
-        Me.TNomEmpEtiq = New System.Windows.Forms.TextBox()
-        Me.Label45 = New System.Windows.Forms.Label()
-        Me.TCodEmpEtiq = New System.Windows.Forms.TextBox()
-        Me.GBDestinoPLC = New System.Windows.Forms.GroupBox()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.TDestinoPLC = New System.Windows.Forms.TextBox()
-        Me.Label36 = New System.Windows.Forms.Label()
         Me.ChManejaPx = New System.Windows.Forms.CheckBox()
-        Me.ChVentas = New System.Windows.Forms.CheckBox()
         Me.TEstado = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
-        Me.GBDestino = New System.Windows.Forms.GroupBox()
-        Me.Label37 = New System.Windows.Forms.Label()
-        Me.TBodDestino = New System.Windows.Forms.ComboBox()
-        Me.Label38 = New System.Windows.Forms.Label()
-        Me.Label39 = New System.Windows.Forms.Label()
-        Me.TMHumeda = New System.Windows.Forms.TextBox()
-        Me.Label40 = New System.Windows.Forms.Label()
-        Me.Label41 = New System.Windows.Forms.Label()
-        Me.Label42 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
-        Me.Label43 = New System.Windows.Forms.Label()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.CLinea = New System.Windows.Forms.ComboBox()
-        Me.Label44 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.BCancelar = New System.Windows.Forms.Button()
         Me.BAceptar = New System.Windows.Forms.Button()
@@ -84,10 +54,6 @@ Partial Class NuevaOP
         Me.TMedicado = New System.Windows.Forms.TextBox()
         Me.TCodCli = New System.Windows.Forms.TextBox()
         Me.GBProd = New System.Windows.Forms.GroupBox()
-        Me.LNumPaq = New System.Windows.Forms.Label()
-        Me.TNumPaq = New System.Windows.Forms.TextBox()
-        Me.LPaqxBache = New System.Windows.Forms.Label()
-        Me.TNumPaqxBache = New System.Windows.Forms.TextBox()
         Me.LTotalFor = New System.Windows.Forms.Label()
         Me.TTotalFor = New System.Windows.Forms.TextBox()
         Me.Label25 = New System.Windows.Forms.Label()
@@ -110,10 +76,6 @@ Partial Class NuevaOP
         Me.TCodProd = New System.Windows.Forms.TextBox()
         Me.TOPs = New System.Windows.Forms.TextBox()
         Me.GBFor = New System.Windows.Forms.GroupBox()
-        Me.Label46 = New System.Windows.Forms.Label()
-        Me.TMetaKG = New System.Windows.Forms.TextBox()
-        Me.TCodPrem = New System.Windows.Forms.TextBox()
-        Me.Label26 = New System.Windows.Forms.Label()
         Me.TLP = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -123,10 +85,6 @@ Partial Class NuevaOP
         Me.TNomFor = New System.Windows.Forms.TextBox()
         Me.TCodFor = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.TBAhoraBPiso = New System.Windows.Forms.TextBox()
-        Me.Label35 = New System.Windows.Forms.Label()
-        Me.TBachesTanda = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -135,25 +93,6 @@ Partial Class NuevaOP
         Me.TPorc = New System.Windows.Forms.TextBox()
         Me.TReal = New System.Windows.Forms.TextBox()
         Me.TMeta = New System.Windows.Forms.TextBox()
-        Me.GBFunPremezcla = New System.Windows.Forms.GroupBox()
-        Me.CLotePrem = New System.Windows.Forms.ComboBox()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.CCodPrem = New System.Windows.Forms.ComboBox()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.GBDestinosPeletizado = New System.Windows.Forms.GroupBox()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.TBachesDest3 = New System.Windows.Forms.TextBox()
-        Me.TBachesDest2 = New System.Windows.Forms.TextBox()
-        Me.TBachesDest1 = New System.Windows.Forms.TextBox()
-        Me.CDestino1 = New System.Windows.Forms.ComboBox()
-        Me.CDestino2 = New System.Windows.Forms.ComboBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.CDestino3 = New System.Windows.Forms.ComboBox()
-        Me.CBLinea = New System.Windows.Forms.ComboBox()
-        Me.Label33 = New System.Windows.Forms.Label()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.BSalir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
@@ -252,9 +191,6 @@ Partial Class NuevaOP
         Me.DGFor_ManejaPx = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.FComboPrem = New System.Windows.Forms.Button()
         Me.GBPlantas = New System.Windows.Forms.GroupBox()
-        Me.OPPlantaSantaRosa = New System.Windows.Forms.RadioButton()
-        Me.OPPlantaYar = New System.Windows.Forms.RadioButton()
-        Me.OPPlantaGir = New System.Windows.Forms.RadioButton()
         Me.LEmpaquesEtiquetas = New System.Windows.Forms.Label()
         Me.DGListEmp = New System.Windows.Forms.DataGridView()
         Me.DGListEmp_OP = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -267,16 +203,18 @@ Partial Class NuevaOP
         Me.DGEmpaques_CodInt = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGEmpaques_Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DGEmpaques_TIPO = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChGranel = New System.Windows.Forms.CheckBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.TNomHilo = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.TCodHilo = New System.Windows.Forms.TextBox()
+        Me.CBMaquila = New System.Windows.Forms.ComboBox()
+        Me.Label18 = New System.Windows.Forms.Label()
         Me.PanelDatos.SuspendLayout()
-        Me.GBEmpEtiqAdic.SuspendLayout()
-        Me.GBDestinoPLC.SuspendLayout()
-        Me.GBDestino.SuspendLayout()
         Me.GBCliente.SuspendLayout()
         Me.GBProd.SuspendLayout()
         Me.GBFor.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.GBFunPremezcla.SuspendLayout()
-        Me.GBDestinosPeletizado.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DGOPsPrem, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -284,20 +222,15 @@ Partial Class NuevaOP
         CType(Me.DGProd, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGOPsDos, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGFor, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GBPlantas.SuspendLayout()
         CType(Me.DGListEmp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DGEmpaques, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelDatos
         '
-        Me.PanelDatos.Controls.Add(Me.GBEmpEtiqAdic)
-        Me.PanelDatos.Controls.Add(Me.GBDestinoPLC)
         Me.PanelDatos.Controls.Add(Me.ChManejaPx)
-        Me.PanelDatos.Controls.Add(Me.ChVentas)
         Me.PanelDatos.Controls.Add(Me.TEstado)
         Me.PanelDatos.Controls.Add(Me.Label22)
-        Me.PanelDatos.Controls.Add(Me.GBDestino)
         Me.PanelDatos.Controls.Add(Me.Label21)
         Me.PanelDatos.Controls.Add(Me.BCancelar)
         Me.PanelDatos.Controls.Add(Me.BAceptar)
@@ -307,131 +240,16 @@ Partial Class NuevaOP
         Me.PanelDatos.Controls.Add(Me.TOPs)
         Me.PanelDatos.Controls.Add(Me.GBFor)
         Me.PanelDatos.Controls.Add(Me.GroupBox2)
-        Me.PanelDatos.Controls.Add(Me.GBFunPremezcla)
-        Me.PanelDatos.Controls.Add(Me.GBDestinosPeletizado)
         Me.PanelDatos.Location = New System.Drawing.Point(0, 68)
         Me.PanelDatos.Name = "PanelDatos"
         Me.PanelDatos.Size = New System.Drawing.Size(569, 652)
         Me.PanelDatos.TabIndex = 0
         '
-        'GBEmpEtiqAdic
-        '
-        Me.GBEmpEtiqAdic.Controls.Add(Me.BCancelarEmps)
-        Me.GBEmpEtiqAdic.Controls.Add(Me.BAdicionarEmps)
-        Me.GBEmpEtiqAdic.Controls.Add(Me.TTipo)
-        Me.GBEmpEtiqAdic.Controls.Add(Me.TNomEmpEtiq)
-        Me.GBEmpEtiqAdic.Controls.Add(Me.Label45)
-        Me.GBEmpEtiqAdic.Controls.Add(Me.TCodEmpEtiq)
-        Me.GBEmpEtiqAdic.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBEmpEtiqAdic.ForeColor = System.Drawing.Color.Blue
-        Me.GBEmpEtiqAdic.Location = New System.Drawing.Point(329, 590)
-        Me.GBEmpEtiqAdic.Name = "GBEmpEtiqAdic"
-        Me.GBEmpEtiqAdic.Size = New System.Drawing.Size(139, 53)
-        Me.GBEmpEtiqAdic.TabIndex = 69
-        Me.GBEmpEtiqAdic.TabStop = False
-        Me.GBEmpEtiqAdic.Text = "Empaques y Etiquetas adicionales"
-        Me.GBEmpEtiqAdic.Visible = False
-        '
-        'BCancelarEmps
-        '
-        Me.BCancelarEmps.Image = CType(resources.GetObject("BCancelarEmps.Image"), System.Drawing.Image)
-        Me.BCancelarEmps.Location = New System.Drawing.Point(417, 16)
-        Me.BCancelarEmps.Name = "BCancelarEmps"
-        Me.BCancelarEmps.Size = New System.Drawing.Size(30, 26)
-        Me.BCancelarEmps.TabIndex = 28
-        Me.BCancelarEmps.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText
-        Me.ToolTip1.SetToolTip(Me.BCancelarEmps, "Eliminar una OP")
-        Me.BCancelarEmps.UseVisualStyleBackColor = True
-        '
-        'BAdicionarEmps
-        '
-        Me.BAdicionarEmps.Image = CType(resources.GetObject("BAdicionarEmps.Image"), System.Drawing.Image)
-        Me.BAdicionarEmps.Location = New System.Drawing.Point(388, 16)
-        Me.BAdicionarEmps.Name = "BAdicionarEmps"
-        Me.BAdicionarEmps.Size = New System.Drawing.Size(30, 26)
-        Me.BAdicionarEmps.TabIndex = 27
-        Me.ToolTip1.SetToolTip(Me.BAdicionarEmps, "Adicionar una OP")
-        Me.BAdicionarEmps.UseVisualStyleBackColor = True
-        '
-        'TTipo
-        '
-        Me.TTipo.Location = New System.Drawing.Point(4, 34)
-        Me.TTipo.Name = "TTipo"
-        Me.TTipo.Size = New System.Drawing.Size(43, 20)
-        Me.TTipo.TabIndex = 25
-        Me.TTipo.Visible = False
-        '
-        'TNomEmpEtiq
-        '
-        Me.TNomEmpEtiq.Location = New System.Drawing.Point(130, 19)
-        Me.TNomEmpEtiq.Name = "TNomEmpEtiq"
-        Me.TNomEmpEtiq.ReadOnly = True
-        Me.TNomEmpEtiq.Size = New System.Drawing.Size(254, 20)
-        Me.TNomEmpEtiq.TabIndex = 24
-        '
-        'Label45
-        '
-        Me.Label45.AutoSize = True
-        Me.Label45.ForeColor = System.Drawing.Color.Black
-        Me.Label45.Location = New System.Drawing.Point(6, 22)
-        Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(46, 14)
-        Me.Label45.TabIndex = 14
-        Me.Label45.Text = "Código"
-        '
-        'TCodEmpEtiq
-        '
-        Me.TCodEmpEtiq.Location = New System.Drawing.Point(58, 19)
-        Me.TCodEmpEtiq.Name = "TCodEmpEtiq"
-        Me.TCodEmpEtiq.Size = New System.Drawing.Size(68, 20)
-        Me.TCodEmpEtiq.TabIndex = 1
-        '
-        'GBDestinoPLC
-        '
-        Me.GBDestinoPLC.Controls.Add(Me.Label24)
-        Me.GBDestinoPLC.Controls.Add(Me.TDestinoPLC)
-        Me.GBDestinoPLC.Controls.Add(Me.Label36)
-        Me.GBDestinoPLC.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBDestinoPLC.ForeColor = System.Drawing.Color.Blue
-        Me.GBDestinoPLC.Location = New System.Drawing.Point(331, 525)
-        Me.GBDestinoPLC.Name = "GBDestinoPLC"
-        Me.GBDestinoPLC.Size = New System.Drawing.Size(228, 59)
-        Me.GBDestinoPLC.TabIndex = 70
-        Me.GBDestinoPLC.TabStop = False
-        Me.GBDestinoPLC.Text = "Destino PLC"
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.ForeColor = System.Drawing.Color.Black
-        Me.Label24.Location = New System.Drawing.Point(57, 29)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(49, 14)
-        Me.Label24.TabIndex = 17
-        Me.Label24.Text = "Destino"
-        '
-        'TDestinoPLC
-        '
-        Me.TDestinoPLC.Location = New System.Drawing.Point(112, 26)
-        Me.TDestinoPLC.Name = "TDestinoPLC"
-        Me.TDestinoPLC.Size = New System.Drawing.Size(53, 20)
-        Me.TDestinoPLC.TabIndex = 16
-        '
-        'Label36
-        '
-        Me.Label36.AutoSize = True
-        Me.Label36.ForeColor = System.Drawing.Color.Black
-        Me.Label36.Location = New System.Drawing.Point(54, -12)
-        Me.Label36.Name = "Label36"
-        Me.Label36.Size = New System.Drawing.Size(51, 14)
-        Me.Label36.TabIndex = 15
-        Me.Label36.Text = "Nombre"
-        '
         'ChManejaPx
         '
         Me.ChManejaPx.AutoSize = True
         Me.ChManejaPx.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChManejaPx.Location = New System.Drawing.Point(268, 32)
+        Me.ChManejaPx.Location = New System.Drawing.Point(336, 34)
         Me.ChManejaPx.Name = "ChManejaPx"
         Me.ChManejaPx.Size = New System.Drawing.Size(81, 18)
         Me.ChManejaPx.TabIndex = 69
@@ -439,20 +257,9 @@ Partial Class NuevaOP
         Me.ChManejaPx.UseVisualStyleBackColor = True
         Me.ChManejaPx.Visible = False
         '
-        'ChVentas
-        '
-        Me.ChVentas.AutoSize = True
-        Me.ChVentas.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChVentas.Location = New System.Drawing.Point(355, 28)
-        Me.ChVentas.Name = "ChVentas"
-        Me.ChVentas.Size = New System.Drawing.Size(192, 26)
-        Me.ChVentas.TabIndex = 66
-        Me.ChVentas.Text = "OP Ventas / Otros"
-        Me.ChVentas.UseVisualStyleBackColor = True
-        '
         'TEstado
         '
-        Me.TEstado.Location = New System.Drawing.Point(252, 30)
+        Me.TEstado.Location = New System.Drawing.Point(268, 30)
         Me.TEstado.Name = "TEstado"
         Me.TEstado.Size = New System.Drawing.Size(16, 20)
         Me.TEstado.TabIndex = 29
@@ -469,211 +276,12 @@ Partial Class NuevaOP
         Me.Label22.TabIndex = 25
         Me.Label22.Text = "Orden de Producción"
         '
-        'GBDestino
-        '
-        Me.GBDestino.Controls.Add(Me.Label37)
-        Me.GBDestino.Controls.Add(Me.TBodDestino)
-        Me.GBDestino.Controls.Add(Me.Label38)
-        Me.GBDestino.Controls.Add(Me.Label39)
-        Me.GBDestino.Controls.Add(Me.TMHumeda)
-        Me.GBDestino.Controls.Add(Me.Label40)
-        Me.GBDestino.Controls.Add(Me.Label41)
-        Me.GBDestino.Controls.Add(Me.Label42)
-        Me.GBDestino.Controls.Add(Me.TextBox1)
-        Me.GBDestino.Controls.Add(Me.TextBox2)
-        Me.GBDestino.Controls.Add(Me.TextBox3)
-        Me.GBDestino.Controls.Add(Me.ComboBox1)
-        Me.GBDestino.Controls.Add(Me.ComboBox2)
-        Me.GBDestino.Controls.Add(Me.Label43)
-        Me.GBDestino.Controls.Add(Me.ComboBox3)
-        Me.GBDestino.Controls.Add(Me.CLinea)
-        Me.GBDestino.Controls.Add(Me.Label44)
-        Me.GBDestino.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBDestino.ForeColor = System.Drawing.Color.Blue
-        Me.GBDestino.Location = New System.Drawing.Point(12, 533)
-        Me.GBDestino.Name = "GBDestino"
-        Me.GBDestino.Size = New System.Drawing.Size(305, 104)
-        Me.GBDestino.TabIndex = 68
-        Me.GBDestino.TabStop = False
-        Me.GBDestino.Text = "Destino"
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.ForeColor = System.Drawing.Color.Black
-        Me.Label37.Location = New System.Drawing.Point(8, 49)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(173, 14)
-        Me.Label37.TabIndex = 51
-        Me.Label37.Text = "Tiempo Mezcla Húmeda (Seg.)"
-        '
-        'TBodDestino
-        '
-        Me.TBodDestino.FormattingEnabled = True
-        Me.TBodDestino.Location = New System.Drawing.Point(193, 72)
-        Me.TBodDestino.Margin = New System.Windows.Forms.Padding(2)
-        Me.TBodDestino.Name = "TBodDestino"
-        Me.TBodDestino.Size = New System.Drawing.Size(91, 22)
-        Me.TBodDestino.TabIndex = 50
-        '
-        'Label38
-        '
-        Me.Label38.AutoSize = True
-        Me.Label38.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label38.ForeColor = System.Drawing.Color.Black
-        Me.Label38.Location = New System.Drawing.Point(10, 77)
-        Me.Label38.Name = "Label38"
-        Me.Label38.Size = New System.Drawing.Size(93, 14)
-        Me.Label38.TabIndex = 49
-        Me.Label38.Text = "Bodega Destino"
-        '
-        'Label39
-        '
-        Me.Label39.AutoSize = True
-        Me.Label39.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.ForeColor = System.Drawing.Color.Black
-        Me.Label39.Location = New System.Drawing.Point(56, 140)
-        Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(71, 14)
-        Me.Label39.TabIndex = 48
-        Me.Label39.Text = "M. Húmeda:"
-        Me.Label39.Visible = False
-        '
-        'TMHumeda
-        '
-        Me.TMHumeda.Location = New System.Drawing.Point(193, 46)
-        Me.TMHumeda.Name = "TMHumeda"
-        Me.TMHumeda.Size = New System.Drawing.Size(91, 20)
-        Me.TMHumeda.TabIndex = 47
-        Me.TMHumeda.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label40
-        '
-        Me.Label40.AutoSize = True
-        Me.Label40.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label40.ForeColor = System.Drawing.Color.Black
-        Me.Label40.Location = New System.Drawing.Point(221, 105)
-        Me.Label40.Name = "Label40"
-        Me.Label40.Size = New System.Drawing.Size(58, 14)
-        Me.Label40.TabIndex = 46
-        Me.Label40.Text = "Destino 3"
-        '
-        'Label41
-        '
-        Me.Label41.AutoSize = True
-        Me.Label41.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label41.ForeColor = System.Drawing.Color.Black
-        Me.Label41.Location = New System.Drawing.Point(145, 105)
-        Me.Label41.Name = "Label41"
-        Me.Label41.Size = New System.Drawing.Size(58, 14)
-        Me.Label41.TabIndex = 45
-        Me.Label41.Text = "Destino 2"
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label42.ForeColor = System.Drawing.Color.Black
-        Me.Label42.Location = New System.Drawing.Point(10, 150)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(47, 14)
-        Me.Label42.TabIndex = 44
-        Me.Label42.Text = "Baches"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(224, 150)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(41, 20)
-        Me.TextBox1.TabIndex = 43
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Location = New System.Drawing.Point(154, 150)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(41, 20)
-        Me.TextBox2.TabIndex = 42
-        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Location = New System.Drawing.Point(66, 150)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(41, 20)
-        Me.TextBox3.TabIndex = 38
-        Me.TextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.Enabled = False
-        Me.ComboBox1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.ComboBox1.Location = New System.Drawing.Point(66, 122)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(42, 23)
-        Me.ComboBox1.TabIndex = 36
-        '
-        'ComboBox2
-        '
-        Me.ComboBox2.Enabled = False
-        Me.ComboBox2.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.ComboBox2.Location = New System.Drawing.Point(154, 122)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(42, 23)
-        Me.ComboBox2.TabIndex = 34
-        '
-        'Label43
-        '
-        Me.Label43.AutoSize = True
-        Me.Label43.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label43.ForeColor = System.Drawing.Color.Black
-        Me.Label43.Location = New System.Drawing.Point(61, 105)
-        Me.Label43.Name = "Label43"
-        Me.Label43.Size = New System.Drawing.Size(58, 14)
-        Me.Label43.TabIndex = 33
-        Me.Label43.Text = "Destino 1"
-        '
-        'ComboBox3
-        '
-        Me.ComboBox3.Enabled = False
-        Me.ComboBox3.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.ComboBox3.Location = New System.Drawing.Point(224, 122)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(42, 23)
-        Me.ComboBox3.TabIndex = 32
-        '
-        'CLinea
-        '
-        Me.CLinea.FormattingEnabled = True
-        Me.CLinea.Location = New System.Drawing.Point(121, 19)
-        Me.CLinea.Name = "CLinea"
-        Me.CLinea.Size = New System.Drawing.Size(162, 22)
-        Me.CLinea.TabIndex = 30
-        '
-        'Label44
-        '
-        Me.Label44.AutoSize = True
-        Me.Label44.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label44.ForeColor = System.Drawing.Color.Black
-        Me.Label44.Location = New System.Drawing.Point(10, 26)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(102, 14)
-        Me.Label44.TabIndex = 29
-        Me.Label44.Text = "Línea Producción"
-        '
         'Label21
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label21.ForeColor = System.Drawing.Color.Black
-        Me.Label21.Location = New System.Drawing.Point(328, 407)
+        Me.Label21.Location = New System.Drawing.Point(16, 511)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(90, 14)
         Me.Label21.TabIndex = 24
@@ -682,7 +290,7 @@ Partial Class NuevaOP
         'BCancelar
         '
         Me.BCancelar.Image = CType(resources.GetObject("BCancelar.Image"), System.Drawing.Image)
-        Me.BCancelar.Location = New System.Drawing.Point(513, 613)
+        Me.BCancelar.Location = New System.Drawing.Point(529, 618)
         Me.BCancelar.Name = "BCancelar"
         Me.BCancelar.Size = New System.Drawing.Size(35, 31)
         Me.BCancelar.TabIndex = 23
@@ -691,7 +299,7 @@ Partial Class NuevaOP
         'BAceptar
         '
         Me.BAceptar.Image = CType(resources.GetObject("BAceptar.Image"), System.Drawing.Image)
-        Me.BAceptar.Location = New System.Drawing.Point(474, 613)
+        Me.BAceptar.Location = New System.Drawing.Point(490, 618)
         Me.BAceptar.Name = "BAceptar"
         Me.BAceptar.Size = New System.Drawing.Size(35, 31)
         Me.BAceptar.TabIndex = 22
@@ -699,11 +307,11 @@ Partial Class NuevaOP
         '
         'TObservOP
         '
-        Me.TObservOP.Location = New System.Drawing.Point(331, 424)
+        Me.TObservOP.Location = New System.Drawing.Point(19, 528)
         Me.TObservOP.Multiline = True
         Me.TObservOP.Name = "TObservOP"
         Me.TObservOP.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TObservOP.Size = New System.Drawing.Size(228, 93)
+        Me.TObservOP.Size = New System.Drawing.Size(543, 73)
         Me.TObservOP.TabIndex = 5
         '
         'GBCliente
@@ -716,7 +324,7 @@ Partial Class NuevaOP
         Me.GBCliente.Controls.Add(Me.TCodCli)
         Me.GBCliente.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GBCliente.ForeColor = System.Drawing.Color.Blue
-        Me.GBCliente.Location = New System.Drawing.Point(6, 298)
+        Me.GBCliente.Location = New System.Drawing.Point(6, 385)
         Me.GBCliente.Name = "GBCliente"
         Me.GBCliente.Size = New System.Drawing.Size(272, 89)
         Me.GBCliente.TabIndex = 4
@@ -780,10 +388,13 @@ Partial Class NuevaOP
         '
         'GBProd
         '
-        Me.GBProd.Controls.Add(Me.LNumPaq)
-        Me.GBProd.Controls.Add(Me.TNumPaq)
-        Me.GBProd.Controls.Add(Me.LPaqxBache)
-        Me.GBProd.Controls.Add(Me.TNumPaqxBache)
+        Me.GBProd.Controls.Add(Me.Label18)
+        Me.GBProd.Controls.Add(Me.CBMaquila)
+        Me.GBProd.Controls.Add(Me.Label7)
+        Me.GBProd.Controls.Add(Me.TNomHilo)
+        Me.GBProd.Controls.Add(Me.Label16)
+        Me.GBProd.Controls.Add(Me.TCodHilo)
+        Me.GBProd.Controls.Add(Me.ChGranel)
         Me.GBProd.Controls.Add(Me.LTotalFor)
         Me.GBProd.Controls.Add(Me.TTotalFor)
         Me.GBProd.Controls.Add(Me.Label25)
@@ -808,49 +419,10 @@ Partial Class NuevaOP
         Me.GBProd.ForeColor = System.Drawing.Color.Blue
         Me.GBProd.Location = New System.Drawing.Point(6, 158)
         Me.GBProd.Name = "GBProd"
-        Me.GBProd.Size = New System.Drawing.Size(556, 136)
+        Me.GBProd.Size = New System.Drawing.Size(556, 210)
         Me.GBProd.TabIndex = 3
         Me.GBProd.TabStop = False
         Me.GBProd.Text = "Producto"
-        '
-        'LNumPaq
-        '
-        Me.LNumPaq.AutoSize = True
-        Me.LNumPaq.ForeColor = System.Drawing.Color.Black
-        Me.LNumPaq.Location = New System.Drawing.Point(421, 64)
-        Me.LNumPaq.Name = "LNumPaq"
-        Me.LNumPaq.Size = New System.Drawing.Size(58, 14)
-        Me.LNumPaq.TabIndex = 40
-        Me.LNumPaq.Text = "Num.Paq."
-        Me.LNumPaq.Visible = False
-        '
-        'TNumPaq
-        '
-        Me.TNumPaq.Location = New System.Drawing.Point(480, 61)
-        Me.TNumPaq.Name = "TNumPaq"
-        Me.TNumPaq.Size = New System.Drawing.Size(62, 20)
-        Me.TNumPaq.TabIndex = 39
-        Me.TNumPaq.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TNumPaq.Visible = False
-        '
-        'LPaqxBache
-        '
-        Me.LPaqxBache.AutoSize = True
-        Me.LPaqxBache.ForeColor = System.Drawing.Color.Black
-        Me.LPaqxBache.Location = New System.Drawing.Point(280, 12)
-        Me.LPaqxBache.Name = "LPaqxBache"
-        Me.LPaqxBache.Size = New System.Drawing.Size(66, 14)
-        Me.LPaqxBache.TabIndex = 38
-        Me.LPaqxBache.Text = "PaqxBache"
-        '
-        'TNumPaqxBache
-        '
-        Me.TNumPaqxBache.Location = New System.Drawing.Point(349, 10)
-        Me.TNumPaqxBache.Name = "TNumPaqxBache"
-        Me.TNumPaqxBache.ReadOnly = True
-        Me.TNumPaqxBache.Size = New System.Drawing.Size(62, 20)
-        Me.TNumPaqxBache.TabIndex = 37
-        Me.TNumPaqxBache.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LTotalFor
         '
@@ -1043,10 +615,6 @@ Partial Class NuevaOP
         '
         'GBFor
         '
-        Me.GBFor.Controls.Add(Me.Label46)
-        Me.GBFor.Controls.Add(Me.TMetaKG)
-        Me.GBFor.Controls.Add(Me.TCodPrem)
-        Me.GBFor.Controls.Add(Me.Label26)
         Me.GBFor.Controls.Add(Me.TLP)
         Me.GBFor.Controls.Add(Me.Label4)
         Me.GBFor.Controls.Add(Me.Label3)
@@ -1064,42 +632,6 @@ Partial Class NuevaOP
         Me.GBFor.TabStop = False
         Me.GBFor.Text = "Fórmula"
         '
-        'Label46
-        '
-        Me.Label46.AutoSize = True
-        Me.Label46.ForeColor = System.Drawing.Color.Black
-        Me.Label46.Location = New System.Drawing.Point(7, 78)
-        Me.Label46.Name = "Label46"
-        Me.Label46.Size = New System.Drawing.Size(51, 14)
-        Me.Label46.TabIndex = 14
-        Me.Label46.Text = "Meta Kg"
-        '
-        'TMetaKG
-        '
-        Me.TMetaKG.Location = New System.Drawing.Point(68, 75)
-        Me.TMetaKG.Name = "TMetaKG"
-        Me.TMetaKG.ReadOnly = True
-        Me.TMetaKG.Size = New System.Drawing.Size(68, 20)
-        Me.TMetaKG.TabIndex = 13
-        '
-        'TCodPrem
-        '
-        Me.TCodPrem.Location = New System.Drawing.Point(208, 55)
-        Me.TCodPrem.Name = "TCodPrem"
-        Me.TCodPrem.ReadOnly = True
-        Me.TCodPrem.Size = New System.Drawing.Size(68, 20)
-        Me.TCodPrem.TabIndex = 12
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.ForeColor = System.Drawing.Color.Black
-        Me.Label26.Location = New System.Drawing.Point(145, 58)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(65, 14)
-        Me.Label26.TabIndex = 11
-        Me.Label26.Text = "Cód.Prem."
-        '
         'TLP
         '
         Me.TLP.Location = New System.Drawing.Point(68, 54)
@@ -1114,9 +646,9 @@ Partial Class NuevaOP
         Me.Label4.ForeColor = System.Drawing.Color.Black
         Me.Label4.Location = New System.Drawing.Point(7, 57)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(58, 14)
+        Me.Label4.Size = New System.Drawing.Size(50, 14)
         Me.Label4.TabIndex = 9
-        Me.Label4.Text = "No.Orden"
+        Me.Label4.Text = "Versión"
         '
         'Label3
         '
@@ -1173,10 +705,6 @@ Partial Class NuevaOP
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.TBAhoraBPiso)
-        Me.GroupBox2.Controls.Add(Me.Label35)
-        Me.GroupBox2.Controls.Add(Me.TBachesTanda)
-        Me.GroupBox2.Controls.Add(Me.Label31)
         Me.GroupBox2.Controls.Add(Me.Label9)
         Me.GroupBox2.Controls.Add(Me.Label8)
         Me.GroupBox2.Controls.Add(Me.Label6)
@@ -1193,43 +721,6 @@ Partial Class NuevaOP
         Me.GroupBox2.TabIndex = 2
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Baches"
-        '
-        'TBAhoraBPiso
-        '
-        Me.TBAhoraBPiso.Location = New System.Drawing.Point(90, 62)
-        Me.TBAhoraBPiso.Name = "TBAhoraBPiso"
-        Me.TBAhoraBPiso.Size = New System.Drawing.Size(40, 20)
-        Me.TBAhoraBPiso.TabIndex = 20
-        Me.TBAhoraBPiso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label35
-        '
-        Me.Label35.AutoSize = True
-        Me.Label35.ForeColor = System.Drawing.Color.Black
-        Me.Label35.Location = New System.Drawing.Point(6, 65)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(84, 14)
-        Me.Label35.TabIndex = 19
-        Me.Label35.Text = "Baches B.Piso"
-        '
-        'TBachesTanda
-        '
-        Me.TBachesTanda.Location = New System.Drawing.Point(223, 62)
-        Me.TBachesTanda.Name = "TBachesTanda"
-        Me.TBachesTanda.Size = New System.Drawing.Size(40, 20)
-        Me.TBachesTanda.TabIndex = 14
-        Me.TBachesTanda.Text = "1"
-        Me.TBachesTanda.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.ForeColor = System.Drawing.Color.Black
-        Me.Label31.Location = New System.Drawing.Point(138, 65)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(84, 14)
-        Me.Label31.TabIndex = 13
-        Me.Label31.Text = "Bache x Tanda"
         '
         'Label9
         '
@@ -1303,217 +794,6 @@ Partial Class NuevaOP
         Me.TMeta.Size = New System.Drawing.Size(40, 20)
         Me.TMeta.TabIndex = 1
         Me.TMeta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'GBFunPremezcla
-        '
-        Me.GBFunPremezcla.Controls.Add(Me.CLotePrem)
-        Me.GBFunPremezcla.Controls.Add(Me.Label29)
-        Me.GBFunPremezcla.Controls.Add(Me.CCodPrem)
-        Me.GBFunPremezcla.Controls.Add(Me.Label30)
-        Me.GBFunPremezcla.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBFunPremezcla.ForeColor = System.Drawing.Color.Blue
-        Me.GBFunPremezcla.Location = New System.Drawing.Point(284, 299)
-        Me.GBFunPremezcla.Name = "GBFunPremezcla"
-        Me.GBFunPremezcla.Size = New System.Drawing.Size(278, 88)
-        Me.GBFunPremezcla.TabIndex = 67
-        Me.GBFunPremezcla.TabStop = False
-        Me.GBFunPremezcla.Text = "Premezcla"
-        '
-        'CLotePrem
-        '
-        Me.CLotePrem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CLotePrem.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CLotePrem.FormattingEnabled = True
-        Me.CLotePrem.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.CLotePrem.Location = New System.Drawing.Point(52, 50)
-        Me.CLotePrem.Name = "CLotePrem"
-        Me.CLotePrem.Size = New System.Drawing.Size(114, 23)
-        Me.CLotePrem.TabIndex = 34
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.ForeColor = System.Drawing.Color.Black
-        Me.Label29.Location = New System.Drawing.Point(9, 56)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(32, 14)
-        Me.Label29.TabIndex = 33
-        Me.Label29.Text = "Lote"
-        '
-        'CCodPrem
-        '
-        Me.CCodPrem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CCodPrem.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CCodPrem.FormattingEnabled = True
-        Me.CCodPrem.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.CCodPrem.Location = New System.Drawing.Point(52, 21)
-        Me.CCodPrem.Name = "CCodPrem"
-        Me.CCodPrem.Size = New System.Drawing.Size(203, 23)
-        Me.CCodPrem.TabIndex = 32
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.ForeColor = System.Drawing.Color.Black
-        Me.Label30.Location = New System.Drawing.Point(6, 25)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(46, 14)
-        Me.Label30.TabIndex = 14
-        Me.Label30.Text = "Código"
-        '
-        'GBDestinosPeletizado
-        '
-        Me.GBDestinosPeletizado.Controls.Add(Me.Label16)
-        Me.GBDestinosPeletizado.Controls.Add(Me.Label18)
-        Me.GBDestinosPeletizado.Controls.Add(Me.Label28)
-        Me.GBDestinosPeletizado.Controls.Add(Me.Label34)
-        Me.GBDestinosPeletizado.Controls.Add(Me.TBachesDest3)
-        Me.GBDestinosPeletizado.Controls.Add(Me.TBachesDest2)
-        Me.GBDestinosPeletizado.Controls.Add(Me.TBachesDest1)
-        Me.GBDestinosPeletizado.Controls.Add(Me.CDestino1)
-        Me.GBDestinosPeletizado.Controls.Add(Me.CDestino2)
-        Me.GBDestinosPeletizado.Controls.Add(Me.Label7)
-        Me.GBDestinosPeletizado.Controls.Add(Me.CDestino3)
-        Me.GBDestinosPeletizado.Controls.Add(Me.CBLinea)
-        Me.GBDestinosPeletizado.Controls.Add(Me.Label33)
-        Me.GBDestinosPeletizado.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.GBDestinosPeletizado.ForeColor = System.Drawing.Color.Blue
-        Me.GBDestinosPeletizado.Location = New System.Drawing.Point(12, 396)
-        Me.GBDestinosPeletizado.Name = "GBDestinosPeletizado"
-        Me.GBDestinosPeletizado.Size = New System.Drawing.Size(305, 131)
-        Me.GBDestinosPeletizado.TabIndex = 30
-        Me.GBDestinosPeletizado.TabStop = False
-        Me.GBDestinosPeletizado.Text = "Destino"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.Black
-        Me.Label16.Location = New System.Drawing.Point(221, 55)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(58, 14)
-        Me.Label16.TabIndex = 46
-        Me.Label16.Text = "Destino 3"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.ForeColor = System.Drawing.Color.Black
-        Me.Label18.Location = New System.Drawing.Point(54, -12)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(51, 14)
-        Me.Label18.TabIndex = 15
-        Me.Label18.Text = "Nombre"
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.ForeColor = System.Drawing.Color.Black
-        Me.Label28.Location = New System.Drawing.Point(145, 55)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(58, 14)
-        Me.Label28.TabIndex = 45
-        Me.Label28.Text = "Destino 2"
-        '
-        'Label34
-        '
-        Me.Label34.AutoSize = True
-        Me.Label34.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label34.ForeColor = System.Drawing.Color.Black
-        Me.Label34.Location = New System.Drawing.Point(10, 107)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(47, 14)
-        Me.Label34.TabIndex = 44
-        Me.Label34.Text = "Baches"
-        '
-        'TBachesDest3
-        '
-        Me.TBachesDest3.Location = New System.Drawing.Point(224, 101)
-        Me.TBachesDest3.Name = "TBachesDest3"
-        Me.TBachesDest3.Size = New System.Drawing.Size(41, 20)
-        Me.TBachesDest3.TabIndex = 43
-        Me.TBachesDest3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBachesDest2
-        '
-        Me.TBachesDest2.Location = New System.Drawing.Point(154, 101)
-        Me.TBachesDest2.Name = "TBachesDest2"
-        Me.TBachesDest2.Size = New System.Drawing.Size(41, 20)
-        Me.TBachesDest2.TabIndex = 42
-        Me.TBachesDest2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'TBachesDest1
-        '
-        Me.TBachesDest1.Location = New System.Drawing.Point(66, 101)
-        Me.TBachesDest1.Name = "TBachesDest1"
-        Me.TBachesDest1.Size = New System.Drawing.Size(41, 20)
-        Me.TBachesDest1.TabIndex = 38
-        Me.TBachesDest1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'CDestino1
-        '
-        Me.CDestino1.Enabled = False
-        Me.CDestino1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CDestino1.FormattingEnabled = True
-        Me.CDestino1.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.CDestino1.Location = New System.Drawing.Point(66, 72)
-        Me.CDestino1.Name = "CDestino1"
-        Me.CDestino1.Size = New System.Drawing.Size(42, 23)
-        Me.CDestino1.TabIndex = 36
-        '
-        'CDestino2
-        '
-        Me.CDestino2.Enabled = False
-        Me.CDestino2.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CDestino2.FormattingEnabled = True
-        Me.CDestino2.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.CDestino2.Location = New System.Drawing.Point(154, 72)
-        Me.CDestino2.Name = "CDestino2"
-        Me.CDestino2.Size = New System.Drawing.Size(42, 23)
-        Me.CDestino2.TabIndex = 34
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(61, 55)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(58, 14)
-        Me.Label7.TabIndex = 33
-        Me.Label7.Text = "Destino 1"
-        '
-        'CDestino3
-        '
-        Me.CDestino3.Enabled = False
-        Me.CDestino3.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CDestino3.FormattingEnabled = True
-        Me.CDestino3.Items.AddRange(New Object() {"1", "2", "3"})
-        Me.CDestino3.Location = New System.Drawing.Point(224, 72)
-        Me.CDestino3.Name = "CDestino3"
-        Me.CDestino3.Size = New System.Drawing.Size(42, 23)
-        Me.CDestino3.TabIndex = 32
-        '
-        'CBLinea
-        '
-        Me.CBLinea.FormattingEnabled = True
-        Me.CBLinea.Location = New System.Drawing.Point(121, 19)
-        Me.CBLinea.Name = "CBLinea"
-        Me.CBLinea.Size = New System.Drawing.Size(162, 22)
-        Me.CBLinea.TabIndex = 30
-        '
-        'Label33
-        '
-        Me.Label33.AutoSize = True
-        Me.Label33.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.ForeColor = System.Drawing.Color.Black
-        Me.Label33.Location = New System.Drawing.Point(10, 26)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(102, 14)
-        Me.Label33.TabIndex = 29
-        Me.Label33.Text = "Línea Producción"
         '
         'ToolStrip1
         '
@@ -2335,9 +1615,6 @@ Partial Class NuevaOP
         '
         'GBPlantas
         '
-        Me.GBPlantas.Controls.Add(Me.OPPlantaSantaRosa)
-        Me.GBPlantas.Controls.Add(Me.OPPlantaYar)
-        Me.GBPlantas.Controls.Add(Me.OPPlantaGir)
         Me.GBPlantas.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GBPlantas.ForeColor = System.Drawing.Color.Blue
         Me.GBPlantas.Location = New System.Drawing.Point(1, 62)
@@ -2346,40 +1623,6 @@ Partial Class NuevaOP
         Me.GBPlantas.TabIndex = 68
         Me.GBPlantas.TabStop = False
         Me.GBPlantas.Visible = False
-        '
-        'OPPlantaSantaRosa
-        '
-        Me.OPPlantaSantaRosa.AutoSize = True
-        Me.OPPlantaSantaRosa.Location = New System.Drawing.Point(362, 7)
-        Me.OPPlantaSantaRosa.Name = "OPPlantaSantaRosa"
-        Me.OPPlantaSantaRosa.Size = New System.Drawing.Size(134, 18)
-        Me.OPPlantaSantaRosa.TabIndex = 2
-        Me.OPPlantaSantaRosa.TabStop = True
-        Me.OPPlantaSantaRosa.Text = "Santa Rosa de Osos"
-        Me.OPPlantaSantaRosa.UseVisualStyleBackColor = True
-        '
-        'OPPlantaYar
-        '
-        Me.OPPlantaYar.AutoSize = True
-        Me.OPPlantaYar.Location = New System.Drawing.Point(218, 7)
-        Me.OPPlantaYar.Name = "OPPlantaYar"
-        Me.OPPlantaYar.Size = New System.Drawing.Size(69, 18)
-        Me.OPPlantaYar.TabIndex = 1
-        Me.OPPlantaYar.TabStop = True
-        Me.OPPlantaYar.Text = "Yarumal"
-        Me.OPPlantaYar.UseVisualStyleBackColor = True
-        '
-        'OPPlantaGir
-        '
-        Me.OPPlantaGir.AutoSize = True
-        Me.OPPlantaGir.Checked = True
-        Me.OPPlantaGir.Location = New System.Drawing.Point(69, 7)
-        Me.OPPlantaGir.Name = "OPPlantaGir"
-        Me.OPPlantaGir.Size = New System.Drawing.Size(76, 18)
-        Me.OPPlantaGir.TabIndex = 0
-        Me.OPPlantaGir.TabStop = True
-        Me.OPPlantaGir.Text = "Girardota"
-        Me.OPPlantaGir.UseVisualStyleBackColor = True
         '
         'LEmpaquesEtiquetas
         '
@@ -2506,6 +1749,71 @@ Partial Class NuevaOP
         Me.DGEmpaques_TIPO.ReadOnly = True
         Me.DGEmpaques_TIPO.Visible = False
         '
+        'ChGranel
+        '
+        Me.ChGranel.AutoSize = True
+        Me.ChGranel.ForeColor = System.Drawing.Color.Black
+        Me.ChGranel.Location = New System.Drawing.Point(154, 164)
+        Me.ChGranel.Name = "ChGranel"
+        Me.ChGranel.Size = New System.Drawing.Size(62, 18)
+        Me.ChGranel.TabIndex = 37
+        Me.ChGranel.Text = "Granel"
+        Me.ChGranel.UseVisualStyleBackColor = True
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.Color.Black
+        Me.Label7.Location = New System.Drawing.Point(153, 136)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(58, 14)
+        Me.Label7.TabIndex = 41
+        Me.Label7.Text = "Nom. Hilo"
+        '
+        'TNomHilo
+        '
+        Me.TNomHilo.Location = New System.Drawing.Point(218, 132)
+        Me.TNomHilo.Name = "TNomHilo"
+        Me.TNomHilo.ReadOnly = True
+        Me.TNomHilo.Size = New System.Drawing.Size(324, 20)
+        Me.TNomHilo.TabIndex = 40
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.ForeColor = System.Drawing.Color.Black
+        Me.Label16.Location = New System.Drawing.Point(8, 138)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(52, 14)
+        Me.Label16.TabIndex = 39
+        Me.Label16.Text = "Cód.Hilo"
+        '
+        'TCodHilo
+        '
+        Me.TCodHilo.Location = New System.Drawing.Point(69, 132)
+        Me.TCodHilo.Name = "TCodHilo"
+        Me.TCodHilo.ReadOnly = True
+        Me.TCodHilo.Size = New System.Drawing.Size(68, 20)
+        Me.TCodHilo.TabIndex = 38
+        '
+        'CBMaquila
+        '
+        Me.CBMaquila.FormattingEnabled = True
+        Me.CBMaquila.Location = New System.Drawing.Point(69, 160)
+        Me.CBMaquila.Name = "CBMaquila"
+        Me.CBMaquila.Size = New System.Drawing.Size(68, 22)
+        Me.CBMaquila.TabIndex = 42
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.ForeColor = System.Drawing.Color.Black
+        Me.Label18.Location = New System.Drawing.Point(10, 163)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(49, 14)
+        Me.Label18.TabIndex = 43
+        Me.Label18.Text = "Máquila"
+        '
         'NuevaOP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2540,12 +1848,6 @@ Partial Class NuevaOP
         Me.Text = "Ordenes de Producción"
         Me.PanelDatos.ResumeLayout(False)
         Me.PanelDatos.PerformLayout()
-        Me.GBEmpEtiqAdic.ResumeLayout(False)
-        Me.GBEmpEtiqAdic.PerformLayout()
-        Me.GBDestinoPLC.ResumeLayout(False)
-        Me.GBDestinoPLC.PerformLayout()
-        Me.GBDestino.ResumeLayout(False)
-        Me.GBDestino.PerformLayout()
         Me.GBCliente.ResumeLayout(False)
         Me.GBCliente.PerformLayout()
         Me.GBProd.ResumeLayout(False)
@@ -2554,10 +1856,6 @@ Partial Class NuevaOP
         Me.GBFor.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.GBFunPremezcla.ResumeLayout(False)
-        Me.GBFunPremezcla.PerformLayout()
-        Me.GBDestinosPeletizado.ResumeLayout(False)
-        Me.GBDestinosPeletizado.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -2567,8 +1865,6 @@ Partial Class NuevaOP
         CType(Me.DGProd, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGOPsDos, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGFor, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GBPlantas.ResumeLayout(False)
-        Me.GBPlantas.PerformLayout()
         CType(Me.DGListEmp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DGEmpaques, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -2622,7 +1918,6 @@ Partial Class NuevaOP
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents TBAhora As System.Windows.Forms.TextBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label19 As System.Windows.Forms.Label
     Friend WithEvents TMedicado As System.Windows.Forms.TextBox
     Friend WithEvents Label17 As System.Windows.Forms.Label
@@ -2649,8 +1944,6 @@ Partial Class NuevaOP
     Friend WithEvents BModSec As System.Windows.Forms.ToolStripButton
     Friend WithEvents BMarcarEnv As System.Windows.Forms.ToolStripButton
     Friend WithEvents BImpOPs As System.Windows.Forms.ToolStripButton
-    Friend WithEvents TBachesTanda As System.Windows.Forms.TextBox
-    Friend WithEvents Label31 As System.Windows.Forms.Label
     Friend WithEvents FFechas As System.Windows.Forms.Button
     Friend WithEvents FReadOnly As System.Windows.Forms.Button
     Friend WithEvents Label32 As System.Windows.Forms.Label
@@ -2687,32 +1980,11 @@ Partial Class NuevaOP
     Friend WithEvents ToolStripSeparator20 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents mnBuscaOPFin As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BConsumosMed As System.Windows.Forms.Button
-    Friend WithEvents GBDestinosPeletizado As System.Windows.Forms.GroupBox
-    Friend WithEvents TBachesDest1 As System.Windows.Forms.TextBox
-    Friend WithEvents CDestino1 As System.Windows.Forms.ComboBox
-    Friend WithEvents CDestino2 As System.Windows.Forms.ComboBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents CDestino3 As System.Windows.Forms.ComboBox
-    Friend WithEvents CBLinea As System.Windows.Forms.ComboBox
-    Friend WithEvents Label33 As System.Windows.Forms.Label
-    Friend WithEvents TBachesDest3 As System.Windows.Forms.TextBox
-    Friend WithEvents TBachesDest2 As System.Windows.Forms.TextBox
     Friend WithEvents DGFor As System.Windows.Forms.DataGridView
-    Friend WithEvents Label34 As System.Windows.Forms.Label
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents Label28 As System.Windows.Forms.Label
     Friend WithEvents BCambiaOPMic As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator21 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents ChVentas As System.Windows.Forms.CheckBox
     Friend WithEvents BSolictudCargue As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator22 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents GBFunPremezcla As GroupBox
-    Friend WithEvents CLotePrem As ComboBox
-    Friend WithEvents Label29 As Label
-    Friend WithEvents CCodPrem As ComboBox
-    Friend WithEvents Label30 As Label
-    Friend WithEvents TCodPrem As TextBox
-    Friend WithEvents Label26 As Label
     Friend WithEvents Label27 As Label
     Friend WithEvents TNomCli As TextBox
     Friend WithEvents FComboPrem As Button
@@ -2742,35 +2014,7 @@ Partial Class NuevaOP
     Friend WithEvents DGOPsPrem_RealMan1 As DataGridViewTextBoxColumn
     Friend WithEvents DGOPsPrem_RealMan2 As DataGridViewTextBoxColumn
     Friend WithEvents DGOPsPrem_MicHab As DataGridViewCheckBoxColumn
-    Friend WithEvents TBAhoraBPiso As TextBox
-    Friend WithEvents Label35 As Label
     Friend WithEvents GBPlantas As GroupBox
-    Friend WithEvents OPPlantaSantaRosa As RadioButton
-    Friend WithEvents OPPlantaYar As RadioButton
-    Friend WithEvents OPPlantaGir As RadioButton
-    Friend WithEvents GBDestino As GroupBox
-    Friend WithEvents Label37 As Label
-    Friend WithEvents TBodDestino As ComboBox
-    Friend WithEvents Label38 As Label
-    Friend WithEvents Label39 As Label
-    Friend WithEvents TMHumeda As TextBox
-    Friend WithEvents Label40 As Label
-    Friend WithEvents Label41 As Label
-    Friend WithEvents Label42 As Label
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents ComboBox2 As ComboBox
-    Friend WithEvents Label43 As Label
-    Friend WithEvents ComboBox3 As ComboBox
-    Friend WithEvents CLinea As ComboBox
-    Friend WithEvents Label44 As Label
-    Friend WithEvents GBEmpEtiqAdic As GroupBox
-    Friend WithEvents TTipo As TextBox
-    Friend WithEvents TNomEmpEtiq As TextBox
-    Friend WithEvents Label45 As Label
-    Friend WithEvents TCodEmpEtiq As TextBox
     Friend WithEvents LEmpaquesEtiquetas As Label
     Friend WithEvents DGListEmp As DataGridView
     Friend WithEvents DGListEmp_OP As DataGridViewTextBoxColumn
@@ -2779,18 +2023,12 @@ Partial Class NuevaOP
     Friend WithEvents DGListEmp_Tipo As DataGridViewTextBoxColumn
     Friend WithEvents DGListEmp_CantBache As DataGridViewTextBoxColumn
     Friend WithEvents DGListEmp_CantTotal As DataGridViewTextBoxColumn
-    Friend WithEvents LPaqxBache As Label
-    Friend WithEvents TNumPaqxBache As TextBox
     Friend WithEvents LTotalFor As Label
     Friend WithEvents TTotalFor As TextBox
-    Friend WithEvents BCancelarEmps As Button
-    Friend WithEvents BAdicionarEmps As Button
     Friend WithEvents DGEmpaques As DataGridView
     Friend WithEvents DGEmpaques_CodInt As DataGridViewTextBoxColumn
     Friend WithEvents DGEmpaques_Nombre As DataGridViewTextBoxColumn
     Friend WithEvents DGEmpaques_TIPO As DataGridViewTextBoxColumn
-    Friend WithEvents LNumPaq As Label
-    Friend WithEvents TNumPaq As TextBox
     Friend WithEvents ChManejaPx As CheckBox
     Friend WithEvents DGFor_CodFor As DataGridViewTextBoxColumn
     Friend WithEvents DGFor_NomFor As DataGridViewTextBoxColumn
@@ -2798,10 +2036,11 @@ Partial Class NuevaOP
     Friend WithEvents DGFor_LP As DataGridViewTextBoxColumn
     Friend WithEvents DGFor_CodPremezcla As DataGridViewTextBoxColumn
     Friend WithEvents DGFor_ManejaPx As DataGridViewCheckBoxColumn
-    Friend WithEvents GBDestinoPLC As GroupBox
-    Friend WithEvents Label36 As Label
-    Friend WithEvents Label24 As Label
-    Friend WithEvents TDestinoPLC As TextBox
-    Friend WithEvents Label46 As Label
-    Friend WithEvents TMetaKG As TextBox
+    Friend WithEvents Label18 As Label
+    Friend WithEvents CBMaquila As ComboBox
+    Friend WithEvents Label7 As Label
+    Friend WithEvents TNomHilo As TextBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents TCodHilo As TextBox
+    Friend WithEvents ChGranel As CheckBox
 End Class

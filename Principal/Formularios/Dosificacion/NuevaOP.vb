@@ -27,6 +27,7 @@ Public Class NuevaOP
     Private DCortesMP As AdoSQL
     Private DEquivFormProd As AdoSQL
     Private DEspecies As AdoSQL
+    Private DMaquilas As AdoSQL
     Private PlantaExt As String
     Private FiltroPlantaExt As String
 
@@ -54,75 +55,8 @@ Public Class NuevaOP
                 Return
             End If
 
-            GBDestinosPeletizado.Enabled = False
-            GBFunPremezcla.Enabled = False
-
-            If Funcion_PlantasExternas Then
-                GBPlantas.Visible = True
-                If OPPlantaGir.Checked Then
-                    FiltroPlantaExt = "GIR"
-                ElseIf OPPlantaYar.Checked Then
-                    FiltroPlantaExt = "YAR"
-                Else
-                    FiltroPlantaExt = "STRO"
-                End If
-            End If
-
-            If Not Funcion_MaterialesBandeja And Not Planta.Contains("ITALCOL S.A PLANTA FUNZA") Then 'Se esconden los campos de los catagrid de OPs
-                DGOPsDos.Columns.Remove("DGOPsDos_RealMan1") 'Pesada menor 1
-                DGOPsDos.Columns.Remove("DGOPsDos_RealMan2") 'Bandeja
-                DGOPsPrem.Columns.Remove("DGOPsPrem_RealMan1") 'Pesada menor 1
-                DGOPsPrem.Columns.Remove("DGOPsPrem_RealMan2") 'Bandejas
-            End If
-
-            If Planta.Contains("ITALCOL S.A PLANTA FUNZA") Then
-                DGOPsDos.Columns.Remove("DGOPsDos_RealMan") 'Pesada menor 1
-                DGOPsDos.Columns("DGOPsDos_RealMan2").HeaderText = "P.M2"
-            End If
-
-            If Funcion_FuncionesPlantaPremezclas Then
-                GBDestinosPeletizado.Visible = False
-                GBDestinosPeletizado.SendToBack()
-                GBDestino.Location = New Point(12, 397)
-                GBDestino.Visible = True
-                GBDestino.BringToFront()
-                GBEmpEtiqAdic.Location = New Point(12, 533)
-                GBEmpEtiqAdic.Width = 456
-                GBEmpEtiqAdic.Visible = True
-                GBEmpEtiqAdic.BringToFront()
-                BSubeOPDosif.Visible = False
-                BBajaOPDosif.Visible = False
-                LOpsPrem.Visible = False
-                DGOPsPrem.Visible = False
-                DGListEmp.Visible = True
-                LEmpaquesEtiquetas.Visible = True
-                TNumPaq.Visible = True
-                LNumPaq.Visible = True
-
-                DGOPsDos.Columns("DGOPsDos_MicHab").Visible = False
-                DGOPsDos.Columns("DGOPsDos_RealMan").Visible = False
-                ' DGOPsDos.Columns("DGOPsDos_RealMan1").Visible = False
-                DGOPsDos.Columns("DGOPsDos_RealMed").Visible = False
-            Else
-                GBDestinosPeletizado.Visible = True
-                GBDestinosPeletizado.BringToFront()
-                GBDestinosPeletizado.Location = New Point(12, 397)
-                GBDestino.Visible = False
-                LTotalFor.Visible = False
-                TTotalFor.Visible = False
-                LPaqxBache.Visible = False
-                TNumPaqxBache.Visible = False
-            End If
-
-            If Funcion_ManejaFunPremezcla Then GBFunPremezcla.Enabled = True
-            If Funcion_DestinosPeletizado Then GBDestinosPeletizado.Enabled = True
-
-            GBDestinoPLC.Visible = False
-            If Funcion_ManejaDestinoPLC Then
-                GBDestinoPLC.Visible = True
-                GBDestinoPLC.Enabled = True
-            End If
-
+            LTotalFor.Visible = False
+            TTotalFor.Visible = False
 
             DOPs = New AdoSQL("OPs")
             DOPsPrem = New AdoSQL("OPs")
@@ -142,6 +76,7 @@ Public Class NuevaOP
             DCortesMP = New AdoSQL("CortesLote")
             DEquivFormProd = New AdoSQL("EquivFormProd")
             DEspecies = New AdoSQL("Especies")
+            DMaquilas = New AdoSQL("MAQUILAS")
 
             'Restringe campos a solo numericos
 
@@ -157,10 +92,12 @@ Public Class NuevaOP
             DGProd.Visible = False
             DGClientes.Visible = False
 
-            DLineasProd.Open("Select LINEA FROM LINEASPROD where TIPO='LN'")
+            DMaquilas.Open("select * from MAQUILAS where ACTIVO = 1 order by CENTROTRABAJO")
+            LLenaComboBox(CBMaquila, DMaquilas.DataTable, "CENTROTRABAJO")
+            'DLineasProd.Open("Select LINEA FROM LINEASPROD where TIPO='LN'")
 
-            LLenaComboBox(CBLinea, DLineasProd.DataTable, "LINEA")
-            LLenaComboBox(CLinea, DLineasProd.DataTable, "LINEA")
+            'LLenaComboBox(CBLinea, DLineasProd.DataTable, "LINEA")
+            'LLenaComboBox(CLinea, DLineasProd.DataTable, "LINEA")
 
             'Cargamos los DGs de OPs
             BActualizar_Click(Nothing, Nothing)
@@ -168,7 +105,7 @@ Public Class NuevaOP
             Campos = {"OP@OP", "CODFOR@Cod.For"}
             Campos = AsignaItemsCB(Campos, CBBuscar.ComboBox, DOPs.DataTable)
             Limpiar_Habilitar_TextBox(Me.Controls, AccionTextBox.Deshabilitar)
-            CBLinea.Enabled = False
+            'CBLinea.Enabled = False
 
             FormLoad = True
 
@@ -262,7 +199,7 @@ Public Class NuevaOP
             If DGFor.Rows.Count = 0 Then Exit Sub
 
             DFor.Find("CODFOR='" + DGFor.Rows(DGFor.CurrentRow.Index).Cells("DGFOR_CODFOR").Value.ToString + "' AND LP='" + DGFor.Rows(DGFor.CurrentRow.Index).Cells("DGFOR_LP").Value.ToString + "'")
-            TCodPrem.Text = DGFor.Rows(DGFor.CurrentRow.Index).Cells("DGFOR_CODPREMEZCLA").Value.ToString
+            'TCodPrem.Text = DGFor.Rows(DGFor.CurrentRow.Index).Cells("DGFOR_CODPREMEZCLA").Value.ToString
             If DFor.EOF = False Then
                 TTotalFor.Text = DFor.RecordSet("TOTALFOR")
 
@@ -277,9 +214,9 @@ Public Class NuevaOP
                         TCodFor.Text = ""
                         TCodFor.Focus()
                         Return
-                    ElseIf DFor.RecordSet("MANEJAPX") And TCodPrem.Text = "" Then
-                        MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Código premezcla"), MsgBoxStyle.Information)
-                        Exit Sub
+                        'ElseIf DFor.RecordSet("MANEJAPX") And TCodPrem.Text = "" Then
+                        '    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Código premezcla"), MsgBoxStyle.Information)
+                        '    Exit Sub
                     End If
                 End If
             End If
@@ -291,9 +228,7 @@ Public Class NuevaOP
             ChManejaPx.Checked = DGFor.Rows(DGFor.CurrentRow.Index).Cells("DGFOR_MANEJAPX").Value
             DGFor.Visible = False
 
-            If Funcion_ManejaFunPremezcla Then
-                FComboPrem_Click(Nothing, Nothing)
-            End If
+
 
             FBuscaProdEquivalentes()
 
@@ -305,7 +240,7 @@ Public Class NuevaOP
                 End If
                 TPresKg.Text = DFor.RecordSet("PESOPAQ")
                 TTotalFor.Text = DFor.RecordSet("TOTALFOR")
-                TNumPaqxBache.Text = DFor.RecordSet("NUMPAQXBACHE")
+
 
                 'Buscamos el código de producto
                 DVarios.Open("Select * from ARTICULOS where TIPO='PT' and CODINT='" + TCodProd.Text + "'")
@@ -378,55 +313,23 @@ Public Class NuevaOP
             BCancelar_Click(Nothing, Nothing)
             Limpiar_Habilitar_TextBox(Me.Controls, AccionTextBox.Habilitar)
             FReadOnly_Click(Nothing, Nothing)
-            TBachesTanda.Text = "1"
+            'TBachesTanda.Text = "1"
 
 
-            If Funcion_DestinosPeletizado Then
-                CBLinea.Enabled = True
-                CDestino1.Enabled = True
-                CDestino2.Enabled = True
-                CDestino3.Enabled = True
-            End If
 
-            If Funcion_ManejaFunPremezcla Then
-                CCodPrem.Enabled = True
-                CLotePrem.Enabled = True
-            End If
+
 
             'se deshabilita el grupo de plantas externas para evitar generar un consecutivo de OP y guardar para otra planta
             If GBPlantas.Visible = True Then GBPlantas.Enabled = False
 
-            'Si se debe tener en cuenta para el consecutivo de la OP
-            If Funcion_PlantasExternas Then
-                If OPPlantaGir.Checked Then
-                    FiltroPlantaExt = "GIR"
-                    'PlantaExt = "GIR"
-                ElseIf OPPlantaSantaRosa.Checked Then
-                    FiltroPlantaExt = "STRO"
-                    'PlantaExt = "STRO"
-                ElseIf OPPlantaYar.Checked Then
-                    FiltroPlantaExt = "YAR"
-                    PlantaExt = "YAR"
-                End If
-                Dim CampoConfigOP As String = "ULTIMAOP" + FiltroPlantaExt 'PlantaExt
-                DConfig.Open("select * from CONFIG")
-                If DConfig.Count Then
-                    TOPs.Text = Val(DConfig.RecordSet(CampoConfigOP)) + 1
-                    DVarios.Open("select OP from OPS where OP='" + TOPs.Text + "' AND PLANTA='" + FiltroPlantaExt + "'") 'PlantaExt + "'")
-                    Do While DVarios.Count
-                        TOPs.Text = Val(TOPs.Text) + 1
-                        DVarios.Open("select OP from OPS where OP='" + TOPs.Text + "' AND PLANTA='" + FiltroPlantaExt + "'") 'PlantaExt + "'")
-                    Loop
-                End If
+            DVarios.Open("Select max(convert(bigint,op)) as ULTIMAOP from ops")
+            DGOPsPrem.Enabled = False
+            If Not IsDBNull(DVarios.RecordSet("ULTIMAOP")) Then
+                TOPs.Text = (Eval(DVarios.RecordSet("ULTIMAOP")) + 1).ToString
             Else
-                DVarios.Open("Select max(convert(bigint,op)) as ULTIMAOP from ops")
-                DGOPsPrem.Enabled = False
-                If Not IsDBNull(DVarios.RecordSet("ULTIMAOP")) Then
-                    TOPs.Text = (Eval(DVarios.RecordSet("ULTIMAOP")) + 1).ToString
-                Else
-                    TOPs.Text = 1
-                End If
+                TOPs.Text = 1
             End If
+
 
             NuevaOP = True
 
@@ -543,26 +446,7 @@ Public Class NuevaOP
             TPresEmp.Text = ""
             TPresText.Text = ""
 
-            If Funcion_ManejaFunPremezcla Then
-                CCodPrem.Text = ""
-                CLotePrem.Text = ""
-                CCodPrem.Enabled = False
-                CLotePrem.DropDownStyle = ComboBoxStyle.DropDownList
-                CCodPrem.DropDownStyle = ComboBoxStyle.DropDownList
-            End If
-
-            If Funcion_DestinosPeletizado Then
-                CBLinea.Enabled = False
-                CDestino1.Items.Clear()
-                CDestino2.Items.Clear()
-                CDestino3.Items.Clear()
-                CDestino1.Enabled = False
-                CDestino2.Enabled = False
-                CDestino3.Enabled = False
-                CDestino1.Text = "X"
-                CDestino2.Text = "X"
-                CDestino3.Text = "X"
-            End If
+            ChGranel.Checked = False
 
             DOPs.Open("Select * from OPS where ESTADO=10 and FINALIZADO='N' order by SECUENCIA")
 
@@ -570,7 +454,7 @@ Public Class NuevaOP
             DGFor.Visible = False
             DGProd.Visible = False
             DGClientes.Visible = False
-            ChVentas.Checked = False
+            'ChVentas.Checked = False
             NuevaOP = False
             'Luego de finalizar la creación de una OP se habilita el grupo de plantas externas
             If GBPlantas.Visible = True Then GBPlantas.Enabled = True
@@ -635,11 +519,9 @@ Public Class NuevaOP
             TCodCli.Text = DGClientes.Rows(DGClientes.CurrentRow.Index).Cells("CODCLI").Value.ToString
             TNomCli.Text = DGClientes.Rows(DGClientes.CurrentRow.Index).Cells("NOMCLI").Value.ToString
 
-            If Funcion_FuncionesPlantaPremezclas Then
-                CLinea.DroppedDown = True
-            Else
-                TObservOP.Focus()
-            End If
+
+            TObservOP.Focus()
+
 
             DGClientes.Visible = False
 
@@ -674,10 +556,7 @@ Public Class NuevaOP
                 Exit Sub
             End If
 
-            If e.KeyCode = Keys.Enter Then
-                If Funcion_DestinosPeletizado Then CBLinea.Focus()
-                If Funcion_FuncionesPlantaPremezclas Then CLinea.Focus()
-            End If
+
         Catch ex As Exception
             MsgError(ex)
         End Try
@@ -686,32 +565,28 @@ Public Class NuevaOP
 
     Private Sub DGProd_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGProd.CellClick
         Try
-            Dim CodEtiq, CodEmp As String
+            Dim CodEtiq, CodEmp, CodHilo As String
             If DGProd.Rows.Count = 0 Then Exit Sub
 
             DArt.Open("select * from ARTICULOS where TIPO='PT' and CODINT='" + DGProd.Rows(DGProd.CurrentRow.Index).Cells("CODINT").Value.ToString + "'")
             If DArt.Count = 0 Then Exit Sub
 
             TCodProd.Text = DArt.RecordSet("CODINT").ToString
+
             TNomProd.Text = DArt.RecordSet("NOMBRE").ToString
             TPresEmp.Text = DArt.RecordSet("PRESEMP").ToString
             TPresText.Text = DArt.RecordSet("PRESTEXT").ToString
             TPresKg.Text = DArt.RecordSet("PRESKG").ToString
+            ChGranel.Checked = DArt.RecordSet("GRANEL")
             CodEmp = DArt.RecordSet("CODEMP").ToString
             CodEtiq = DArt.RecordSet("CODETIQ").ToString
+            CodHilo = DArt.RecordSet("CODETIQ").ToString
 
             TCodEmp.Text = CodEmp
             TCodEtiq.Text = CodEtiq
+            TCodHilo.Text = CodHilo
             DGProd.Visible = False
 
-            'Seguridad sólo para Premezclas Girardota. El código del producto debe ser el mismo de la Premezcla
-            If Funcion_PlantasExternas Then
-                If TCodPrem.Text.Trim.ToUpper <> TCodProd.Text.Trim.ToUpper Then
-                    MsgBox("El código del producto es diferente al código de la Premezcla", MsgBoxStyle.Critical)
-                    TCodProd.Text = ""
-                    TNomProd.Text = ""
-                End If
-            End If
 
         Catch ex As Exception
             MsgError(ex)
@@ -773,177 +648,40 @@ Public Class NuevaOP
                 Exit Sub
             End If
 
-            If Funcion_ManejaDestinoPLC Then
-                If Val(TDestinoPLC.Text) = 0 Then
-                    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Destino PLC"), MsgBoxStyle.Critical)
+
+
+
+
+            If TPresEmp.Text <> "GRAN" Then
+                If TCodEtiq.Text = "" Then
+                    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Código de etiqueta"), MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+                If TNomEtiq.Text = "" Then
+                    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Nombre de etiqueta"), MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                If TCodEmp.Text = "" Then
+                    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Código de empaque"), MsgBoxStyle.Critical)
+                    Exit Sub
+                End If
+
+                If TNomEmp.Text = "" Then
+                    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Nombre de empaque"), MsgBoxStyle.Critical)
                     Exit Sub
                 End If
             End If
 
 
-            If Funcion_DestinosPeletizado Then
-                If CBLinea.Text = "" Then
-                    MsgBox("Debe seleccionar una línea válida para la orden de producción", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                If TPresText.Text.Contains("PELT") Or TPresText.Text.Contains("QUEB") Then
-                    If Eval(CDestino1.Text) = 0 Then
-                        If Eval(CDestino2.Text) = 0 Then
-                            If Eval(CDestino3.Text) = 0 Then
-                                MsgBox("Debe elegir al menos un destino", vbInformation)
-                                Return
-                            End If
-                        End If
-                    End If
-                End If
-
-                If CDestino1.Text = "X" And CDestino2.Text = "X" And CDestino1.Text = "X" Then
-                    MsgBox("Debe elegir por lo menos un destino para enviar el bache", MsgBoxStyle.Information)
-                    Return
-                End If
-
-                If Val(CDestino1.Text) > 0 And Val(TBachesDest1.Text) = 0 Then
-                    MsgBox("Número de baches no válido para destino 1", MsgBoxStyle.Information)
-                    Return
-                End If
-
-                If Val(CDestino2.Text) > 0 And Val(TBachesDest2.Text) = 0 Then
-                    MsgBox("Número de baches no válido para destino 2", MsgBoxStyle.Information)
-                    Return
-                End If
-
-                If Val(CDestino3.Text) > 0 And Val(TBachesDest3.Text) = 0 Then
-                    MsgBox("Número de baches no válido para destino 3", MsgBoxStyle.Information)
-                    Return
-                End If
-            End If
-
-
-            'Validación baches tanda
-
-            If Val(ConfigParametros("MaxKgTanda")) > 0 Then
-                'If FValidaTandas(TCodFor.Text, TLP.Text, Eval(TBachesTanda.Text), Eval(TPorc.Text)) = False Then 'And Val(TBachesTanda.Text) > 1 Then
-                If FValidaTandas(TCodFor.Text, TLP.Text, Eval(TMeta.Text), Eval(TPorc.Text)) = False And Val(TBachesTanda.Text) > 1 Then
-                    MsgBox("El número de baches no supera " + ConfigParametros("MaxKgTanda") + " Kg para la premezcla debe hacer baches manuales en las estaciones de micros", MsgBoxStyle.Information)
-                    TBachesTanda.Text = 1
-                End If
-
-                If FValidaCapacidadMezcMicros(TCodFor.Text, TLP.Text, Eval(TMeta.Text), Eval(TPorc.Text)) = False And Val(TBachesTanda.Text) > 1 Then
-                    Resp = MsgBox("El número de baches excede la capacidad de mezcladora de micros, ¿desea continuar?", MsgBoxStyle.Information + vbYesNo)
-                    If Resp = vbNo Then Return
-                End If
-
-            End If
-
-
-
-            If Funcion_ManejaFunPremezcla Then
-                If Len(CCodPrem.Text) > 2 And Eval(CLotePrem.Text) = 0 Then
-                    MsgBox("Si la OP lleva fun.Premezcla debe ingresar un número de lote válido", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                If Eval(CLotePrem.Text) = 0 Then CLotePrem.Text = 0
-                If (CCodPrem.Text) = "" Then CCodPrem.Text = ""
-            End If
-
-            If Funcion_FuncionesPlantaPremezclas Then
-
-                If Val(TBachesTanda.Text) <= 0 Or Eval(TBachesTanda.Text) > Eval(TMeta.Text) Then
-                    MsgBox("El número de tandas a dosificar por premezcla no pueden ser cero o mayor al meta programado", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-                If (CLinea.Text = "") Then
-                    MsgBox("Debe seleccionar la mezcladora", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                If Val(TMHumeda.Text) <= 0 Or Eval(TMHumeda.Text) > 10000 Then
-                    MsgBox("El Tiempo de Mezcla Húmeda es errado", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                DVarios.Open("Select * from ARTICULOS where TIPO='PT' AND CODINT='" + TCodProd.Text + "'")
-
-                If DVarios.Count Then
-
-                    If DVarios.RecordSet("MANEJAEMP") Then
-                        If TCodEmp.Text = "" Then
-                            MsgBox("Debe ingresar un valor válido para el código del empaque", MsgBoxStyle.Critical)
-                            Exit Sub
-                        End If
-
-                        If Eval(TPresKg.Text) = 0 Then
-                            MsgBox("El producto no tiene presentación en Kg. Debe ir a la tabla de Productos para configurarlo", MsgBoxStyle.Critical)
-                            Exit Sub
-                        End If
-                    End If
-
-                    'If DVarios.RecordSet("MANEJAETIQ") Then
-                    '    If TNomEmp.Text = "" Then
-                    '        MsgBox("Debe ingresar un valor válido para el nombre de la etiqueta", MsgBoxStyle.Critical)
-                    '        Exit Sub
-                    '    End If
-                    'End If
-                End If
-            Else
-                If TCodPrem.Text = "" And ChManejaPx.Checked = True Then
-                    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Código de premezcla"), MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                If Eval(TBachesTanda.Text) <= 0 Or Eval(TBachesTanda.Text) > Eval(TMeta.Text) Then
-                    MsgBox("El número de tandas a dosificar por premezcla no pueden ser cero o mayor al meta programado", MsgBoxStyle.Critical)
-                    Exit Sub
-                End If
-
-                If TPresEmp.Text <> "GRAN" Then
-                    If TCodEtiq.Text = "" Then
-                        MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Código de etiqueta"), MsgBoxStyle.Critical)
-                        Exit Sub
-                    End If
-                    If TNomEtiq.Text = "" Then
-                        MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Nombre de etiqueta"), MsgBoxStyle.Critical)
-                        Exit Sub
-                    End If
-
-                    If TCodEmp.Text = "" Then
-                        MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Código de empaque"), MsgBoxStyle.Critical)
-                        Exit Sub
-                    End If
-
-                    If TNomEmp.Text = "" Then
-                        MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " Nombre de empaque"), MsgBoxStyle.Critical)
-                        Exit Sub
-                    End If
-                End If
-            End If
-
-
-
-
-            If Funcion_PlantasExternas Then
-                DOPs.Open("Select * from OPS where OP='" + TOPs.Text.Trim + "' AND PLANTA='" + FiltroPlantaExt + "'") 'PlantaExt + "'")
-            Else
-
-                DOPs.Open("Select * from OPS where OP='" + TOPs.Text.Trim + "'")
-            End If
-
+            DOPs.Open("Select * from OPS where OP='" + TOPs.Text.Trim + "'")
 
             If DOPs.Count > 0 Then
 
                 Resp = MsgBox("Va a modificar una OP existente, ¿desea continuar?", MsgBoxStyle.Information + MsgBoxStyle.YesNo)
                 If Resp = vbNo Then Exit Sub
 
-                If Funcion_DestinosPeletizado Then
-                    Resp = MsgBox("Desea reiniciar los valores de los destinos de peletizado, ¿desea continuar?", MsgBoxStyle.Information + MsgBoxStyle.YesNo)
-                    If Resp = vbYes Then
-                        DOPs.RecordSet("REALDEST1") = 0
-                        DOPs.RecordSet("REALDEST2") = 0
-                        DOPs.RecordSet("REALDEST3") = 0
-                    End If
-                End If
+
 
                 Evento("Modifica OP: " + TOPs.Text)
             Else
@@ -1003,49 +741,14 @@ Public Class NuevaOP
             'DOPs.RecordSet("DESTINO") = Eval(TDestino.Text)
             DOPs.RecordSet("MEDICADO") = TMedicado.Text
             DOPs.RecordSet("BAHORA") = Val(TBAhora.Text)
-            DOPs.RecordSet("BAHORABPISO") = Eval(TBAhoraBPiso.Text)
+
             DOPs.RecordSet("OBSERVOP") = CLeft(LimpiarCadena(TObservOP.Text.Trim), 250)
             DOPs.RecordSet("META") = Eval(TMeta.Text)
-            DOPs.RecordSet("LINEA") = CLeft(CBLinea.Text, 15)
-            DOPs.RecordSet("BACHESTANDA") = Eval(TBachesTanda.Text)
-            DOPs.RecordSet("DESTINO") = Eval(TDestinoPLC.Text)
 
-            'Si es una OP de ventas se marca de una vez que va sin control de sackoff
-            If ChVentas.Checked Then
-                DOPs.RecordSet("SINCONTROLSACKOFF") = 1
-                DOPs.RecordSet("VENTAS") = 10
-            End If
 
-            'Se asignan datos de destinos if destino <> "X"
-
-            If Funcion_DestinosPeletizado Then
-                If Eval(CDestino1.Text) > 0 Then DOPs.RecordSet("DESTINO1") = Eval(CDestino1.Text)
-                If Eval(CDestino2.Text) > 0 Then DOPs.RecordSet("DESTINO2") = Eval(CDestino2.Text)
-                If Eval(CDestino3.Text) > 0 Then DOPs.RecordSet("DESTINO3") = Eval(CDestino3.Text)
-
-                DOPs.RecordSet("METADEST1") = Eval(TBachesDest1.Text)
-                DOPs.RecordSet("METADEST2") = Eval(TBachesDest2.Text)
-                DOPs.RecordSet("METADEST3") = Eval(TBachesDest3.Text)
-
-            End If
+            'DOPs.RecordSet("DESTINO") = Eval(TDestinoPLC.Text)
 
             If DOPs.RecordSet("REAL") = 0 And DOPs.RecordSet("REALMED") = 0 Then
-
-                If Funcion_ManejaFunPremezcla Then
-                    DOPs.RecordSet("CODPREM") = CLeft(CCodPrem.Text, 15)
-                    DOPs.RecordSet("LOTEPREM") = CLeft(CLotePrem.Text, 25)
-                End If
-                DOPs.RecordSet("LINEA") = CLeft(CBLinea.Text, 15)
-                If Funcion_FuncionesPlantaPremezclas Then
-                    DOPs.RecordSet("TMHUMEDA") = Val(TMHumeda.Text)
-                    DOPs.RecordSet("NUMPAQXOP") = Val(TNumPaq.Text)
-                    DOPs.RecordSet("BODDESTINO") = CLeft(TBodDestino.Text, 15)
-                    DOPs.RecordSet("LINEA") = CLeft(CLinea.Text, 15)
-                    DOPs.RecordSet("PRESKG") = Val(TPresKg.Text)
-                End If
-
-
-                DOPs.RecordSet("CODPREMEZCLA") = CLeft(TCodPrem.Text, 15)
                 DOPs.RecordSet("CODFOR") = CLeft(TCodFor.Text, 15)
                 DOPs.RecordSet("NOMFOR") = CLeft(TNomFor.Text, 30)
                 DOPs.RecordSet("PORC") = Eval(TPorc.Text)
@@ -1071,7 +774,7 @@ Public Class NuevaOP
                 'End If
 
             Else
-                    MsgBox("Algunos datos no se modificaron porque ya hay baches reportados de la OP", MsgBoxStyle.Information)
+                MsgBox("Algunos datos no se modificaron porque ya hay baches reportados de la OP", MsgBoxStyle.Information)
             End If
 
             'Se busca la línea Inventario en la tabla artículos para agregarlo en la tabla de OPs en el campo LINEAINVENT, este
@@ -1153,23 +856,8 @@ Public Class NuevaOP
             Limpiar_Habilitar_TextBox(Me.Controls, AccionTextBox.Habilitar)
             FReadOnly_Click(Nothing, Nothing)
 
-            If Funcion_ManejaFunPremezcla Then
-                CCodPrem.Enabled = True
-                CLotePrem.Enabled = True
-                CLotePrem.DropDownStyle = ComboBoxStyle.DropDown
-                CCodPrem.DropDownStyle = ComboBoxStyle.DropDown
-            End If
 
-            If Funcion_DestinosPeletizado Then
-                DGOPsPrem.Enabled = False
-                CBLinea.Enabled = True
-                CDestino1.Enabled = True
-                CDestino2.Enabled = True
-                CDestino3.Enabled = True
-                TBachesDest1.ReadOnly = False
-                TBachesDest2.ReadOnly = False
-                TBachesDest3.ReadOnly = False
-            End If
+
 
             'se deshabilita el grupo de plantas externas para evitar generar un consecutivo de OP y guardar para otra planta
             If GBPlantas.Visible = True Then GBPlantas.Enabled = False
@@ -1550,24 +1238,10 @@ Public Class NuevaOP
                 Exit Sub
             End If
 
-            If Funcion_PlantasExternas Then
-                If OPPlantaGir.Checked Then
-                    FiltroPlantaExt = "GIR"
-                    'PlantaExt = "GIR"
-                ElseIf OPPlantaSantaRosa.Checked Then
-                    FiltroPlantaExt = "STRO"
-                    'PlantaExt = "STRO"
-                ElseIf OPPlantaYar.Checked Then
-                    FiltroPlantaExt = "YAR"
-                    PlantaExt = "YAR"
-                End If
 
-                DVarios.Open("select * from OPS where OP='" + TOPs.Text + "' AND PLANTA='" + FiltroPlantaExt + "'")
 
-            Else
+            DVarios.Open("select * from OPS where OP='" + Eval(TOPs.Text).ToString + "'")
 
-                DVarios.Open("select * from OPS where OP='" + Eval(TOPs.Text).ToString + "'")
-            End If
 
             If DVarios.Count = 0 Then Return
 
@@ -1650,12 +1324,9 @@ Public Class NuevaOP
             AsignaDataGrid(DGFor, DFor.DataTable, True)
 
 
-            If Funcion_FuncionesPlantaPremezclas Then
-                DClientes.Open("select * from CLIENTES where TIPO='CLIENTE' ORDER BY NOMCLI")
-                LLenaComboBox(TBodDestino, DClientes.DataTable, "BODDEST")
-            Else
-                DClientes.Open("select * from CLIENTES ORDER BY NOMCLI")
-            End If
+
+            DClientes.Open("select * from CLIENTES ORDER BY NOMCLI")
+
 
             AsignaDataGrid(DGClientes, DClientes.DataTable)
 
@@ -1722,9 +1393,6 @@ Public Class NuevaOP
             TNomEmp.ReadOnly = True
             TNomEtiq.ReadOnly = True
             TNomCli.ReadOnly = True
-            TBachesDest1.ReadOnly = True
-            TBachesDest2.ReadOnly = True
-            TBachesDest3.ReadOnly = True
 
         Catch ex As Exception
             MsgError(ex)
@@ -1733,38 +1401,24 @@ Public Class NuevaOP
 
     Private Sub TMeta_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TMeta.KeyUp
         If e.KeyCode = Keys.Enter Then
-            If Funcion_FuncionesPlantaPremezclas Then
 
-                If Val(TTotalFor.Text) > 0 And Val(TPresKg.Text) > 0 Then
-                    TNumPaq.Text = Math.Round(Val(TTotalFor.Text) * Val(TMeta.Text) / TPresKg.Text, 1).ToString
-                    If NuevaOP Then
-                        FAdicEmpEtiq(TCodEmp.Text, TNomEmp.Text, "EM", Eval(TNumPaq.Text), TOPs.Text, Val(TNumPaqxBache.Text))
-                        FAdicEmpEtiq(TCodEtiq.Text, TNomEtiq.Text, "ET", Eval(TNumPaq.Text), TOPs.Text, Val(TNumPaqxBache.Text))
-                    End If
 
-                End If
+            TBAhora.Focus()
 
-                CLinea.DroppedDown = True
-                CLinea.SelectedIndex = 0
-                'TCodCli.Focus()
-
-            Else
-                TBAhora.Focus()
-            End If
 
         End If
     End Sub
 
     Private Sub TBAhora_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TBAhora.KeyUp
-        If e.KeyCode = Keys.Enter Then TBAhoraBPiso.Focus()
+        'If e.KeyCode = Keys.Enter Then TBAhoraBPiso.Focus()
     End Sub
 
-    Private Sub TBAhoraBPiso_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TBAhoraBPiso.KeyUp
-        If e.KeyCode = Keys.Enter Then TBachesTanda.Focus()
+    Private Sub TBAhoraBPiso_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+        'If e.KeyCode = Keys.Enter Then TBachesTanda.Focus()
     End Sub
 
     Private Sub TDestino_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
-        CBLinea.Focus()
+        'CBLinea.Focus()
     End Sub
 
     Private Sub DGOPsPrem_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles DGOPsPrem.KeyDown
@@ -1886,11 +1540,11 @@ Public Class NuevaOP
             TLP.Text = DVarios.RecordSet("LP").ToString
             TMeta.Text = DVarios.RecordSet("META").ToString
             TReal.Text = DVarios.RecordSet("REAL").ToString
-            TBachesTanda.Text = DVarios.RecordSet("REALMED").ToString
+            'TBachesTanda.Text = DVarios.RecordSet("REALMED").ToString
             TBAhora.Text = DVarios.RecordSet("BAHORA").ToString
-            TBAhoraBPiso.Text = DVarios.RecordSet("BAHORABPISO").ToString
+            'TBAhoraBPiso.Text = DVarios.RecordSet("BAHORABPISO").ToString
             TPorc.Text = DVarios.RecordSet("PORC").ToString
-            TDestinoPLC.Text = DVarios.RecordSet("DESTINO").ToString
+            'TDestinoPLC.Text = DVarios.RecordSet("DESTINO").ToString
             TCodFor.Text = DVarios.RecordSet("CODFOR").ToString
             TCodCli.Text = DVarios.RecordSet("CODCLI").ToString
             TNomFor.Text = DVarios.RecordSet("NOMFOR").ToString
@@ -1898,43 +1552,14 @@ Public Class NuevaOP
             TMedicado.Text = DVarios.RecordSet("MEDICADO").ToString
             TObservOP.Text = DVarios.RecordSet("OBSERVOP").ToString
             TEstado.Text = DVarios.RecordSet("ESTADO").ToString
-            TBachesTanda.Text = DVarios.RecordSet("BACHESTANDA").ToString
-            CDestino1.Text = DVarios.RecordSet("DESTINO1").ToString
-            CDestino2.Text = DVarios.RecordSet("DESTINO2").ToString
-            CDestino3.Text = DVarios.RecordSet("DESTINO3").ToString
-            TMetaKG.Text = DVarios.RecordSet("CANTPROD").ToString
-
-
-            If DVarios.RecordSet("VENTAS") > 0 Then
-                ChVentas.Checked = True
-            Else
-                ChVentas.Checked = False
-            End If
-
-            If Eval(CDestino1.Text) = 0 Then CDestino1.Text = "X"
-            If Eval(CDestino2.Text) = 0 Then CDestino2.Text = "X"
-            If Eval(CDestino3.Text) = 0 Then CDestino3.Text = "X"
-
-            TBachesDest1.Text = DVarios.RecordSet("METADEST1").ToString
-            TBachesDest2.Text = DVarios.RecordSet("METADEST2").ToString
-            TBachesDest3.Text = DVarios.RecordSet("METADEST3").ToString
-
-            If Funcion_ManejaFunPremezcla Then
-                CLotePrem.DropDownStyle = ComboBoxStyle.DropDown
-                CCodPrem.DropDownStyle = ComboBoxStyle.DropDown
-                CLotePrem.Enabled = False
-                CCodPrem.Enabled = False
-                CLotePrem.Text = DVarios.RecordSet("LOTEPREM").ToString
-                CCodPrem.Text = DVarios.RecordSet("CODPREM").ToString
-            End If
-
-
-
+            'TBachesTanda.Text = DVarios.RecordSet("BACHESTANDA").ToString
+            'CDestino1.Text = DVarios.RecordSet("DESTINO1").ToString
+            'CDestino2.Text = DVarios.RecordSet("DESTINO2").ToString
+            'CDestino3.Text = DVarios.RecordSet("DESTINO3").ToString
+            'TMetaKG.Text = DVarios.RecordSet("CANTPROD").ToString
 
             TCodEmp.Text = DVarios.RecordSet("CODEMP").ToString
             TCodEtiq.Text = DVarios.RecordSet("CODETIQ").ToString
-            CBLinea.Text = DVarios.RecordSet("LINEA").ToString
-            CLinea.Text = DVarios.RecordSet("LINEA").ToString
 
             'Traemos los datos del cliente
 
@@ -1954,14 +1579,10 @@ Public Class NuevaOP
             End If
 
             TCodForB.Text = DFor.RecordSet("CODFORB").ToString
-            TCodPrem.Text = DFor.RecordSet("CODPREMEZCLA").ToString
+            'TCodPrem.Text = DFor.RecordSet("CODPREMEZCLA").ToString
             TTotalFor.Text = DFor.RecordSet("TOTALFOR").ToString
 
-            If Funcion_FuncionesPlantaPremezclas Then
-                TNumPaqxBache.Text = DFor.RecordSet("NUMPAQXBACHE").ToString
-                TPresKg.Text = DFor.RecordSet("PESOPAQ").ToString
-                TBodDestino.Text = DVarios.RecordSet("BODDESTINO")
-            End If
+
             'TNomForB.Text = DFor.RecordSet("NOMFORB").ToString
             'TTotalFor.Text = DFor.RecordSet("TOTALFOR").ToString
 
@@ -1978,11 +1599,6 @@ Public Class NuevaOP
             TPresText.Text = DArt.RecordSet("PRESTEXT").ToString
             TPresKg.Text = DArt.RecordSet("PRESKG").ToString
 
-            If Funcion_FuncionesPlantaPremezclas Then
-                TMHumeda.Text = DVarios.RecordSet("TMHUMEDA").ToString
-                TNumPaq.Text = DVarios.RecordSet("NUMPAQXOP")
-                TPresKg.Text = DVarios.RecordSet("PRESKG").ToString
-            End If
 
             'Traemos los datos del empaque 
 
@@ -2208,39 +1824,9 @@ Public Class NuevaOP
     End Sub
 
 
-    Private Sub CBLinea_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles CBLinea.SelectedIndexChanged
-        Try
-            'Asigna las tolvas de acuerdo a la linea seleccionad en los combobox de las tolvas
-            Dim Maquina As String = ""
 
-            Select Case CBLinea.Text.ToUpper
-                Case "EMPACADORA1"
-                    Maquina = "E1"
-                Case "EMPACADORA2"
-                    Maquina = "E2"
-                Case "EMPACADORA3"
-                    Maquina = "E3"
-                Case "PELET1"
-                    Maquina = "P1"
-                Case "PELET2"
-                    Maquina = "P2"
-                Case "PELET3"
-                    Maquina = "P3"
-                Case "GRANEL"
-                    Maquina = "GR"
-            End Select
 
-            Dtolvas.Open("Select * from TOLVAS where PROCESO<>'DOSIFICACION' and MAQUINA='" + Maquina + "'")
-            LLenaComboBox(CDestino1, Dtolvas.DataTable, "TOLVA")
-            LLenaComboBox(CDestino2, Dtolvas.DataTable, "TOLVA")
-            LLenaComboBox(CDestino3, Dtolvas.DataTable, "TOLVA")
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
-
-    Private Sub TBachesTanda_KeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles TBachesTanda.KeyUp
+    Private Sub TBachesTanda_KeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode <> Keys.Enter Then Return
         If GBProd.Visible = True Then
             TCodProd.Focus()
@@ -2252,30 +1838,6 @@ Public Class NuevaOP
     End Sub
 
 
-    Private Sub CDestino1_TextChanged(sender As System.Object, e As System.EventArgs) Handles CDestino1.TextChanged
-        Try
-            If CDestino1.Text = "X" Then TBachesDest1.Text = ""
-        Catch ex As Exception
-            e.ToString()
-        End Try
-    End Sub
-
-
-    Private Sub CDestino2_TextChanged(sender As System.Object, e As System.EventArgs) Handles CDestino2.TextChanged
-        Try
-            If CDestino2.Text = "X" Then TBachesDest2.Text = ""
-        Catch ex As Exception
-            e.ToString()
-        End Try
-    End Sub
-
-    Private Sub CDestino3_TextChanged(sender As System.Object, e As System.EventArgs) Handles CDestino3.TextChanged
-        Try
-            If CDestino3.Text = "X" Then TBachesDest3.Text = ""
-        Catch ex As Exception
-            e.ToString()
-        End Try
-    End Sub
 
     Private Sub BCambiaOPMic_Click(sender As System.Object, e As System.EventArgs) Handles BCambiaOPMic.Click
         'If DRUsuario("OPsMod") Then
@@ -2346,55 +1908,16 @@ Public Class NuevaOP
             MsgError(ex)
         End Try
     End Sub
-    Private Sub FComboPrem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FComboPrem.Click
-        Try
-            If Eval(TCodFor.Text) = 0 Then Return
 
-            DDatosFor.Open("select * from DATOSFOR where CODFOR='" + TCodFor.Text + "' and (A='F' or A='R')")
-
-            CCodPrem.Items.Clear()
-            For i As Integer = 0 To DDatosFor.Rows.Count - 1
-                CCodPrem.Items.Add(DDatosFor.Rows(i).Item("CODMAT").ToString + " " + DDatosFor.Rows(i).Item("NOMMAT").ToString)
-            Next
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
-    Private Sub CCodPrem_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CCodPrem.KeyDown
+    Private Sub CCodPrem_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Back OrElse e.KeyCode = Keys.Delete Then e.SuppressKeyPress = True
     End Sub
-    Private Sub CLotePrem_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CLotePrem.KeyDown
+    Private Sub CLotePrem_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Back OrElse e.KeyCode = Keys.Delete Then e.SuppressKeyPress = True
     End Sub
 
 
-    Private Sub OPPlantaGir_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles OPPlantaGir.CheckedChanged
-        If Not FormLoad Then Return
-        If OPPlantaGir.Checked Then
-            FiltroPlantaExt = "GIR"
-            BActualizar_Click(Nothing, Nothing)
-        End If
 
-    End Sub
-
-    Private Sub OPPlantaYar_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles OPPlantaYar.CheckedChanged
-        If Not FormLoad Then Return
-        If OPPlantaYar.Checked Then
-            FiltroPlantaExt = "YAR"
-            BActualizar_Click(Nothing, Nothing)
-        End If
-
-    End Sub
-
-    Private Sub OPPlantaSantaRosa_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles OPPlantaSantaRosa.CheckedChanged
-        If Not FormLoad Then Return
-        If OPPlantaSantaRosa.Checked Then
-            FiltroPlantaExt = "STRO"
-            BActualizar_Click(Nothing, Nothing)
-        End If
-
-    End Sub
 
     Private Sub FGuardaEmpEtiqDet()
         Try
@@ -2495,42 +2018,9 @@ Public Class NuevaOP
 
 
 
-    Private Sub TCodEmpEtiq_KeyUp(sender As Object, e As KeyEventArgs) Handles TCodEmpEtiq.KeyUp
 
-        Try
-            If e.KeyCode = Keys.Enter AndAlso DGEmpaques.Rows.Count = 1 Then
-                DGEmpaques_CellClick(Nothing, Nothing)
-                Exit Sub
-            End If
 
-            If e.KeyCode = Keys.Back Then
-                TNomEmpEtiq.Text = ""
-                'TNomForB.Text = ""
-            End If
-
-            If TCodEmpEtiq.Text = "" Then
-                'Vuelve a asignar al datagrid todas las formulas de la tabla
-                AsignaDataGrid(DGEmpaques, DCodEmpEtiq.DataTable, True)
-                Exit Sub
-            End If
-
-            Dim Hallado As Boolean
-
-            BusquedaDG(DGEmpaques, DCodEmpEtiq.DataTable, TCodEmpEtiq.Text, "CODINT", Hallado)
-
-            If Hallado = False Then
-                ''TCodForB.Focus()
-                'MsgBox("Registro no encontrado", MsgBoxStyle.Information)
-                Exit Sub
-            End If
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-
-    End Sub
-
-    Private Sub TCodEmpEtiq_Enter(sender As Object, e As EventArgs) Handles TCodEmpEtiq.Enter
+    Private Sub TCodEmpEtiq_Enter(sender As Object, e As EventArgs)
         Try
             DGEmpaques.Location = New Point(109, 480)
             DGEmpaques.BringToFront()
@@ -2616,36 +2106,11 @@ Public Class NuevaOP
         End Try
     End Sub
 
-    Private Sub TNomCli_TextChanged(sender As System.Object, e As System.EventArgs) Handles TNomCli.TextChanged
-        Try
-            If TNomCli.Text = "" Then Return
-
-            If Funcion_FuncionesPlantaPremezclas Then
-                DClientes.Find("NOMCLI='" + TNomCli.Text + "'")
-                If Not DClientes.EOF Then TBodDestino.Text = DClientes.RecordSet("BODDEST")
-            End If
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
-
-    Private Sub DGEmpaques_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGEmpaques.CellClick
-        Try
-            If DGEmpaques.Rows.Count = 0 Then Exit Sub
-
-            TCodEmpEtiq.Text = DGEmpaques.Rows(DGEmpaques.CurrentRow.Index).Cells("DGEMPAQUES_CODINT").Value.ToString
-            TNomEmpEtiq.Text = DGEmpaques.Rows(DGEmpaques.CurrentRow.Index).Cells("DGEMPAQUES_NOMBRE").Value.ToString
-            TTipo.Text = DGEmpaques.Rows(DGEmpaques.CurrentRow.Index).Cells("DGEMPAQUES_TIPO").Value.ToString
-            DGEmpaques.Visible = False
 
 
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
 
-    Private Sub BCancelarEmps_Click(sender As Object, e As EventArgs) Handles BCancelarEmps.Click
+
+    Private Sub BCancelarEmps_Click(sender As Object, e As EventArgs)
         Try
             If DGListEmp.RowCount = 0 Then Return
             DGListEmp.Rows.RemoveAt(DGListEmp.CurrentRow.Index)
@@ -2654,72 +2119,12 @@ Public Class NuevaOP
         End Try
     End Sub
 
-    Private Sub BAdicionarEmps_Click(sender As Object, e As EventArgs) Handles BAdicionarEmps.Click
-        Try
 
-            FAdicEmpEtiq(TCodEmpEtiq.Text, TNomEmpEtiq.Text, TTipo.Text, Val(TNumPaq.Text), TOPs.Text, Val(TNumPaqxBache.Text))
 
-            TCodEmpEtiq.Text = ""
-            TNomEmpEtiq.Text = ""
 
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
 
-    Private Sub CCodPrem_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CCodPrem.SelectedIndexChanged
-        Try
-            Dim codprem2 As String = ""
-            Dim pos1 As Integer
-            If CCodPrem.Text = "" Then Return
-            pos1 = InStr(CCodPrem.Text, " ")
-            codprem2 = Mid(CCodPrem.Text, 1, pos1)
 
-            DCortesMP.Open("Select * from CORTESLOTE where FINALIZADO<>'S' and CODMAT='" + codprem2 + "'")
-            LLenaComboBox(CLotePrem, DCortesMP.DataTable, "LOTE")
-            CLotePrem.Focus()
-
-            If DCortesMP.Count = 0 Then
-                CLotePrem.Items.Add("")
-                CLotePrem.Text = ""
-                CLotePrem.Items.Remove("")
-            End If
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
-
-    Private Sub CLinea_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CLinea.SelectedIndexChanged
-        Try
-            If Not Funcion_FuncionesPlantaPremezclas Then Return
-
-            DLineasProd.Open("select * from LINEASPROD where LINEA='" + CLinea.Text.ToUpper + "' and TIPO='LN'")
-            If DLineasProd.Count Then
-                TMHumeda.Text = DLineasProd.RecordSet("TMHUMEDA")
-                Select Case CLinea.Text.ToUpper
-                    Case "WASVELT", "TAMBOR"
-                        'Se revisa la especie, porque dependiendo de la especie cambia el tiempo de mezcla
-                        Dim CodEspecie As String = ""
-                        If TCodFor.Text <> "" And TLP.Text <> "" Then
-                            DFor.Find("CODFOR='" + TCodFor.Text + "' AND LP='" + TLP.Text + "'")
-                            If Not DFor.EOF Then CodEspecie = DFor.RecordSet("CODESPECIE")
-                            If CodEspecie <> "" Then
-                                DEspecies.Open("Select * from ESPECIES where CODESPECIE='" + CodEspecie + "'")
-                                If DEspecies.Count And Val(TMHumeda.Text) > 0 Then
-                                    TMHumeda.Text = DEspecies.RecordSet("TMHUMEDA")
-                                End If
-                            End If
-                        End If
-                End Select
-                TMHumeda.Focus()
-            End If
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
-
-    Private Sub TMHumeda_KeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs) Handles TMHumeda.KeyUp
+    Private Sub TMHumeda_KeyUp(sender As System.Object, e As System.Windows.Forms.KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
             TObservOP.Focus()
         End If

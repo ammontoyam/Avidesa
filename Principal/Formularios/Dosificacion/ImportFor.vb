@@ -147,10 +147,10 @@ Public Class ImportFor
                     NomFormula = Mid(RenglonAux(i), 10).Trim
                     Lp = "-" 'Eval(Renglon)
 
-                    If Val(CodFormula) < 1 Or Val(CodFormula) > 2680 Then
-                        MsgBox("Número de fórmula no válido para el equipo de dosificación", vbInformation)
-                        Continue For
-                    End If
+                    'If Val(CodFormula) < 1 Or Val(CodFormula) > 2680 Then
+                    '    MsgBox("Número de fórmula no válido para el equipo de dosificación", vbInformation)
+                    '    Continue For
+                    'End If
 
                     DGFor.Rows.Add()
                     DGFor.Rows(DGFor.Rows.Count - 1).Cells("CodFor").Value = CodFormula
@@ -221,23 +221,28 @@ Public Class ImportFor
                 'Revisa que los ultimos baches no sean de la fórmula a editar                                
                 DBaches.Open("select TOP 5 * from BACHES ORDER by FECHA desc")
 
-                If DBaches.Count > 0 AndAlso DBaches.RecordSet("CODFOR") = CodFormula Then
-                    Resp = MsgBox("No debe alterar ni agregar códigos de materia prima a esta fórmula ya que se " +
+                For Each RSBaches As DataRow In DBaches.Rows
+                    If (RSBaches("CODFOR") = CodFormula AndAlso RSBaches("LP") = Lp) Then
+                        Resp = MsgBox("No debe alterar ni agregar códigos de materia prima a esta fórmula ya que se " +
                         " encuentra en proceso de dosificación y alteraría los Reportes" +
                         vbCrLf + "Desea continuar de todas formas?", MsgBoxStyle.Information + MsgBoxStyle.YesNo)
-                    If Resp = vbNo Then Return
-                End If
+                        If Resp = vbNo Then Return
+                    End If
+                Next
 
-                'ASIGNACIÓN AUTOMÁTICA DE LA VERSIÓN POR FÓRMULA IMPORTADA
-                DConfigVar.Find("CAMPO = 'VersionFor'")
-                If DConfigVar.EOF Then 'Formula Nueva
+
+                'ASIGNACIÓN AUTOMÁTICA DE LA VERSIÓN POR FÓRMULA IMPORTADA       
+                'DConfigVar.Find("CAMPO = 'VersionFor'")
+                'If DConfigVar.EOF Then 'Formula Nueva
+                If Val(ConfigParametros("VersionFor")) = 0 Then
                     'RespInput = InputBox.InputBox("Indique la VERSIÓN que le dará a la fórmula " + CodForB + " " + NomFormula, "ChronoSoft", "")
                     If InputBox.InputBox("Importar Fórmula", "Ingrese la versión de la fórmula seleccionada", RespInput) = DialogResult.Cancel Then
                         Continue For
                     End If
                     Lp = Val(RespInput)
                 Else
-                    Lp = Val(DConfigVar.RecordSet("VersionFor")) + 1
+                    'Lp = Val(DConfigVar.RecordSet("VersionFor")) + 1
+                    Lp = Val(ConfigParametros("VersionFor")) + 1
                 End If
 
                 DVarios.Open("select * from FORMULAS where CODFOR=" + Trim(CodFormula) + " and LP=" + Trim(Lp))
@@ -284,23 +289,22 @@ Public Class ImportFor
                 RespInput = ""
 
                 DFor.AddNew()
-
+                DFor.RecordSet("CODFOR") = CodFormula
                 DFor.RecordSet("CODFORB") = CodForB
                 DFor.RecordSet("NOMFOR") = CLeft(NomFormula.ToUpper, 30)
-                DFor.RecordSet("CODFOR") = CodFormula
-                DFor.RecordSet("TMSECA") = TiempoMSeca
-                DFor.RecordSet("TMHUMEDA") = TiempoMHumeda
+                'DFor.RecordSet("TOTALFOR") = TamBache
                 DFor.RecordSet("CODESPECIE") = Especie
                 DFor.RecordSet("CODGRPFOR") = Grupo
-                DFor.RecordSet("LP") = Lp
-                DFor.RecordSet("FECHAFOR") = FechaFor
-                DFor.RecordSet("FECHAIMPFOR") = FechaC()
-                DFor.RecordSet("CODPREMEZCLA") = CodPrem
-                'DFor.RecordSet("MEZCEXT") = MezcExt
-                DFor.RecordSet("USUARIOIMPFOR") = CLeft(UsuarioPrincipal, 20)
+                DFor.RecordSet("TMSECA") = TiempoMSeca
+                DFor.RecordSet("TMHUMEDA") = TiempoMHumeda
                 'DFor.RecordSet("MANEJAPX") = ManejaPx
+                DFor.RecordSet("CODPREMEZCLA") = CodPrem
+                DFor.RecordSet("FECHAFOR") = FechaFor
+                DFor.RecordSet("USUARIOIMPFOR") = CLeft(UsuarioPrincipal, 20)
                 'DFor.RecordSet("CODESTABLECIMIENTO") = CodEstablecimiento
-                'DFor.RecordSet("TOTALFOR") = TamBache
+                DFor.RecordSet("LP") = Lp
+                DFor.RecordSet("FECHAIMPFOR") = FechaC()
+                'DFor.RecordSet("MEZCEXT") = MezcExt
 
                 DFor.Update(Me)
 
@@ -512,6 +516,7 @@ Public Class ImportFor
 
             Formulacion.BActualizar_Click(Nothing, Nothing)
             Formulacion.BBuscaForm_Click(Nothing, Nothing, CodFormula, Lp)
+            WriteConfigParametros("VersionFor", Val(ConfigParametros("VersionFor")) + 1)
 
         Catch ex As Exception
             MsgError(ex)

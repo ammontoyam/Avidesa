@@ -17,8 +17,8 @@ Public Class TolvasDosif
             DTolvas = New AdoNet("Tolvas", CONN, DbProvedor)
             DArt = New AdoNet("ARTICULOS", CONN, DbProvedor)
 
-            DTolvas.Open("select * from TOLVASDOSIF  order by TOLVA")
-            DArt.Open("select * from MATPESADOS  order by NOMMATB")
+            DTolvas.Open("select * from TOLVAS WHERE PROCESO='DOSIFICACION' order by TOLVA")
+            DArt.Open("select * from ARTICULOS where TIPO='MP' order by NOMMAT")
 
             AsignaDataGrid(DGTolvas, DTolvas.DataTable)
             AsignaDataGrid(DGMateriales, DArt.DataTable, True)

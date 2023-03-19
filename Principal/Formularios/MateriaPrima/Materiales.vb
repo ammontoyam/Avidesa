@@ -28,14 +28,15 @@ Public Class Materiales
             TablaGrpMat = New Dictionary(Of String, String)
             DVarios.Open("select * from GRPMATERIALES ORDER BY NOMGRPMAT")
 
+            'Adicionamos el código 0 para indicar que no tiene asignación
+            TablaGrpMat.Add("SIN ASIGNAR", "0")
+            CBNomGrpMat.Items.Add("SIN ASIGNAR")
+
             'Llenamos la tabla de grupos de materiales
             For Each FilaEsp As DataRow In DVarios.Rows
                 TablaGrpMat.Add(FilaEsp("NOMGRPMAT"), FilaEsp("CODGRPMAT"))
                 CBNomGrpMat.Items.Add(FilaEsp("NOMGRPMAT"))
             Next
-            'Adicionamos el código 0 para indicar que no tiene asignación
-            TablaGrpMat.Add("SIN ASIGNAR", "0")
-            CBNomGrpMat.Items.Add("SIN ASIGNAR")
 
         Catch ex As Exception
             MsgError(ex)
@@ -70,11 +71,11 @@ Public Class Materiales
             DGrpMat = New AdoSQL("GRPMATERIALES")
             DGrpMat.Open("Select * from GRPMATERIALES order by CODGRPMAT")
 
-            DLineasProd = New AdoSQL("LINEASPROD")
-            DLineasProd.Open("Select * from LINEASPROD where TIPO='MP'")
+            'DLineasProd = New AdoSQL("LINEASPROD")
+            'DLineasProd.Open("Select * from LINEASPROD where TIPO='MP'")
 
-            LLenaComboBox(CBNomGrpMat, DGrpMat.DataTable, "NOMGRPMAT")
-            LLenaComboBox(CLinea, DLineasProd.DataTable, "LINEA")
+            'LLenaComboBox(CBNomGrpMat, DGrpMat.DataTable, "NOMGRPMAT") ' Se llena en InicializacionTablasContCruzada
+            'LLenaComboBox(CLinea, DLineasProd.DataTable, "LINEA")
             'llamamos el metodo que asigna los valores a la grilla
             AsignaDataGrid(DGArticulos, DArt.DataTable)
 
@@ -120,22 +121,24 @@ Public Class Materiales
 
             If DArt.EOF Then Exit Sub
 
-            TCodInt.Text = DArt.RecordSet("CodInt").ToString
+            TCodInt.Text = DArt.RecordSet("CODINT").ToString
             TNombre.Text = DArt.RecordSet("NOMBRE").ToString
             TCodExt.Text = DArt.RecordSet("CodExt").ToString
             TTolMinKg.Text = DArt.RecordSet("TOLMINKG").ToString
             TTolInfPorc.Text = DArt.RecordSet("TOLINFPORC").ToString
             TTolMaxKg.Text = DArt.RecordSet("TOLMAXKG").ToString
             TTolSupPorc.Text = DArt.RecordSet("TOLSUPPORC").ToString
-            TTaraEmp.Text = DArt.RecordSet("TARAEMP").ToString
-            TPresKg.Text = DArt.RecordSet("PRESKG").ToString
+            'TTaraEmp.Text = DArt.RecordSet("TARAEMP").ToString
+            'TPresKg.Text = DArt.RecordSet("PRESKG").ToString
             TCodGrpMat.Text = DArt.RecordSet("CODGRPMAT").ToString
-            ChManejaCorteLote.Checked = DArt.RecordSet("MANEJACORTELOTE")
-            ChActivo.Checked = DArt.RecordSet("ACTIVO")
-            ChLiquidoExt.Checked = DArt.RecordSet("LIQUIDOEXT")
+            'ChManejaCorteLote.Checked = DArt.RecordSet("MANEJACORTELOTE")
+            'ChActivo.Checked = DArt.RecordSet("ACTIVO")
+            'ChLiquidoExt.Checked = DArt.RecordSet("LIQUIDOEXT")
+            TMotonave.Text = DArt.RecordSet("MOTONAVE")
+            TPorcMerma.Text = DArt.RecordSet("PORCENTAJEMERMA")
 
-            If Funcion_GeneraAlarmaCorteSinAbrir Then ChAlarmaCorteSinAbrir.Checked = DArt.RecordSet("ALARMACORTESINABRIR")
-            If Funcion_ManejaVehiculo Then ChVehiculo.Checked = DArt.RecordSet("TIPOVEHICULO")
+            'If Funcion_GeneraAlarmaCorteSinAbrir Then ChAlarmaCorteSinAbrir.Checked = DArt.RecordSet("ALARMACORTESINABRIR")
+            'If Funcion_ManejaVehiculo Then ChVehiculo.Checked = DArt.RecordSet("TIPOVEHICULO")
 
             If TCodGrpMat.Text = "0" Then
                 CBNomGrpMat.Text = "SIN ASIGNAR"
@@ -147,7 +150,7 @@ Public Class Materiales
                 End If
             End If
 
-            CLinea.Text = DArt.RecordSet("LINEA").ToString
+            'CLinea.Text = DArt.RecordSet("LINEA").ToString
             mnLCuenta.Text = DGArticulos.Rows.Count.ToString
 
             Fila = DGArticulos.CurrentRow.Index
@@ -413,6 +416,11 @@ Public Class Materiales
             '    End If
             'End If
 
+            If Val(TPorcMerma.Text) < 0 Or Val(TPorcMerma.Text) >= 1 Then
+                MsgBox("El Porcentaje de Merma válido para el ingredient debe ser un valor entre 0 y 1", vbCritical)
+                Exit Sub
+            End If
+
             DArt.Open("select * from ARTICULOS WHERE TIPO='MP' and CodInt='" + TCodInt.Text.Trim + "'")
 
             If DArt.Count Then
@@ -422,8 +430,8 @@ Public Class Materiales
                 DArt.AddNew()
             End If
 
-            DArt.RecordSet("CodInt") = TCodInt.Text
-            DArt.RecordSet("CodExt") = TCodExt.Text
+            DArt.RecordSet("CODINT") = TCodInt.Text
+            DArt.RecordSet("CODEXT") = TCodExt.Text
             DArt.RecordSet("NOMBRE") = CLeft(TNombre.Text, 30)
             DArt.RecordSet("TOLMINKG") = Eval(TTolMinKg.Text)
             DArt.RecordSet("TOLINFPORC") = Eval(TTolInfPorc.Text)
@@ -431,18 +439,20 @@ Public Class Materiales
             DArt.RecordSet("TOLSUPPORC") = Eval(TTolSupPorc.Text)
             DArt.RecordSet("CODGRPMAT") = CLeft(TCodGrpMat.Text, 15)
             DArt.RecordSet("TIPO") = "MP"
-            DArt.RecordSet("LINEA") = CLinea.Text
-            DArt.RecordSet("TARAEMP") = Eval(TTaraEmp.Text)
-            DArt.RecordSet("PRESKG") = Eval(TPresKg.Text)
-            DArt.RecordSet("MANEJACORTELOTE") = ChManejaCorteLote.Checked
-            DArt.RecordSet("ACTIVO") = ChActivo.Checked
-            DArt.RecordSet("LIQUIDOEXT") = ChLiquidoExt.Checked
-            If Funcion_GeneraAlarmaCorteSinAbrir Then
-                DArt.RecordSet("ALARMACORTESINABRIR") = ChAlarmaCorteSinAbrir.Checked
-            End If
+            DArt.RecordSet("PORCENTAJEMERMA") = Format(TPorcMerma.Text, ".000")
+
+            'DArt.RecordSet("LINEA") = CLinea.Text
+            'DArt.RecordSet("TARAEMP") = Eval(TTaraEmp.Text)
+            'DArt.RecordSet("PRESKG") = Eval(TPresKg.Text)
+            'DArt.RecordSet("MANEJACORTELOTE") = ChManejaCorteLote.Checked
+            'DArt.RecordSet("ACTIVO") = ChActivo.Checked
+            'DArt.RecordSet("LIQUIDOEXT") = ChLiquidoExt.Checked
+            'If Funcion_GeneraAlarmaCorteSinAbrir Then
+            '    DArt.RecordSet("ALARMACORTESINABRIR") = ChAlarmaCorteSinAbrir.Checked
+            'End If
 
 
-            If Funcion_ManejaVehiculo Then DArt.RecordSet("TIPOVEHICULO") = ChVehiculo.Checked
+            'If Funcion_ManejaVehiculo Then DArt.RecordSet("TIPOVEHICULO") = ChVehiculo.Checked
 
 
             DArt.Update(Me)
@@ -565,6 +575,23 @@ Public Class Materiales
             Resp = Shell(Ruta + "ChrInterfazArt.EXE", AppWinStyle.NormalFocus)
         Catch ex As Exception
         MsgError(ex)
+        End Try
+    End Sub
+
+    Private Sub BMermaMaq_Click(sender As Object, e As EventArgs) Handles BMermaMaq.Click
+        Try
+            If TCodInt.Text.Trim = "" Then
+                MsgBox("Debe seleccionar un código de materia prima válido." + vbCrLf, vbInformation)
+                Exit Sub
+            End If
+
+            Resp = MsgBox("¿Desea adicionar porc. merma  de maquila a la materia prima?" + vbCrLf, vbYesNo)
+            If Resp = vbNo Then Exit Sub
+
+            MermaMaquila.TCodInt.Text = TCodInt.Text.Trim
+            MermaMaquila.Show()
+        Catch ex As Exception
+            MsgError(ex)
         End Try
     End Sub
 End Class

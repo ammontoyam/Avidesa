@@ -67,6 +67,7 @@ Public Class FormulacionDet
             DGMat.Height = 220
 
             If Funcion_FuncionesPlantaPremezclas = False Then
+                'Se eliminan las colomnas del datagrid que no se utilizan
                 DGFor.Columns.Remove("SACOS")
                 DGFor.Columns.Remove("TARA")
                 DGFor.Columns.Remove("PESOMETAB")
@@ -77,7 +78,7 @@ Public Class FormulacionDet
                 GBFiltro.Width = 432
                 DGMat.Height = 396
             Else
-                'Se eliminan las colomnas del datagrid que no se utilizan
+                'Se ocultan las colomnas del datagrid que no se utilizan
                 DGFor.Columns("TOLVA").Visible = False
                 DGFor.Columns("TOLSUP").Visible = False
                 DGFor.Columns("TOLINF").Visible = False
@@ -90,12 +91,12 @@ Public Class FormulacionDet
                 DArt.Open("select * from ARTICULOS where TIPO='MP' or TIPO='PT'")
             End If
 
-            If Funcion_ManejaOpticurp Then
-                ValorMaxSalCurp = ConfigParametros("ValorMaxSalCurp")
-                ValorMaxMycoCurp = ConfigParametros("ValorMaxMycoCurp")
-                CodAguaHC = ConfigParametros("CodigoAguaHC")
-                PorcOpticurpAdicionar = Val(ConfigParametros("PorcOpticurpAdicionar"))
-            End If
+            'If Funcion_ManejaOpticurp Then
+            '    ValorMaxSalCurp = ConfigParametros("ValorMaxSalCurp")
+            '    ValorMaxMycoCurp = ConfigParametros("ValorMaxMycoCurp")
+            '    CodAguaHC = ConfigParametros("CodigoAguaHC")
+            '    PorcOpticurpAdicionar = Val(ConfigParametros("PorcOpticurpAdicionar"))
+            'End If
 
             mnParamFylax.Enabled = False
             If Funcion_ManejaFylax Then mnParamFylax.Enabled = True
@@ -349,10 +350,10 @@ Public Class FormulacionDet
                 Exit Sub
             End If
 
-            If ChManejaPx.Checked And TCodPremezcla.Text = "" Then
-                MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " código Premezcla"), vbCritical)
-                Return
-            End If
+            'If ChManejaPx.Checked And TCodPremezcla.Text = "" Then
+            '    MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " código Premezcla"), vbCritical)
+            '    Return
+            'End If
 
             If TCodEspecie.Text = "" Then
                 MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, " código especie"), vbCritical)
@@ -411,18 +412,18 @@ Public Class FormulacionDet
             DFor.RecordSet("CODESPECIE") = Mid(TCodEspecie.Text.Trim.ToUpper, 1, 5).Trim
             DFor.RecordSet("CODGRPFOR") = Mid(TCodGrpFor.Text.Trim.ToUpper, 1, 5).Trim
             DFor.RecordSet("LP") = TLP.Text
-            DFor.RecordSet("MANEJAPX") = ChManejaPx.Checked
+            'DFor.RecordSet("MANEJAPX") = ChManejaPx.Checked
             If TEstado.Enabled Then DFor.RecordSet("ESTADO") = TEstado.Text
-            DFor.RecordSet("CODPREMEZCLA") = TCodPremezcla.Text
-            DFor.RecordSet("CODESTABLECIMIENTO") = TCodEstablecimiento.Text
+            'DFor.RecordSet("CODPREMEZCLA") = TCodPremezcla.Text
+            'DFor.RecordSet("CODESTABLECIMIENTO") = TCodEstablecimiento.Text
 
-            If Funcion_ManejaVehiculo Then
-                DFor.RecordSet("PESOFORMINI") = Val(TPesoPaq.Text)
-                DFor.RecordSet("PESOPAQ") = Val(TPesoPaq2.Text)
-                DFor.RecordSet("NUMPAQ") = Val(TNumPaq.Text)
-                DFor.RecordSet("DOSIS") = TDosis.Text
-                DFor.RecordSet("NUMPAQXBACHE") = Val(TPaqxBache.Text)
-            End If
+            'If Funcion_ManejaVehiculo Then
+            '    DFor.RecordSet("PESOFORMINI") = Val(TPesoPaq.Text)
+            '    DFor.RecordSet("PESOPAQ") = Val(TPesoPaq2.Text)
+            '    DFor.RecordSet("NUMPAQ") = Val(TNumPaq.Text)
+            '    DFor.RecordSet("DOSIS") = TDosis.Text
+            '    DFor.RecordSet("NUMPAQXBACHE") = Val(TPaqxBache.Text)
+            'End If
 
             DFor.Update(Me)
 
@@ -459,48 +460,48 @@ Public Class FormulacionDet
 
                 'Se revisa si se maneja fylax y fysal actualizar el porcentaje de estos ingredientes en la fórmula
 
-                If Funcion_ManejaFylax Then
-                    If DDatosFor.RecordSet("A") = "FX" AndAlso Eval(TSumaIng.Text) > 0 Then
-                        Dim PesoReproceso As Single = 0
-                        'Para la planta funza, se debe quitar el reproceso de la fórmula
-                        If Planta.Contains("FUNZA") Then
-                            DVarios.Open("Select sum(PESOMETA) AS PESOREPROCESO from DATOSFOR where NOMMAT LIKE '%REPROCESO%' and CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
-                            If DVarios.Count > 0 AndAlso Not IsDBNull(DVarios.RecordSet("PESOREPROCESO")) Then
-                                PesoReproceso = DVarios.RecordSet("PESOREPROCESO")
-                            End If
-                        End If
+                'If Funcion_ManejaFylax Then
+                '    If DDatosFor.RecordSet("A") = "FX" AndAlso Eval(TSumaIng.Text) > 0 Then
+                '        Dim PesoReproceso As Single = 0
+                '        'Para la planta funza, se debe quitar el reproceso de la fórmula
+                '        If Planta.Contains("FUNZA") Then
+                '            DVarios.Open("Select sum(PESOMETA) AS PESOREPROCESO from DATOSFOR where NOMMAT LIKE '%REPROCESO%' and CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
+                '            If DVarios.Count > 0 AndAlso Not IsDBNull(DVarios.RecordSet("PESOREPROCESO")) Then
+                '                PesoReproceso = DVarios.RecordSet("PESOREPROCESO")
+                '            End If
+                '        End If
 
-                        PorcAdicFylax = DDatosFor.RecordSet("PESOMETA") / (Eval(TSumaIng.Text) - Math.Round(PesoReproceso, 1)) * 100
-                        DFor.Open("Update FORMULAS set PORCADICFILAX=" + PorcAdicFylax.ToString + " WHERE CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
-                    End If
-                End If
+                '        PorcAdicFylax = DDatosFor.RecordSet("PESOMETA") / (Eval(TSumaIng.Text) - Math.Round(PesoReproceso, 1)) * 100
+                '        DFor.Open("Update FORMULAS set PORCADICFILAX=" + PorcAdicFylax.ToString + " WHERE CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
+                '    End If
+                'End If
 
-                If Funcion_ManejaFysal Then
-                    If DDatosFor.RecordSet("A") = "FS" AndAlso Eval(TSumaIng.Text) > 0 Then
-                        PorcAdicFysal = DDatosFor.RecordSet("PESOMETA") / Eval(TSumaIng.Text) * 100
-                        DFor.Open("Update FORMULAS set PORCADICFYSAL=" + PorcAdicFysal.ToString + " WHERE CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
-                    End If
-                End If
+                'If Funcion_ManejaFysal Then
+                '    If DDatosFor.RecordSet("A") = "FS" AndAlso Eval(TSumaIng.Text) > 0 Then
+                '        PorcAdicFysal = DDatosFor.RecordSet("PESOMETA") / Eval(TSumaIng.Text) * 100
+                '        DFor.Open("Update FORMULAS set PORCADICFYSAL=" + PorcAdicFysal.ToString + " WHERE CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
+                '    End If
+                'End If
 
-                If Not Funcion_FuncionesPlantaPremezclas Then
-                    DDatosFor.RecordSet("A2") = Filasel.Cells("A2").Value.ToString
-                    DDatosFor.RecordSet("NOMTOLVA") = Filasel.Cells("NOMTOLVA").Value.ToString
-                    DDatosFor.RecordSet("TOLVA") = Eval(Filasel.Cells("TOLVA").Value.ToString)
-                End If
+                'If Not Funcion_FuncionesPlantaPremezclas Then
+                '    DDatosFor.RecordSet("A2") = Filasel.Cells("A2").Value.ToString
+                '    DDatosFor.RecordSet("NOMTOLVA") = Filasel.Cells("NOMTOLVA").Value.ToString
+                '    DDatosFor.RecordSet("TOLVA") = Eval(Filasel.Cells("TOLVA").Value.ToString)
+                'End If
                 DDatosFor.RecordSet("TIPOMAT") = Filasel.Cells("TIPOMAT").Value.ToString
                 DDatosFor.RecordSet("CODFOR") = TCodFor.Text.ToString
                 DDatosFor.RecordSet("CODFORB") = TCodForB.Text.ToString
                 DDatosFor.RecordSet("LP") = TLP.Text.ToString
 
 
-                If Funcion_ManejaVehiculo Then
-                    If Eval(TSumaIng.Text) > 0 Then
-                        DDatosFor.RecordSet("PESOMETAB") = DDatosFor.RecordSet("PESOMETA") / Eval(TSumaIng.Text) * 100
-                        DDatosFor.RecordSet("TIPOVEHICULO") = Filasel.Cells("TIPOVEHICULO").Value
-                        DDatosFor.RecordSet("SACOS") = Filasel.Cells("SACOS").Value.ToString
-                        DDatosFor.RecordSet("TARA") = Eval(Filasel.Cells("TARA").Value.ToString)
-                    End If
-                End If
+                'If Funcion_ManejaVehiculo Then
+                '    If Eval(TSumaIng.Text) > 0 Then
+                '        DDatosFor.RecordSet("PESOMETAB") = DDatosFor.RecordSet("PESOMETA") / Eval(TSumaIng.Text) * 100
+                '        DDatosFor.RecordSet("TIPOVEHICULO") = Filasel.Cells("TIPOVEHICULO").Value
+                '        DDatosFor.RecordSet("SACOS") = Filasel.Cells("SACOS").Value.ToString
+                '        DDatosFor.RecordSet("TARA") = Eval(Filasel.Cells("TARA").Value.ToString)
+                '    End If
+                'End If
 
                 DArt.Open("select * from ARTICULOS where CODINT='" + DDatosFor.RecordSet("CODMAT") + "'")
                 If DArt.Count > 0 Then
@@ -511,9 +512,9 @@ Public Class FormulacionDet
                     DDatosFor.RecordSet("TOLINF") = DArt.RecordSet("TolMinKg")
                     DDatosFor.RecordSet("TOLSUP") = DArt.RecordSet("TolMaxKg")
 
-                    If Funcion_ManejaVehiculo Then
-                        DArt.RecordSet("TARA") = DDatosFor.RecordSet("TARA")
-                    End If
+                    'If Funcion_ManejaVehiculo Then
+                    '    DArt.RecordSet("TARA") = DDatosFor.RecordSet("TARA")
+                    'End If
 
                     'Calculamos tolerancias de acuerdo a porcentajes, si es menor que la tolerancia minima, ponemos la minima, si es mayor que la tolerancia 
                     'maxima ponemos la maxima
@@ -554,19 +555,19 @@ Public Class FormulacionDet
 
             'Agrega un ingrediente con la suma de los ingredientes por bandeja
 
-            If Funcion_MaterialesXBandeja Then
-                For i = 26 To 29
-                    If i = 27 Then i = 28
-                    DDatosFor.Delete("delete from DATOSFOR where CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "' and A='A' and CODMAT='" + i.ToString.PadRight(6, Chr(48)) + "'")
-                    DVarios.Open("select SUM(PesoMeta) as SUMBANDEJA, MAX(BASCULA) AS BASCULA, MAX(TOLVA) AS TOLVA  from DATOSFOR where CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "' AND NOMTOLVA='B" + i.ToString + "'")
-                    DDatosFor.Open("Select * from DATOSFOR where CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
+            'If Funcion_MaterialesXBandeja Then
+            '    For i = 26 To 29
+            '        If i = 27 Then i = 28
+            '        DDatosFor.Delete("delete from DATOSFOR where CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "' and A='A' and CODMAT='" + i.ToString.PadRight(6, Chr(48)) + "'")
+            '        DVarios.Open("select SUM(PesoMeta) as SUMBANDEJA, MAX(BASCULA) AS BASCULA, MAX(TOLVA) AS TOLVA  from DATOSFOR where CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "' AND NOMTOLVA='B" + i.ToString + "'")
+            '        DDatosFor.Open("Select * from DATOSFOR where CODFOR='" + TCodFor.Text + "' and LP='" + TLP.Text + "'")
 
-                    If DVarios.Count = 1 AndAlso Not IsDBNull(DVarios.RecordSet("SUMBANDEJA")) Then
-                        Paso += 1
-                        FAgregarIng_Click(50, "A", DVarios.RecordSet("SUMBANDEJA"), i.ToString.PadRight(6, Chr(48)), Paso, DVarios.RecordSet("BASCULA"), DVarios.RecordSet("TOLVA"))
-                    End If
-                Next
-            End If
+            '        If DVarios.Count = 1 AndAlso Not IsDBNull(DVarios.RecordSet("SUMBANDEJA")) Then
+            '            Paso += 1
+            '            FAgregarIng_Click(50, "A", DVarios.RecordSet("SUMBANDEJA"), i.ToString.PadRight(6, Chr(48)), Paso, DVarios.RecordSet("BASCULA"), DVarios.RecordSet("TOLVA"))
+            '        End If
+            '    Next
+            'End If
 
             'Se actualiza nuevamente el peso de la formula total con el peso de de la tabla datosfor por seguridad
             'donde tipomat<20 porque en girardota se hace una suma de materiales por bandeja y se pone con tipomat=50
@@ -818,8 +819,6 @@ Public Class FormulacionDet
                 e.Cancel = True
             End If
 
-
-
         Catch ex As Exception
             MsgError(ex)
         End Try
@@ -953,6 +952,7 @@ Public Class FormulacionDet
                             End If
 
                         End If
+
                     Case "AD"
                         'If DRUsuario("Calidad") Then
                         If ValidaPermiso("Calidad") Then
@@ -960,12 +960,12 @@ Public Class FormulacionDet
                             MsgBox(DevuelveEvento(CodEvento.USUARIO_PERMISODENEGADO), MsgBoxStyle.Information)
                             Return
                         End If
-                    Case "FL"
-                        DVarios.Open("Select * from ARTICULOS where CODINT='" + CodMat + "'")
-                        If Modo = "FL" AndAlso DVarios.Count > 0 AndAlso Not DVarios.RecordSet("LINEA").ToString.Contains("LIQUIDOS") Then
-                            MsgBox("No debe usar este modo de dosificación para un material diferente a aceites o grasas", vbInformation)
-                            Return
-                        End If
+                        'Case "FL"
+                        '    DVarios.Open("Select * from ARTICULOS where CODINT='" + CodMat + "'")
+                        '    If Modo = "FL" AndAlso DVarios.Count > 0 AndAlso Not DVarios.RecordSet("LINEA").ToString.Contains("LIQUIDOS") Then
+                        '        MsgBox("No debe usar este modo de dosificación para un material diferente a aceites o grasas", vbInformation)
+                        '        Return
+                        '    End If
                 End Select
 
                 Select Case TipoMat
@@ -976,17 +976,17 @@ Public Class FormulacionDet
                 End Select
 
 
-                If Funcion_MaterialesXBandeja Then
-                    If (Modo = "A" AndAlso TipoMat = 8) Then             'Si el ingrediente va en modo bandeja se despliegan todas las bandejas
-                        DVarios.Open("select * from TOLVAS where NOMTOLVA LIKE'%B%'")
+                'If Funcion_MaterialesXBandeja Then
+                '    If (Modo = "A" AndAlso TipoMat = 8) Then             'Si el ingrediente va en modo bandeja se despliegan todas las bandejas
+                '        DVarios.Open("select * from TOLVAS where NOMTOLVA LIKE'%B%'")
 
-                        If DVarios.Count > 1 Then
-                            AsignaDataGrid(DGAsigTolva, DVarios.DataTable, True)
-                            DGAsigTolva.Visible = True
-                            Return
-                        End If
-                    End If
-                End If
+                '        If DVarios.Count > 1 Then
+                '            AsignaDataGrid(DGAsigTolva, DVarios.DataTable, True)
+                '            DGAsigTolva.Visible = True
+                '            Return
+                '        End If
+                '    End If
+                'End If
 
                 BModo_Click(Nothing, Nothing, Basc, Modo, TipoMat.ToString, Tolva, NomTolva)
             End If
@@ -1526,13 +1526,13 @@ Public Class FormulacionDet
                 ChManejaPx.Checked = DFor.RecordSet("MANEJAPX")
                 TCodEstablecimiento.Text = DFor.RecordSet("CODESTABLECIMIENTO")
 
-                If Funcion_ManejaVehiculo Then
-                    TPesoPaq.Text = DFor.RecordSet("PESOFORMINI")
-                    TPesoPaq2.Text = DFor.RecordSet("PESOPAQ")
-                    TNumPaq.Text = DFor.RecordSet("NUMPAQ")
-                    TDosis.Text = DFor.RecordSet("DOSIS")
-                    TPaqxBache.Text = DFor.RecordSet("NUMPAQXBACHE")
-                End If
+                'If Funcion_ManejaVehiculo Then
+                '    TPesoPaq.Text = DFor.RecordSet("PESOFORMINI")
+                '    TPesoPaq2.Text = DFor.RecordSet("PESOPAQ")
+                '    TNumPaq.Text = DFor.RecordSet("NUMPAQ")
+                '    TDosis.Text = DFor.RecordSet("DOSIS")
+                '    TPaqxBache.Text = DFor.RecordSet("NUMPAQXBACHE")
+                'End If
 
                 TCodFor.ReadOnly = True
                 TLP.ReadOnly = True

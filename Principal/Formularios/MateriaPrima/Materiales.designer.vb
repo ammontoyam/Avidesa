@@ -76,6 +76,11 @@ Partial Class Materiales
         Me.BCancelar = New System.Windows.Forms.Button()
         Me.BAceptar = New System.Windows.Forms.Button()
         Me.GBNombre = New System.Windows.Forms.GroupBox()
+        Me.BMermaMaq = New System.Windows.Forms.Button()
+        Me.TPorcMerma = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TMotonave = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.ChAlarmaCorteSinAbrir = New System.Windows.Forms.CheckBox()
         Me.ChLiquidoExt = New System.Windows.Forms.CheckBox()
         Me.ChActivo = New System.Windows.Forms.CheckBox()
@@ -414,6 +419,7 @@ Partial Class Materiales
         Me.GroupBox2.TabIndex = 25
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Asignación de Línea"
+        Me.GroupBox2.Visible = False
         '
         'CLinea
         '
@@ -539,6 +545,11 @@ Partial Class Materiales
         '
         'GBNombre
         '
+        Me.GBNombre.Controls.Add(Me.BMermaMaq)
+        Me.GBNombre.Controls.Add(Me.TPorcMerma)
+        Me.GBNombre.Controls.Add(Me.Label13)
+        Me.GBNombre.Controls.Add(Me.TMotonave)
+        Me.GBNombre.Controls.Add(Me.Label12)
         Me.GBNombre.Controls.Add(Me.ChAlarmaCorteSinAbrir)
         Me.GBNombre.Controls.Add(Me.ChLiquidoExt)
         Me.GBNombre.Controls.Add(Me.ChActivo)
@@ -562,108 +573,165 @@ Partial Class Materiales
         Me.GBNombre.TabIndex = 18
         Me.GBNombre.TabStop = False
         '
+        'BMermaMaq
+        '
+        Me.BMermaMaq.Location = New System.Drawing.Point(184, 173)
+        Me.BMermaMaq.Name = "BMermaMaq"
+        Me.BMermaMaq.Size = New System.Drawing.Size(81, 42)
+        Me.BMermaMaq.TabIndex = 55
+        Me.BMermaMaq.Text = "% Merma Maq."
+        Me.BMermaMaq.UseVisualStyleBackColor = True
+        '
+        'TPorcMerma
+        '
+        Me.TPorcMerma.Location = New System.Drawing.Point(108, 173)
+        Me.TPorcMerma.Name = "TPorcMerma"
+        Me.TPorcMerma.Size = New System.Drawing.Size(57, 20)
+        Me.TPorcMerma.TabIndex = 54
+        Me.TPorcMerma.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label13.Location = New System.Drawing.Point(17, 176)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(77, 14)
+        Me.Label13.TabIndex = 53
+        Me.Label13.Text = "Porc. Merma"
+        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TMotonave
+        '
+        Me.TMotonave.Location = New System.Drawing.Point(17, 143)
+        Me.TMotonave.Name = "TMotonave"
+        Me.TMotonave.Size = New System.Drawing.Size(268, 20)
+        Me.TMotonave.TabIndex = 52
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label12.Location = New System.Drawing.Point(17, 126)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(64, 14)
+        Me.Label12.TabIndex = 51
+        Me.Label12.Text = "Motonave:"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'ChAlarmaCorteSinAbrir
         '
         Me.ChAlarmaCorteSinAbrir.AutoSize = True
         Me.ChAlarmaCorteSinAbrir.Enabled = False
         Me.ChAlarmaCorteSinAbrir.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.ChAlarmaCorteSinAbrir.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ChAlarmaCorteSinAbrir.Location = New System.Drawing.Point(152, 198)
+        Me.ChAlarmaCorteSinAbrir.Location = New System.Drawing.Point(150, 265)
         Me.ChAlarmaCorteSinAbrir.Name = "ChAlarmaCorteSinAbrir"
         Me.ChAlarmaCorteSinAbrir.Size = New System.Drawing.Size(150, 18)
         Me.ChAlarmaCorteSinAbrir.TabIndex = 50
         Me.ChAlarmaCorteSinAbrir.Text = "Alarma Corte Sin Abrir"
         Me.ChAlarmaCorteSinAbrir.UseVisualStyleBackColor = True
+        Me.ChAlarmaCorteSinAbrir.Visible = False
         '
         'ChLiquidoExt
         '
         Me.ChLiquidoExt.AutoSize = True
         Me.ChLiquidoExt.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.ChLiquidoExt.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ChLiquidoExt.Location = New System.Drawing.Point(13, 198)
+        Me.ChLiquidoExt.Location = New System.Drawing.Point(11, 249)
         Me.ChLiquidoExt.Name = "ChLiquidoExt"
         Me.ChLiquidoExt.Size = New System.Drawing.Size(112, 18)
         Me.ChLiquidoExt.TabIndex = 49
         Me.ChLiquidoExt.Text = "Líquido Externo"
         Me.ChLiquidoExt.UseVisualStyleBackColor = True
+        Me.ChLiquidoExt.Visible = False
         '
         'ChActivo
         '
         Me.ChActivo.AutoSize = True
-        Me.ChActivo.Location = New System.Drawing.Point(13, 179)
+        Me.ChActivo.Location = New System.Drawing.Point(11, 231)
         Me.ChActivo.Name = "ChActivo"
         Me.ChActivo.Size = New System.Drawing.Size(60, 18)
         Me.ChActivo.TabIndex = 48
         Me.ChActivo.Text = "Activo"
         Me.ChActivo.UseVisualStyleBackColor = True
+        Me.ChActivo.Visible = False
         '
         'ChManejaCorteLote
         '
         Me.ChManejaCorteLote.AutoSize = True
         Me.ChManejaCorteLote.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold)
         Me.ChManejaCorteLote.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.ChManejaCorteLote.Location = New System.Drawing.Point(152, 179)
+        Me.ChManejaCorteLote.Location = New System.Drawing.Point(150, 249)
         Me.ChManejaCorteLote.Name = "ChManejaCorteLote"
         Me.ChManejaCorteLote.Size = New System.Drawing.Size(127, 18)
         Me.ChManejaCorteLote.TabIndex = 41
         Me.ChManejaCorteLote.Text = "Maneja Corte Lote"
         Me.ChManejaCorteLote.UseVisualStyleBackColor = True
+        Me.ChManejaCorteLote.Visible = False
         '
         'ChVehiculo
         '
         Me.ChVehiculo.AutoSize = True
         Me.ChVehiculo.Enabled = False
-        Me.ChVehiculo.Location = New System.Drawing.Point(13, 217)
+        Me.ChVehiculo.Location = New System.Drawing.Point(11, 265)
         Me.ChVehiculo.Margin = New System.Windows.Forms.Padding(2)
         Me.ChVehiculo.Name = "ChVehiculo"
         Me.ChVehiculo.Size = New System.Drawing.Size(143, 18)
         Me.ChVehiculo.TabIndex = 40
         Me.ChVehiculo.Text = "Material tipo vehículo"
         Me.ChVehiculo.UseVisualStyleBackColor = True
+        Me.ChVehiculo.Visible = False
         '
         'TPresKg
         '
-        Me.TPresKg.Location = New System.Drawing.Point(239, 144)
+        Me.TPresKg.Location = New System.Drawing.Point(233, 220)
         Me.TPresKg.Name = "TPresKg"
         Me.TPresKg.Size = New System.Drawing.Size(50, 20)
         Me.TPresKg.TabIndex = 39
         Me.TPresKg.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TPresKg.Visible = False
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label10.Location = New System.Drawing.Point(159, 147)
+        Me.Label10.Location = New System.Drawing.Point(156, 223)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(80, 14)
         Me.Label10.TabIndex = 38
         Me.Label10.Text = "Capacidad Kg"
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label10.Visible = False
         '
         'TTaraEmp
         '
-        Me.TTaraEmp.Location = New System.Drawing.Point(98, 144)
+        Me.TTaraEmp.Location = New System.Drawing.Point(96, 205)
         Me.TTaraEmp.Name = "TTaraEmp"
         Me.TTaraEmp.Size = New System.Drawing.Size(57, 20)
         Me.TTaraEmp.TabIndex = 37
         Me.TTaraEmp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TTaraEmp.Visible = False
         '
         'Label9
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(8, 147)
+        Me.Label9.Location = New System.Drawing.Point(6, 208)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(84, 14)
         Me.Label9.TabIndex = 36
         Me.Label9.Text = "Tara Empaque"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label9.Visible = False
         '
         'TCodExt
         '
-        Me.TCodExt.Location = New System.Drawing.Point(126, 65)
+        Me.TCodExt.Location = New System.Drawing.Point(126, 56)
         Me.TCodExt.Name = "TCodExt"
         Me.TCodExt.Size = New System.Drawing.Size(100, 20)
         Me.TCodExt.TabIndex = 23
@@ -674,7 +742,7 @@ Partial Class Materiales
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(15, 65)
+        Me.Label4.Location = New System.Drawing.Point(17, 59)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(94, 14)
         Me.Label4.TabIndex = 22
@@ -683,7 +751,7 @@ Partial Class Materiales
         '
         'TCodInt
         '
-        Me.TCodInt.Location = New System.Drawing.Point(126, 33)
+        Me.TCodInt.Location = New System.Drawing.Point(126, 30)
         Me.TCodInt.Name = "TCodInt"
         Me.TCodInt.Size = New System.Drawing.Size(100, 20)
         Me.TCodInt.TabIndex = 21
@@ -691,7 +759,7 @@ Partial Class Materiales
         '
         'TNombre
         '
-        Me.TNombre.Location = New System.Drawing.Point(18, 112)
+        Me.TNombre.Location = New System.Drawing.Point(17, 98)
         Me.TNombre.Name = "TNombre"
         Me.TNombre.Size = New System.Drawing.Size(268, 20)
         Me.TNombre.TabIndex = 20
@@ -701,7 +769,7 @@ Partial Class Materiales
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(15, 95)
+        Me.Label2.Location = New System.Drawing.Point(17, 81)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(54, 14)
         Me.Label2.TabIndex = 18
@@ -713,7 +781,7 @@ Partial Class Materiales
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(15, 33)
+        Me.Label1.Location = New System.Drawing.Point(17, 33)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(92, 14)
         Me.Label1.TabIndex = 17
@@ -762,14 +830,13 @@ Partial Class Materiales
         Me.codext.HeaderText = "Cód.Ext"
         Me.codext.Name = "codext"
         Me.codext.ReadOnly = True
-        Me.codext.Width = 60
         '
         'nombre
         '
         Me.nombre.HeaderText = "Nombre"
         Me.nombre.Name = "nombre"
         Me.nombre.ReadOnly = True
-        Me.nombre.Width = 300
+        Me.nombre.Width = 250
         '
         'a
         '
@@ -893,12 +960,17 @@ Partial Class Materiales
     Friend WithEvents TCodGrpMat As TextBox
     Friend WithEvents CBNomGrpMat As ComboBox
     Friend WithEvents ChActivo As CheckBox
+    Friend WithEvents ChLiquidoExt As CheckBox
+    Friend WithEvents mnInterfazArt As ToolStripMenuItem
+    Friend WithEvents ChAlarmaCorteSinAbrir As CheckBox
+    Friend WithEvents BMermaMaq As Button
+    Friend WithEvents TPorcMerma As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TMotonave As TextBox
+    Friend WithEvents Label12 As Label
     Friend WithEvents codint As DataGridViewTextBoxColumn
     Friend WithEvents codext As DataGridViewTextBoxColumn
     Friend WithEvents nombre As DataGridViewTextBoxColumn
     Friend WithEvents a As DataGridViewTextBoxColumn
     Friend WithEvents Activo As DataGridViewCheckBoxColumn
-    Friend WithEvents ChLiquidoExt As CheckBox
-    Friend WithEvents mnInterfazArt As ToolStripMenuItem
-    Friend WithEvents ChAlarmaCorteSinAbrir As CheckBox
 End Class
