@@ -7,8 +7,8 @@
     End Sub
 
     Private Sub Start_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        Planta = "AVIDESA BUCARAMANGA"
-        TPlanta.Text = Planta
+        'Planta = "AVIDESA BUCARAMANGA"
+        TPlanta.Text = "AVIDESA BUCARAMANGA"
 
         If InStr(UCase(Application.StartupPath), "AVI") Then TimStart.Interval = 10
 

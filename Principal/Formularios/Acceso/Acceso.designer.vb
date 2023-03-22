@@ -54,7 +54,7 @@ Partial Class Acceso
         '
         Me.UsernameLabel.Font = New System.Drawing.Font("Arial", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UsernameLabel.ForeColor = System.Drawing.Color.Blue
-        Me.UsernameLabel.Location = New System.Drawing.Point(218, 40)
+        Me.UsernameLabel.Location = New System.Drawing.Point(226, 39)
         Me.UsernameLabel.Name = "UsernameLabel"
         Me.UsernameLabel.Size = New System.Drawing.Size(139, 23)
         Me.UsernameLabel.TabIndex = 0
@@ -65,7 +65,7 @@ Partial Class Acceso
         '
         Me.PasswordLabel.Font = New System.Drawing.Font("Arial", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PasswordLabel.ForeColor = System.Drawing.Color.Blue
-        Me.PasswordLabel.Location = New System.Drawing.Point(235, 87)
+        Me.PasswordLabel.Location = New System.Drawing.Point(241, 89)
         Me.PasswordLabel.Name = "PasswordLabel"
         Me.PasswordLabel.Size = New System.Drawing.Size(108, 23)
         Me.PasswordLabel.TabIndex = 2
@@ -74,14 +74,14 @@ Partial Class Acceso
         '
         'TUsuario
         '
-        Me.TUsuario.Location = New System.Drawing.Point(200, 60)
+        Me.TUsuario.Location = New System.Drawing.Point(199, 60)
         Me.TUsuario.Name = "TUsuario"
         Me.TUsuario.Size = New System.Drawing.Size(192, 20)
         Me.TUsuario.TabIndex = 1
         '
         'TClave
         '
-        Me.TClave.Location = New System.Drawing.Point(200, 113)
+        Me.TClave.Location = New System.Drawing.Point(199, 113)
         Me.TClave.Name = "TClave"
         Me.TClave.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TClave.Size = New System.Drawing.Size(192, 20)
@@ -92,7 +92,7 @@ Partial Class Acceso
         Me.BCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BCancel.Image = CType(resources.GetObject("BCancel.Image"), System.Drawing.Image)
         Me.BCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BCancel.Location = New System.Drawing.Point(287, 157)
+        Me.BCancel.Location = New System.Drawing.Point(300, 157)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(70, 22)
         Me.BCancel.TabIndex = 5
@@ -103,7 +103,7 @@ Partial Class Acceso
         '
         Me.BOk.Image = CType(resources.GetObject("BOk.Image"), System.Drawing.Image)
         Me.BOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BOk.Location = New System.Drawing.Point(200, 157)
+        Me.BOk.Location = New System.Drawing.Point(215, 157)
         Me.BOk.Name = "BOk"
         Me.BOk.Size = New System.Drawing.Size(64, 21)
         Me.BOk.TabIndex = 6

@@ -23,12 +23,12 @@ Partial Class Productos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Productos))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MaterialesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -158,6 +158,13 @@ Partial Class Productos
         Me.CBBuscarEmp = New System.Windows.Forms.ToolStripComboBox()
         Me.TBuscarEmp = New System.Windows.Forms.ToolStripTextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.TCodHilo = New System.Windows.Forms.TextBox()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.CCodDescarga = New System.Windows.Forms.ComboBox()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.TNomDescarga = New System.Windows.Forms.TextBox()
+        Me.ChGranel = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DGProd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -185,7 +192,7 @@ Partial Class Productos
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchivoToolStripMenuItem, Me.MaterialesToolStripMenuItem, Me.mnInterfazArt, Me.OtrosToolStripMenuItem, Me.AcercaDeToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(953, 28)
+        Me.MenuStrip1.Size = New System.Drawing.Size(913, 28)
         Me.MenuStrip1.TabIndex = 34
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -202,12 +209,14 @@ Partial Class Productos
         Me.MaterialesToolStripMenuItem.Name = "MaterialesToolStripMenuItem"
         Me.MaterialesToolStripMenuItem.Size = New System.Drawing.Size(97, 24)
         Me.MaterialesToolStripMenuItem.Text = "Materiales"
+        Me.MaterialesToolStripMenuItem.Visible = False
         '
         'mnInterfazArt
         '
         Me.mnInterfazArt.Name = "mnInterfazArt"
         Me.mnInterfazArt.Size = New System.Drawing.Size(114, 24)
         Me.mnInterfazArt.Text = "Interfaz Artículos"
+        Me.mnInterfazArt.Visible = False
         '
         'OtrosToolStripMenuItem
         '
@@ -216,6 +225,7 @@ Partial Class Productos
         Me.OtrosToolStripMenuItem.Name = "OtrosToolStripMenuItem"
         Me.OtrosToolStripMenuItem.Size = New System.Drawing.Size(70, 24)
         Me.OtrosToolStripMenuItem.Text = "Otros"
+        Me.OtrosToolStripMenuItem.Visible = False
         '
         'ConfigurarArticulosDetToolStripMenuItem
         '
@@ -234,24 +244,24 @@ Partial Class Productos
         '
         Me.DGProd.AllowUserToAddRows = False
         Me.DGProd.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGProd.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGProd.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.DGProd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGProd.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.CodInt, Me.Nombre, Me.Activo, Me.PresKg})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DGProd.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DGProd.DefaultCellStyle = DataGridViewCellStyle8
         Me.DGProd.Location = New System.Drawing.Point(435, 83)
         Me.DGProd.Name = "DGProd"
         Me.DGProd.ReadOnly = True
@@ -295,7 +305,7 @@ Partial Class Productos
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BSalir, Me.ToolStripSeparator9, Me.BEditar, Me.ToolStripSeparator8, Me.BNuevo, Me.ToolStripSeparator5, Me.BBorrar, Me.ToolStripSeparator6, Me.BActualizar, Me.ToolStripSeparator10, Me.ToolStripLabel2, Me.CBBuscar, Me.TBuscar, Me.BImprimir})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 28)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(953, 27)
+        Me.ToolStrip1.Size = New System.Drawing.Size(913, 27)
         Me.ToolStrip1.TabIndex = 36
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -402,8 +412,13 @@ Partial Class Productos
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.GBPaqueteo)
-        Me.Panel1.Controls.Add(Me.GroupBox5)
+        Me.Panel1.Controls.Add(Me.ChGranel)
+        Me.Panel1.Controls.Add(Me.Label36)
+        Me.Panel1.Controls.Add(Me.TNomDescarga)
+        Me.Panel1.Controls.Add(Me.CCodDescarga)
+        Me.Panel1.Controls.Add(Me.Label35)
+        Me.Panel1.Controls.Add(Me.Label17)
+        Me.Panel1.Controls.Add(Me.TCodHilo)
         Me.Panel1.Controls.Add(Me.ChPaqueteo)
         Me.Panel1.Controls.Add(Me.Label24)
         Me.Panel1.Controls.Add(Me.TRegIca)
@@ -414,8 +429,6 @@ Partial Class Productos
         Me.Panel1.Controls.Add(Me.TRef)
         Me.Panel1.Controls.Add(Me.Label32)
         Me.Panel1.Controls.Add(Me.ChActivo)
-        Me.Panel1.Controls.Add(Me.TObserv)
-        Me.Panel1.Controls.Add(Me.Label25)
         Me.Panel1.Controls.Add(Me.GBLinea)
         Me.Panel1.Controls.Add(Me.Label7)
         Me.Panel1.Controls.Add(Me.TCodEtiq)
@@ -450,11 +463,12 @@ Partial Class Productos
         Me.GBPaqueteo.Controls.Add(Me.Label14)
         Me.GBPaqueteo.Controls.Add(Me.TCodEmpBolsa)
         Me.GBPaqueteo.Controls.Add(Me.Label15)
-        Me.GBPaqueteo.Location = New System.Drawing.Point(17, 282)
+        Me.GBPaqueteo.Location = New System.Drawing.Point(481, 412)
         Me.GBPaqueteo.Name = "GBPaqueteo"
         Me.GBPaqueteo.Size = New System.Drawing.Size(383, 65)
         Me.GBPaqueteo.TabIndex = 59
         Me.GBPaqueteo.TabStop = False
+        Me.GBPaqueteo.Visible = False
         '
         'TUdsPaca
         '
@@ -472,7 +486,7 @@ Partial Class Productos
         Me.Label13.ForeColor = System.Drawing.Color.Black
         Me.Label13.Location = New System.Drawing.Point(240, 14)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(64, 15)
+        Me.Label13.Size = New System.Drawing.Size(57, 13)
         Me.Label13.TabIndex = 52
         Me.Label13.Text = "Uds. Paca"
         '
@@ -480,7 +494,7 @@ Partial Class Productos
         '
         Me.TCodEtiqBolsa.Location = New System.Drawing.Point(131, 35)
         Me.TCodEtiqBolsa.Name = "TCodEtiqBolsa"
-        Me.TCodEtiqBolsa.Size = New System.Drawing.Size(75, 21)
+        Me.TCodEtiqBolsa.Size = New System.Drawing.Size(75, 20)
         Me.TCodEtiqBolsa.TabIndex = 50
         Me.TCodEtiqBolsa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -490,7 +504,7 @@ Partial Class Productos
         Me.Label14.ForeColor = System.Drawing.Color.Black
         Me.Label14.Location = New System.Drawing.Point(15, 38)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(91, 15)
+        Me.Label14.Size = New System.Drawing.Size(79, 13)
         Me.Label14.TabIndex = 49
         Me.Label14.Text = "Cód. Etiq Bolsa"
         '
@@ -498,7 +512,7 @@ Partial Class Productos
         '
         Me.TCodEmpBolsa.Location = New System.Drawing.Point(131, 12)
         Me.TCodEmpBolsa.Name = "TCodEmpBolsa"
-        Me.TCodEmpBolsa.Size = New System.Drawing.Size(75, 21)
+        Me.TCodEmpBolsa.Size = New System.Drawing.Size(75, 20)
         Me.TCodEmpBolsa.TabIndex = 44
         Me.TCodEmpBolsa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -508,7 +522,7 @@ Partial Class Productos
         Me.Label15.ForeColor = System.Drawing.Color.Black
         Me.Label15.Location = New System.Drawing.Point(15, 18)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(89, 15)
+        Me.Label15.Size = New System.Drawing.Size(76, 13)
         Me.Label15.TabIndex = 43
         Me.Label15.Text = "Cód.EmpBolsa"
         '
@@ -518,12 +532,13 @@ Partial Class Productos
         Me.GroupBox5.Controls.Add(Me.TVencxLinea)
         Me.GroupBox5.Controls.Add(Me.Label23)
         Me.GroupBox5.Controls.Add(Me.TVencxProd)
-        Me.GroupBox5.Location = New System.Drawing.Point(17, 202)
+        Me.GroupBox5.Location = New System.Drawing.Point(452, 330)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(200, 67)
         Me.GroupBox5.TabIndex = 57
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Vencimiento"
+        Me.GroupBox5.Visible = False
         '
         'Label39
         '
@@ -531,7 +546,7 @@ Partial Class Productos
         Me.Label39.ForeColor = System.Drawing.Color.Black
         Me.Label39.Location = New System.Drawing.Point(17, 44)
         Me.Label39.Name = "Label39"
-        Me.Label39.Size = New System.Drawing.Size(61, 15)
+        Me.Label39.Size = New System.Drawing.Size(54, 13)
         Me.Label39.TabIndex = 5
         Me.Label39.Text = "Por Línea"
         '
@@ -540,7 +555,7 @@ Partial Class Productos
         Me.TVencxLinea.Location = New System.Drawing.Point(121, 42)
         Me.TVencxLinea.Name = "TVencxLinea"
         Me.TVencxLinea.ReadOnly = True
-        Me.TVencxLinea.Size = New System.Drawing.Size(61, 21)
+        Me.TVencxLinea.Size = New System.Drawing.Size(61, 20)
         Me.TVencxLinea.TabIndex = 4
         Me.TVencxLinea.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -550,7 +565,7 @@ Partial Class Productos
         Me.Label23.ForeColor = System.Drawing.Color.Black
         Me.Label23.Location = New System.Drawing.Point(17, 23)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(82, 15)
+        Me.Label23.Size = New System.Drawing.Size(69, 13)
         Me.Label23.TabIndex = 3
         Me.Label23.Text = "Por Producto"
         '
@@ -558,96 +573,105 @@ Partial Class Productos
         '
         Me.TVencxProd.Location = New System.Drawing.Point(121, 18)
         Me.TVencxProd.Name = "TVencxProd"
-        Me.TVencxProd.Size = New System.Drawing.Size(61, 21)
+        Me.TVencxProd.Size = New System.Drawing.Size(61, 20)
         Me.TVencxProd.TabIndex = 2
         Me.TVencxProd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ChPaqueteo
         '
         Me.ChPaqueteo.AutoSize = True
-        Me.ChPaqueteo.Location = New System.Drawing.Point(293, 19)
+        Me.ChPaqueteo.Location = New System.Drawing.Point(313, 87)
         Me.ChPaqueteo.Name = "ChPaqueteo"
         Me.ChPaqueteo.Size = New System.Drawing.Size(80, 19)
         Me.ChPaqueteo.TabIndex = 58
         Me.ChPaqueteo.Text = "Paqueteo"
         Me.ChPaqueteo.UseVisualStyleBackColor = True
+        Me.ChPaqueteo.Visible = False
         '
         'Label24
         '
         Me.Label24.AutoSize = True
         Me.Label24.ForeColor = System.Drawing.Color.Black
-        Me.Label24.Location = New System.Drawing.Point(20, 173)
+        Me.Label24.Location = New System.Drawing.Point(232, 254)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(52, 15)
         Me.Label24.TabIndex = 55
         Me.Label24.Text = "Reg. Ica"
+        Me.Label24.Visible = False
         '
         'TRegIca
         '
-        Me.TRegIca.Location = New System.Drawing.Point(90, 170)
+        Me.TRegIca.Location = New System.Drawing.Point(313, 251)
         Me.TRegIca.Name = "TRegIca"
         Me.TRegIca.Size = New System.Drawing.Size(87, 21)
         Me.TRegIca.TabIndex = 56
         Me.TRegIca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TRegIca.Visible = False
         '
         'Label34
         '
         Me.Label34.AutoSize = True
         Me.Label34.ForeColor = System.Drawing.Color.Black
-        Me.Label34.Location = New System.Drawing.Point(204, 151)
+        Me.Label34.Location = New System.Drawing.Point(232, 221)
         Me.Label34.Name = "Label34"
         Me.Label34.Size = New System.Drawing.Size(60, 15)
         Me.Label34.TabIndex = 53
         Me.Label34.Text = "Densidad"
+        Me.Label34.Visible = False
         '
         'TDensidad
         '
-        Me.TDensidad.Location = New System.Drawing.Point(286, 145)
+        Me.TDensidad.Location = New System.Drawing.Point(313, 218)
         Me.TDensidad.Name = "TDensidad"
         Me.TDensidad.Size = New System.Drawing.Size(87, 21)
         Me.TDensidad.TabIndex = 52
         Me.TDensidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.TDensidad.Visible = False
         '
         'TCodMaq
         '
-        Me.TCodMaq.Location = New System.Drawing.Point(286, 120)
+        Me.TCodMaq.Location = New System.Drawing.Point(313, 185)
         Me.TCodMaq.Name = "TCodMaq"
         Me.TCodMaq.Size = New System.Drawing.Size(87, 21)
         Me.TCodMaq.TabIndex = 51
         Me.TCodMaq.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TCodMaq.Visible = False
         '
         'Label31
         '
         Me.Label31.AutoSize = True
         Me.Label31.ForeColor = System.Drawing.Color.Black
-        Me.Label31.Location = New System.Drawing.Point(204, 127)
+        Me.Label31.Location = New System.Drawing.Point(232, 188)
         Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(76, 15)
+        Me.Label31.Size = New System.Drawing.Size(79, 15)
         Me.Label31.TabIndex = 50
-        Me.Label31.Text = "Cod.Maquila"
+        Me.Label31.Text = "Cód. Maquila"
+        Me.Label31.Visible = False
         '
         'TRef
         '
-        Me.TRef.Location = New System.Drawing.Point(286, 95)
+        Me.TRef.Location = New System.Drawing.Point(313, 152)
         Me.TRef.Name = "TRef"
         Me.TRef.Size = New System.Drawing.Size(87, 21)
         Me.TRef.TabIndex = 49
         Me.TRef.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TRef.Visible = False
         '
         'Label32
         '
         Me.Label32.AutoSize = True
         Me.Label32.ForeColor = System.Drawing.Color.Black
-        Me.Label32.Location = New System.Drawing.Point(204, 101)
+        Me.Label32.Location = New System.Drawing.Point(232, 155)
         Me.Label32.Name = "Label32"
         Me.Label32.Size = New System.Drawing.Size(60, 15)
         Me.Label32.TabIndex = 48
         Me.Label32.Text = "Ref. Emp."
+        Me.Label32.Visible = False
         '
         'ChActivo
         '
         Me.ChActivo.AutoSize = True
-        Me.ChActivo.Location = New System.Drawing.Point(207, 20)
+        Me.ChActivo.Location = New System.Drawing.Point(207, 21)
         Me.ChActivo.Name = "ChActivo"
         Me.ChActivo.Size = New System.Drawing.Size(61, 19)
         Me.ChActivo.TabIndex = 47
@@ -656,22 +680,24 @@ Partial Class Productos
         '
         'TObserv
         '
-        Me.TObserv.Location = New System.Drawing.Point(224, 214)
+        Me.TObserv.Location = New System.Drawing.Point(679, 348)
         Me.TObserv.Multiline = True
         Me.TObserv.Name = "TObserv"
         Me.TObserv.Size = New System.Drawing.Size(181, 56)
         Me.TObserv.TabIndex = 44
         Me.TObserv.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TObserv.Visible = False
         '
         'Label25
         '
         Me.Label25.AutoSize = True
         Me.Label25.ForeColor = System.Drawing.Color.Black
-        Me.Label25.Location = New System.Drawing.Point(227, 196)
+        Me.Label25.Location = New System.Drawing.Point(682, 330)
         Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(96, 15)
+        Me.Label25.Size = New System.Drawing.Size(81, 13)
         Me.Label25.TabIndex = 43
         Me.Label25.Text = "Observaciones:"
+        Me.Label25.Visible = False
         '
         'GBLinea
         '
@@ -684,6 +710,7 @@ Partial Class Productos
         Me.GBLinea.TabIndex = 33
         Me.GBLinea.TabStop = False
         Me.GBLinea.Text = "Asignación de Línea"
+        Me.GBLinea.Visible = False
         '
         'CLinea
         '
@@ -698,15 +725,15 @@ Partial Class Productos
         '
         Me.Label7.AutoSize = True
         Me.Label7.ForeColor = System.Drawing.Color.Black
-        Me.Label7.Location = New System.Drawing.Point(19, 151)
+        Me.Label7.Location = New System.Drawing.Point(14, 188)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(50, 15)
+        Me.Label7.Size = New System.Drawing.Size(56, 15)
         Me.Label7.TabIndex = 30
-        Me.Label7.Text = "CodEtiq"
+        Me.Label7.Text = "Cód. Etiq"
         '
         'TCodEtiq
         '
-        Me.TCodEtiq.Location = New System.Drawing.Point(90, 145)
+        Me.TCodEtiq.Location = New System.Drawing.Point(90, 185)
         Me.TCodEtiq.Name = "TCodEtiq"
         Me.TCodEtiq.Size = New System.Drawing.Size(87, 21)
         Me.TCodEtiq.TabIndex = 29
@@ -715,15 +742,15 @@ Partial Class Productos
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.Color.Black
-        Me.Label4.Location = New System.Drawing.Point(19, 127)
+        Me.Label4.Location = New System.Drawing.Point(14, 155)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(54, 15)
+        Me.Label4.Size = New System.Drawing.Size(60, 15)
         Me.Label4.TabIndex = 28
-        Me.Label4.Text = "CodEmp"
+        Me.Label4.Text = "Cód. Emp"
         '
         'TCodEmp
         '
-        Me.TCodEmp.Location = New System.Drawing.Point(90, 121)
+        Me.TCodEmp.Location = New System.Drawing.Point(90, 152)
         Me.TCodEmp.Name = "TCodEmp"
         Me.TCodEmp.Size = New System.Drawing.Size(87, 21)
         Me.TCodEmp.TabIndex = 27
@@ -740,7 +767,7 @@ Partial Class Productos
         'BAceptar
         '
         Me.BAceptar.Image = CType(resources.GetObject("BAceptar.Image"), System.Drawing.Image)
-        Me.BAceptar.Location = New System.Drawing.Point(329, 380)
+        Me.BAceptar.Location = New System.Drawing.Point(313, 380)
         Me.BAceptar.Name = "BAceptar"
         Me.BAceptar.Size = New System.Drawing.Size(35, 31)
         Me.BAceptar.TabIndex = 23
@@ -750,7 +777,7 @@ Partial Class Productos
         '
         Me.Label6.AutoSize = True
         Me.Label6.ForeColor = System.Drawing.Color.Black
-        Me.Label6.Location = New System.Drawing.Point(18, 103)
+        Me.Label6.Location = New System.Drawing.Point(14, 122)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(36, 15)
         Me.Label6.TabIndex = 18
@@ -760,17 +787,18 @@ Partial Class Productos
         '
         Me.Label5.AutoSize = True
         Me.Label5.ForeColor = System.Drawing.Color.Black
-        Me.Label5.Location = New System.Drawing.Point(204, 72)
+        Me.Label5.Location = New System.Drawing.Point(232, 122)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(60, 15)
         Me.Label5.TabIndex = 17
         Me.Label5.Text = "Empaque"
+        Me.Label5.Visible = False
         '
         'CBPreskg
         '
         Me.CBPreskg.FormattingEnabled = True
         Me.CBPreskg.Items.AddRange(New Object() {"5", "10", "15", "20", "25", "30", "35", "40", "45", "50"})
-        Me.CBPreskg.Location = New System.Drawing.Point(90, 95)
+        Me.CBPreskg.Location = New System.Drawing.Point(90, 118)
         Me.CBPreskg.Name = "CBPreskg"
         Me.CBPreskg.Size = New System.Drawing.Size(87, 23)
         Me.CBPreskg.TabIndex = 14
@@ -779,14 +807,15 @@ Partial Class Productos
         '
         Me.CBEmpaque.FormattingEnabled = True
         Me.CBEmpaque.Items.AddRange(New Object() {"BULT", "GRAN"})
-        Me.CBEmpaque.Location = New System.Drawing.Point(286, 68)
+        Me.CBEmpaque.Location = New System.Drawing.Point(313, 118)
         Me.CBEmpaque.Name = "CBEmpaque"
         Me.CBEmpaque.Size = New System.Drawing.Size(87, 23)
         Me.CBEmpaque.TabIndex = 13
+        Me.CBEmpaque.Visible = False
         '
         'TNombre
         '
-        Me.TNombre.Location = New System.Drawing.Point(90, 44)
+        Me.TNombre.Location = New System.Drawing.Point(90, 53)
         Me.TNombre.Name = "TNombre"
         Me.TNombre.Size = New System.Drawing.Size(283, 21)
         Me.TNombre.TabIndex = 12
@@ -795,8 +824,7 @@ Partial Class Productos
         'CBTextura
         '
         Me.CBTextura.FormattingEnabled = True
-        Me.CBTextura.Items.AddRange(New Object() {"PELT", "HARI", "FINO", "QUEB", "EXT", "POLVO", "GRANULADO", "LIQUIDO", "VEHICULO"})
-        Me.CBTextura.Location = New System.Drawing.Point(90, 69)
+        Me.CBTextura.Location = New System.Drawing.Point(90, 85)
         Me.CBTextura.Name = "CBTextura"
         Me.CBTextura.Size = New System.Drawing.Size(87, 23)
         Me.CBTextura.TabIndex = 11
@@ -805,7 +833,7 @@ Partial Class Productos
         '
         Me.Label3.AutoSize = True
         Me.Label3.ForeColor = System.Drawing.Color.Black
-        Me.Label3.Location = New System.Drawing.Point(16, 77)
+        Me.Label3.Location = New System.Drawing.Point(14, 89)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(50, 15)
         Me.Label3.TabIndex = 10
@@ -815,7 +843,7 @@ Partial Class Productos
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.Color.Black
-        Me.Label2.Location = New System.Drawing.Point(14, 47)
+        Me.Label2.Location = New System.Drawing.Point(14, 56)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 15)
         Me.Label2.TabIndex = 9
@@ -845,37 +873,37 @@ Partial Class Productos
         Me.DGEmpaques.AllowUserToDeleteRows = False
         Me.DGEmpaques.AllowUserToResizeRows = False
         Me.DGEmpaques.BackgroundColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGEmpaques.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGEmpaques.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.DGEmpaques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DGEmpaques.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DGEmpaques_CodInt, Me.DGEmpaques_Nombre})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DGEmpaques.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DGEmpaques.DefaultCellStyle = DataGridViewCellStyle10
         Me.DGEmpaques.GridColor = System.Drawing.Color.Gray
         Me.DGEmpaques.Location = New System.Drawing.Point(517, 120)
         Me.DGEmpaques.MultiSelect = False
         Me.DGEmpaques.Name = "DGEmpaques"
         Me.DGEmpaques.ReadOnly = True
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DGEmpaques.RowHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DGEmpaques.RowHeadersDefaultCellStyle = DataGridViewCellStyle11
         Me.DGEmpaques.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DGEmpaques.Size = New System.Drawing.Size(324, 239)
         Me.DGEmpaques.TabIndex = 45
@@ -915,6 +943,7 @@ Partial Class Productos
         Me.TabProductosDet.SelectedIndex = 0
         Me.TabProductosDet.Size = New System.Drawing.Size(888, 198)
         Me.TabProductosDet.TabIndex = 55
+        Me.TabProductosDet.Visible = False
         '
         'CodigosEquivalentes
         '
@@ -1337,8 +1366,8 @@ Partial Class Productos
         '
         'DGArticulosDet_CodIntDet
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DGArticulosDet_CodIntDet.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DGArticulosDet_CodIntDet.DefaultCellStyle = DataGridViewCellStyle12
         Me.DGArticulosDet_CodIntDet.HeaderText = "Código Empaque"
         Me.DGArticulosDet_CodIntDet.Name = "DGArticulosDet_CodIntDet"
         Me.DGArticulosDet_CodIntDet.ReadOnly = True
@@ -1465,11 +1494,77 @@ Partial Class Productos
         Me.TabPage1.TabIndex = 3
         Me.TabPage1.Text = "Paqueteo"
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.ForeColor = System.Drawing.Color.Black
+        Me.Label17.Location = New System.Drawing.Point(14, 221)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(49, 15)
+        Me.Label17.TabIndex = 60
+        Me.Label17.Text = "Cód. Hil"
+        '
+        'TCodHilo
+        '
+        Me.TCodHilo.Location = New System.Drawing.Point(90, 218)
+        Me.TCodHilo.Name = "TCodHilo"
+        Me.TCodHilo.Size = New System.Drawing.Size(87, 21)
+        Me.TCodHilo.TabIndex = 59
+        '
+        'Label35
+        '
+        Me.Label35.AutoSize = True
+        Me.Label35.ForeColor = System.Drawing.Color.Black
+        Me.Label35.Location = New System.Drawing.Point(14, 254)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(90, 15)
+        Me.Label35.TabIndex = 61
+        Me.Label35.Text = "Cód. Descarga"
+        '
+        'CCodDescarga
+        '
+        Me.CCodDescarga.FormattingEnabled = True
+        Me.CCodDescarga.Location = New System.Drawing.Point(111, 250)
+        Me.CCodDescarga.Name = "CCodDescarga"
+        Me.CCodDescarga.Size = New System.Drawing.Size(87, 23)
+        Me.CCodDescarga.TabIndex = 62
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.ForeColor = System.Drawing.Color.Black
+        Me.Label36.Location = New System.Drawing.Point(14, 287)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(52, 15)
+        Me.Label36.TabIndex = 64
+        Me.Label36.Text = "Nombre"
+        '
+        'TNomDescarga
+        '
+        Me.TNomDescarga.Location = New System.Drawing.Point(90, 284)
+        Me.TNomDescarga.Name = "TNomDescarga"
+        Me.TNomDescarga.Size = New System.Drawing.Size(258, 21)
+        Me.TNomDescarga.TabIndex = 63
+        '
+        'ChGranel
+        '
+        Me.ChGranel.AutoSize = True
+        Me.ChGranel.Location = New System.Drawing.Point(293, 21)
+        Me.ChGranel.Name = "ChGranel"
+        Me.ChGranel.Size = New System.Drawing.Size(63, 19)
+        Me.ChGranel.TabIndex = 65
+        Me.ChGranel.Text = "Granel"
+        Me.ChGranel.UseVisualStyleBackColor = True
+        '
         'Productos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(953, 699)
+        Me.ClientSize = New System.Drawing.Size(913, 699)
+        Me.Controls.Add(Me.Label25)
+        Me.Controls.Add(Me.TObserv)
+        Me.Controls.Add(Me.GroupBox5)
+        Me.Controls.Add(Me.GBPaqueteo)
         Me.Controls.Add(Me.FRefrescaDG)
         Me.Controls.Add(Me.DGEmpaques)
         Me.Controls.Add(Me.Panel1)
@@ -1650,4 +1745,11 @@ Partial Class Productos
     Friend WithEvents DGEquivalencias_CodProdEqui As DataGridViewTextBoxColumn
     Friend WithEvents DGEquivalencias_Present As DataGridViewTextBoxColumn
     Friend WithEvents DGEquivalencias_PresKg As DataGridViewTextBoxColumn
+    Friend WithEvents Label17 As Label
+    Friend WithEvents TCodHilo As TextBox
+    Friend WithEvents Label36 As Label
+    Friend WithEvents TNomDescarga As TextBox
+    Friend WithEvents CCodDescarga As ComboBox
+    Friend WithEvents Label35 As Label
+    Friend WithEvents ChGranel As CheckBox
 End Class

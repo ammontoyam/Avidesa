@@ -49,16 +49,16 @@ Partial Class Start
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(304, 277)
+        Me.Panel1.Size = New System.Drawing.Size(321, 277)
         Me.Panel1.TabIndex = 0
         '
         'TPlanta
         '
         Me.TPlanta.Font = New System.Drawing.Font("Arial", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TPlanta.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.TPlanta.Location = New System.Drawing.Point(134, 169)
+        Me.TPlanta.Location = New System.Drawing.Point(130, 169)
         Me.TPlanta.Name = "TPlanta"
-        Me.TPlanta.Size = New System.Drawing.Size(157, 15)
+        Me.TPlanta.Size = New System.Drawing.Size(183, 19)
         Me.TPlanta.TabIndex = 6
         Me.TPlanta.Text = "---"
         Me.TPlanta.TextAlign = System.Drawing.ContentAlignment.TopRight
@@ -79,9 +79,9 @@ Partial Class Start
         Me.Label4.ForeColor = System.Drawing.Color.MediumBlue
         Me.Label4.Location = New System.Drawing.Point(17, 16)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(131, 34)
+        Me.Label4.Size = New System.Drawing.Size(139, 34)
         Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Desarrollado por " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Tecnimática SAS."
+        Me.Label4.Text = "Desarrollado por " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Tecnimática S.A.S."
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Licenciado
