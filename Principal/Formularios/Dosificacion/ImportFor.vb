@@ -1,11 +1,13 @@
 ﻿Option Explicit On
-
+Imports System.Text
 Imports System.Windows.Forms
 Imports System.IO
 Imports System.Data.Common
 Imports System.Data
 Imports System.Threading.Thread
 Imports ClassLibrary
+Imports iTextSharp.text.pdf
+Imports iTextSharp.text
 
 Public Class ImportFor
 
@@ -522,4 +524,76 @@ Public Class ImportFor
             MsgError(ex)
         End Try
     End Sub
+
+
+    Private Sub BSplitPDF_Click(sender As Object, e As EventArgs) Handles BSplitPDF.Click
+        Try
+
+            If TRuta.Text = "" Then
+                OpenFile.InitialDirectory = Ruta '"C:\"
+            Else
+                OpenFile.InitialDirectory = CLeft(TRuta.Text, InStrRev(TRuta.Text, "\"))
+            End If
+
+            OpenFile.Filter = "pdf files (*.pdf)|*.pdf"
+            OpenFile.FilterIndex = 0
+            OpenFile.RestoreDirectory = True
+
+            If (OpenFile.ShowDialog() = DialogResult.OK) Then
+                TRuta.Text = OpenFile.FileName
+            End If
+
+            ConvertPDFToText(TRuta.Text)
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+    End Sub
+
+
+    Function ConvertPDFToText(ByVal inputFile As String) As Boolean
+
+        ' Abrir el archivo PDF de entrada
+        Dim reader As New PdfReader(inputFile)
+
+        Dim totalPaginas As Integer = reader.NumberOfPages
+        '***************************************************************************************
+        '******          Extraer un numero de paginas                         ******************
+        '***************************************************************************************
+        'Dim document As New Document()
+        'Dim copy As New PdfCopy(document, New System.IO.FileStream(Ruta + "\splitPDF.pdf", System.IO.FileMode.Create))
+        'document.Open()
+
+        'Dim inicio As Integer = 1 ' Página inicial del rango
+        'Dim fin As Integer = 5 ' Página final del rango
+
+        'For i As Integer = inicio To fin
+        '    Dim page As PdfImportedPage = copy.GetImportedPage(reader, i)
+        '    copy.AddPage(page)
+        'Next
+
+        'document.Close()
+        'reader.Close()
+
+        '***************************************************************************************
+        '******          Dividir en documentos de a una pagina                ******************
+        '***************************************************************************************
+        For i As Integer = 1 To totalPaginas
+            Dim document As New Document()
+            Dim copy As New PdfCopy(document, New System.IO.FileStream(Ruta + "\splitPDF_" + i.ToString + ".pdf", FileMode.Create))
+            document.Open()
+
+            Dim page As PdfImportedPage = copy.GetImportedPage(reader, i)
+            copy.AddPage(page)
+
+            document.Close()
+        Next
+
+        reader.Close()
+
+        MsgBox("Archivo PDF dividido exitosamente.")
+        Return True
+
+    End Function
+
 End Class

@@ -23,13 +23,12 @@ Partial Class ImportFor
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportFor))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportFor))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.BSalir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.BBuscar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
@@ -37,6 +36,10 @@ Partial Class ImportFor
         Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnSalir = New System.Windows.Forms.ToolStripMenuItem()
         Me.DGFor = New System.Windows.Forms.DataGridView()
+        Me.CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NomFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Version = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaForm = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TRuta = New System.Windows.Forms.TextBox()
         Me.BTraerFor = New System.Windows.Forms.Button()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
@@ -46,10 +49,8 @@ Partial Class ImportFor
         Me.ProgresBar = New System.Windows.Forms.ToolStripProgressBar()
         Me.TMensaje = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.CodFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NomFor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Version = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaForm = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BSalir = New System.Windows.Forms.ToolStripButton()
+        Me.BSplitPDF = New System.Windows.Forms.ToolStripButton()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DGFor, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -58,21 +59,12 @@ Partial Class ImportFor
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BSalir, Me.ToolStripSeparator9, Me.BBuscar, Me.ToolStripSeparator1})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BSalir, Me.ToolStripSeparator9, Me.BBuscar, Me.ToolStripSeparator1, Me.BSplitPDF})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(625, 25)
         Me.ToolStrip1.TabIndex = 23
         Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'BSalir
-        '
-        Me.BSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BSalir.Image = CType(resources.GetObject("BSalir.Image"), System.Drawing.Image)
-        Me.BSalir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BSalir.Name = "BSalir"
-        Me.BSalir.Size = New System.Drawing.Size(23, 22)
-        Me.BSalir.Text = "Salir"
         '
         'ToolStripSeparator9
         '
@@ -157,6 +149,39 @@ Partial Class ImportFor
         Me.DGFor.Size = New System.Drawing.Size(602, 401)
         Me.DGFor.TabIndex = 25
         '
+        'CodFor
+        '
+        Me.CodFor.HeaderText = "Código"
+        Me.CodFor.Name = "CodFor"
+        Me.CodFor.ReadOnly = True
+        Me.CodFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.CodFor.ToolTipText = "Código"
+        '
+        'NomFor
+        '
+        Me.NomFor.HeaderText = "    Nombre"
+        Me.NomFor.Name = "NomFor"
+        Me.NomFor.ReadOnly = True
+        Me.NomFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.NomFor.Width = 250
+        '
+        'Version
+        '
+        Me.Version.HeaderText = "Versión"
+        Me.Version.Name = "Version"
+        Me.Version.ReadOnly = True
+        Me.Version.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Version.Width = 80
+        '
+        'FechaForm
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.FechaForm.DefaultCellStyle = DataGridViewCellStyle2
+        Me.FechaForm.HeaderText = "Fecha"
+        Me.FechaForm.Name = "FechaForm"
+        Me.FechaForm.ReadOnly = True
+        Me.FechaForm.Width = 110
+        '
         'TRuta
         '
         Me.TRuta.Location = New System.Drawing.Point(12, 76)
@@ -217,38 +242,23 @@ Partial Class ImportFor
         Me.Label1.TabIndex = 30
         Me.Label1.Text = "Ruta archivo plano importación "
         '
-        'CodFor
+        'BSalir
         '
-        Me.CodFor.HeaderText = "Código"
-        Me.CodFor.Name = "CodFor"
-        Me.CodFor.ReadOnly = True
-        Me.CodFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.CodFor.ToolTipText = "Código"
+        Me.BSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BSalir.Image = CType(resources.GetObject("BSalir.Image"), System.Drawing.Image)
+        Me.BSalir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BSalir.Name = "BSalir"
+        Me.BSalir.Size = New System.Drawing.Size(23, 22)
+        Me.BSalir.Text = "Salir"
         '
-        'NomFor
+        'BSplitPDF
         '
-        Me.NomFor.HeaderText = "    Nombre"
-        Me.NomFor.Name = "NomFor"
-        Me.NomFor.ReadOnly = True
-        Me.NomFor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.NomFor.Width = 250
-        '
-        'Version
-        '
-        Me.Version.HeaderText = "Versión"
-        Me.Version.Name = "Version"
-        Me.Version.ReadOnly = True
-        Me.Version.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Version.Width = 80
-        '
-        'FechaForm
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.FechaForm.DefaultCellStyle = DataGridViewCellStyle2
-        Me.FechaForm.HeaderText = "Fecha"
-        Me.FechaForm.Name = "FechaForm"
-        Me.FechaForm.ReadOnly = True
-        Me.FechaForm.Width = 110
+        Me.BSplitPDF.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BSplitPDF.Image = Global.ChronoSoftNet.My.Resources.Resources.splitpdf
+        Me.BSplitPDF.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BSplitPDF.Name = "BSplitPDF"
+        Me.BSplitPDF.Size = New System.Drawing.Size(23, 22)
+        Me.BSplitPDF.Text = "Dividir PDF"
         '
         'ImportFor
         '
@@ -281,7 +291,6 @@ Partial Class ImportFor
 
     End Sub
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
-    Friend WithEvents BSalir As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripSeparator9 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents ArchivoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -302,4 +311,6 @@ Partial Class ImportFor
     Friend WithEvents NomFor As DataGridViewTextBoxColumn
     Friend WithEvents Version As DataGridViewTextBoxColumn
     Friend WithEvents FechaForm As DataGridViewTextBoxColumn
+    Friend WithEvents BSalir As ToolStripButton
+    Friend WithEvents BSplitPDF As ToolStripButton
 End Class

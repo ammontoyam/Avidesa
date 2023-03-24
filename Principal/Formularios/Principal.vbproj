@@ -841,6 +841,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="02 Network.ico" />
+    <None Include="Resources\splitpdf.png" />
+    <None Include="Resources\icon-splitpdf.png" />
     <None Include="Resources\maquila.jpg" />
     <None Include="Resources\logo_mac_pollo.png" />
     <None Include="Web References\wsCentralbascula\Central.disco" />
