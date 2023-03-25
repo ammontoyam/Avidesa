@@ -32,6 +32,11 @@ ChronoSoftNet
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:ChronoSoftNet.My.Resources.Resources.vehiculo_granel">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="T:ChronoSoftNet.ChrItaEst_UnoEDataSet">
 <summary>
 Represents a strongly typed in-memory cache of data.

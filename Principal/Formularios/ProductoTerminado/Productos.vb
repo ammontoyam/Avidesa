@@ -183,9 +183,9 @@ Public Class Productos
         Panel1.Enabled = True
         BCancelar_Click(Nothing, Nothing)
         'Limpiar_Habilitar_TextBox(Me.Controls, AccionTextBox.Habilitar)
-        TVencxLinea.ReadOnly = True
+        'TVencxLinea.ReadOnly = True
         TCodInt.Focus()
-        CLinea.Enabled = True
+        'CLinea.Enabled = True
     End Sub
 
     Private Sub BCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancelar.Click

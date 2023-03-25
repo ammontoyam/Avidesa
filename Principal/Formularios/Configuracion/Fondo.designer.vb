@@ -53,6 +53,7 @@ Partial Class Fondo
         Me.mnUbicaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnLineasPlanta = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnEquivFormProd = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConfiguraciónDescargasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpMenu = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnCambiarClave = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnProgramasSatelite = New System.Windows.Forms.ToolStripMenuItem()
@@ -275,7 +276,7 @@ Partial Class Fondo
         '
         'mnTablas
         '
-        Me.mnTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnMatePrim, Me.mnProduc, Me.mnUsua, Me.mnClientes, Me.mnCodEmpEt, Me.mnBasculas, Me.mnUbicaciones, Me.mnLineasPlanta, Me.mnEquivFormProd})
+        Me.mnTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnMatePrim, Me.mnProduc, Me.mnUsua, Me.mnClientes, Me.mnCodEmpEt, Me.mnBasculas, Me.mnUbicaciones, Me.mnLineasPlanta, Me.mnEquivFormProd, Me.ConfiguraciónDescargasToolStripMenuItem})
         Me.mnTablas.Image = CType(resources.GetObject("mnTablas.Image"), System.Drawing.Image)
         Me.mnTablas.Name = "mnTablas"
         Me.mnTablas.Size = New System.Drawing.Size(71, 24)
@@ -308,6 +309,7 @@ Partial Class Fondo
         Me.mnClientes.Name = "mnClientes"
         Me.mnClientes.Size = New System.Drawing.Size(260, 26)
         Me.mnClientes.Text = "Clientes"
+        Me.mnClientes.Visible = False
         '
         'mnCodEmpEt
         '
@@ -315,6 +317,7 @@ Partial Class Fondo
         Me.mnCodEmpEt.Name = "mnCodEmpEt"
         Me.mnCodEmpEt.Size = New System.Drawing.Size(260, 26)
         Me.mnCodEmpEt.Text = "Códigos Empaque y Etiquetas"
+        Me.mnCodEmpEt.Visible = False
         '
         'mnBasculas
         '
@@ -329,6 +332,7 @@ Partial Class Fondo
         Me.mnUbicaciones.Name = "mnUbicaciones"
         Me.mnUbicaciones.Size = New System.Drawing.Size(260, 26)
         Me.mnUbicaciones.Text = "Ubicaciones"
+        Me.mnUbicaciones.Visible = False
         '
         'mnLineasPlanta
         '
@@ -336,6 +340,7 @@ Partial Class Fondo
         Me.mnLineasPlanta.Name = "mnLineasPlanta"
         Me.mnLineasPlanta.Size = New System.Drawing.Size(260, 26)
         Me.mnLineasPlanta.Text = "Líneas Planta"
+        Me.mnLineasPlanta.Visible = False
         '
         'mnEquivFormProd
         '
@@ -343,6 +348,14 @@ Partial Class Fondo
         Me.mnEquivFormProd.Name = "mnEquivFormProd"
         Me.mnEquivFormProd.Size = New System.Drawing.Size(260, 26)
         Me.mnEquivFormProd.Text = "Equivalencias Fórmulas-Productos"
+        Me.mnEquivFormProd.Visible = False
+        '
+        'ConfiguraciónDescargasToolStripMenuItem
+        '
+        Me.ConfiguraciónDescargasToolStripMenuItem.Image = Global.ChronoSoftNet.My.Resources.Resources.vehiculo_granel
+        Me.ConfiguraciónDescargasToolStripMenuItem.Name = "ConfiguraciónDescargasToolStripMenuItem"
+        Me.ConfiguraciónDescargasToolStripMenuItem.Size = New System.Drawing.Size(260, 26)
+        Me.ConfiguraciónDescargasToolStripMenuItem.Text = "Configuración Descargas"
         '
         'HelpMenu
         '
@@ -1114,4 +1127,5 @@ Partial Class Fondo
     Friend WithEvents mnConfigCentralBascula As ToolStripMenuItem
     Friend WithEvents DatosHoraHoraToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents mnDatosEngrasadores As ToolStripMenuItem
+    Friend WithEvents ConfiguraciónDescargasToolStripMenuItem As ToolStripMenuItem
 End Class
