@@ -24,6 +24,8 @@ Partial Class TablaBasculas
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TablaBasculas))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TModo = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TNombreSeccion = New System.Windows.Forms.TextBox()
         Me.ChImprimir = New System.Windows.Forms.CheckBox()
@@ -36,6 +38,12 @@ Partial Class TablaBasculas
         Me.BCancelar = New System.Windows.Forms.Button()
         Me.BAceptar = New System.Windows.Forms.Button()
         Me.DGBasculas = New System.Windows.Forms.DataGridView()
+        Me.Bascula = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Capac = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.inclusionmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Imprimir = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.NombreSeccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.A = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.BSalir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
@@ -43,14 +51,6 @@ Partial Class TablaBasculas
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
         Me.BActualizar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator10 = New System.Windows.Forms.ToolStripSeparator()
-        Me.TModo = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Bascula = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Capac = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.inclusionmin = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Imprimir = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.NombreSeccion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.A = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.DGBasculas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
@@ -76,6 +76,26 @@ Partial Class TablaBasculas
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(215, 280)
         Me.Panel1.TabIndex = 29
+        '
+        'TModo
+        '
+        Me.TModo.Location = New System.Drawing.Point(102, 105)
+        Me.TModo.Name = "TModo"
+        Me.TModo.ReadOnly = True
+        Me.TModo.Size = New System.Drawing.Size(63, 20)
+        Me.TModo.TabIndex = 25
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label1.Location = New System.Drawing.Point(12, 108)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(38, 14)
+        Me.Label1.TabIndex = 26
+        Me.Label1.Text = "Modo"
+        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label5
         '
@@ -202,6 +222,47 @@ Partial Class TablaBasculas
         Me.DGBasculas.Size = New System.Drawing.Size(370, 279)
         Me.DGBasculas.TabIndex = 28
         '
+        'Bascula
+        '
+        Me.Bascula.HeaderText = "Bascula"
+        Me.Bascula.Name = "Bascula"
+        Me.Bascula.ReadOnly = True
+        Me.Bascula.Width = 50
+        '
+        'Capac
+        '
+        Me.Capac.HeaderText = "Capac."
+        Me.Capac.Name = "Capac"
+        Me.Capac.ReadOnly = True
+        Me.Capac.Width = 50
+        '
+        'inclusionmin
+        '
+        Me.inclusionmin.HeaderText = "Inc.Mín."
+        Me.inclusionmin.Name = "inclusionmin"
+        Me.inclusionmin.ReadOnly = True
+        Me.inclusionmin.Width = 50
+        '
+        'Imprimir
+        '
+        Me.Imprimir.HeaderText = "Imprimir"
+        Me.Imprimir.Name = "Imprimir"
+        Me.Imprimir.ReadOnly = True
+        Me.Imprimir.Width = 50
+        '
+        'NombreSeccion
+        '
+        Me.NombreSeccion.HeaderText = "NombreSeccion"
+        Me.NombreSeccion.Name = "NombreSeccion"
+        Me.NombreSeccion.ReadOnly = True
+        '
+        'A
+        '
+        Me.A.HeaderText = "A"
+        Me.A.Name = "A"
+        Me.A.ReadOnly = True
+        Me.A.Visible = False
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BSalir, Me.ToolStripSeparator7, Me.BEditar, Me.ToolStripSeparator8, Me.BActualizar, Me.ToolStripSeparator10})
@@ -252,67 +313,6 @@ Partial Class TablaBasculas
         '
         Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
         Me.ToolStripSeparator10.Size = New System.Drawing.Size(6, 25)
-        '
-        'TModo
-        '
-        Me.TModo.Location = New System.Drawing.Point(102, 105)
-        Me.TModo.Name = "TModo"
-        Me.TModo.ReadOnly = True
-        Me.TModo.Size = New System.Drawing.Size(63, 20)
-        Me.TModo.TabIndex = 25
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(12, 108)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(38, 14)
-        Me.Label1.TabIndex = 26
-        Me.Label1.Text = "Modo"
-        Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Bascula
-        '
-        Me.Bascula.HeaderText = "Bascula"
-        Me.Bascula.Name = "Bascula"
-        Me.Bascula.ReadOnly = True
-        Me.Bascula.Width = 50
-        '
-        'Capac
-        '
-        Me.Capac.HeaderText = "Capac."
-        Me.Capac.Name = "Capac"
-        Me.Capac.ReadOnly = True
-        Me.Capac.Width = 50
-        '
-        'inclusionmin
-        '
-        Me.inclusionmin.HeaderText = "Inc.Mín."
-        Me.inclusionmin.Name = "inclusionmin"
-        Me.inclusionmin.ReadOnly = True
-        Me.inclusionmin.Width = 50
-        '
-        'Imprimir
-        '
-        Me.Imprimir.HeaderText = "Imprimir"
-        Me.Imprimir.Name = "Imprimir"
-        Me.Imprimir.ReadOnly = True
-        Me.Imprimir.Width = 50
-        '
-        'NombreSeccion
-        '
-        Me.NombreSeccion.HeaderText = "NombreSeccion"
-        Me.NombreSeccion.Name = "NombreSeccion"
-        Me.NombreSeccion.ReadOnly = True
-        '
-        'A
-        '
-        Me.A.HeaderText = "A"
-        Me.A.Name = "A"
-        Me.A.ReadOnly = True
-        Me.A.Visible = False
         '
         'TablaBasculas
         '

@@ -1153,4 +1153,16 @@ Public Class Fondo
         DatosEngrasadores.ShowDialog()
 
     End Sub
+
+    Private Sub mnMatePrim_Click(sender As Object, e As EventArgs) Handles mnMatePrim.Click
+        Materiales.ShowDialog()
+    End Sub
+
+    Private Sub mnUsua_Click(sender As Object, e As EventArgs) Handles mnUsua.Click
+        Usuarios.ShowDialog()
+    End Sub
+
+    Private Sub ConfiguraciónDescargasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónDescargasToolStripMenuItem.Click
+        TamDescarga.Show()
+    End Sub
 End Class

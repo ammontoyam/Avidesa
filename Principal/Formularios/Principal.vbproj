@@ -203,6 +203,12 @@
     <Compile Include="Configuracion\TablasSecuenciaMezcla.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Configuracion\TamDescarga.Designer.vb">
+      <DependentUpon>TamDescarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TamDescarga.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dosificacion\AdicReproc.designer.vb">
       <DependentUpon>AdicReproc.vb</DependentUpon>
     </Compile>
@@ -599,6 +605,9 @@
     <EmbeddedResource Include="Configuracion\TablasSecuenciaMezcla.resx">
       <DependentUpon>TablasSecuenciaMezcla.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Configuracion\TamDescarga.resx">
+      <DependentUpon>TamDescarga.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dosificacion\AdicReproc.resx">
       <DependentUpon>AdicReproc.vb</DependentUpon>
     </EmbeddedResource>
@@ -841,6 +850,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="02 Network.ico" />
+    <None Include="Resources\vehiculo_granel.png" />
     <None Include="Resources\maquila.jpg" />
     <None Include="Resources\logo_mac_pollo.png" />
     <None Include="Web References\wsCentralbascula\Central.disco" />
