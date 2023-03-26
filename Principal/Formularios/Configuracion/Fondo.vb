@@ -1165,4 +1165,8 @@ Public Class Fondo
     Private Sub ConfiguraciónDescargasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConfiguraciónDescargasToolStripMenuItem.Click
         TamDescarga.Show()
     End Sub
+
+    Private Sub BTablaEnsaque_Click(sender As Object, e As EventArgs) Handles BTablaEnsaque.Click
+        TablaEnsaque.ShowDialog()
+    End Sub
 End Class

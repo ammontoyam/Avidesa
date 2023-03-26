@@ -180,12 +180,24 @@ Public Class Productos
 
 
     Private Sub BNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BNuevo.Click
-        Panel1.Enabled = True
-        BCancelar_Click(Nothing, Nothing)
-        'Limpiar_Habilitar_TextBox(Me.Controls, AccionTextBox.Habilitar)
-        'TVencxLinea.ReadOnly = True
-        TCodInt.Focus()
-        'CLinea.Enabled = True
+        Try
+
+            If ValidaPermiso("Productos_Editar") Then
+            Else
+                MsgBox(DevuelveEvento(CodEvento.USUARIO_PERMISODENEGADO), MsgBoxStyle.Information)
+                Exit Sub
+            End If
+
+            Panel1.Enabled = True
+            BCancelar_Click(Nothing, Nothing)
+            'Limpiar_Habilitar_TextBox(Me.Controls, AccionTextBox.Habilitar)
+            'TVencxLinea.ReadOnly = True
+            TCodInt.Focus()
+            'CLinea.Enabled = True
+        Catch ex As Exception
+            MsgBox(ex)
+        End Try
+
     End Sub
 
     Private Sub BCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancelar.Click
@@ -337,6 +349,12 @@ Public Class Productos
 
     Private Sub BBorrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BBorrar.Click
         Try
+            If ValidaPermiso("Productos_Editar") Then
+            Else
+                MsgBox(DevuelveEvento(CodEvento.USUARIO_PERMISODENEGADO), MsgBoxStyle.Information)
+                Exit Sub
+            End If
+
             DArt.Find("TIPO='PT' and CodInt='" + TCodInt.Text.Trim + "'")
             If Not DArt.EOF Then
                 Resp = MessageBox.Show(DevuelveEvento(CodEvento.BD_REGELIMINAR), "ChronoSoft", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
@@ -365,11 +383,23 @@ Public Class Productos
     End Sub
 
     Private Sub BEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BEditar.Click
-        Panel1.Enabled = True
-        Limpiar_Habilitar_TextBox(Me.Controls, VariablesGlobales.AccionTextBox.Habilitar)
-        CLinea.DropDownStyle = ComboBoxStyle.DropDownList
-        CLinea.Enabled = True
-        ''ChModificarEmp.Enabled = True
+        Try
+            If ValidaPermiso("Productos_Editar") Then
+            Else
+                MsgBox(DevuelveEvento(CodEvento.USUARIO_PERMISODENEGADO), MsgBoxStyle.Information)
+                Exit Sub
+            End If
+
+            Panel1.Enabled = True
+            Limpiar_Habilitar_TextBox(Me.Controls, VariablesGlobales.AccionTextBox.Habilitar)
+            CLinea.DropDownStyle = ComboBoxStyle.DropDownList
+            CLinea.Enabled = True
+            ''ChModificarEmp.Enabled = True
+
+        Catch ex As Exception
+            MsgError(ex)
+        End Try
+
     End Sub
 
 
