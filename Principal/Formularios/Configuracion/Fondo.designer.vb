@@ -137,6 +137,7 @@ Partial Class Fondo
         Me.TPlanta = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TimSeg = New System.Windows.Forms.Timer(Me.components)
+        Me.BTablaEnsaque = New System.Windows.Forms.ToolStripButton()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -447,7 +448,7 @@ Partial Class Fondo
         'ToolStrip
         '
         Me.ToolStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator5, Me.BSalir, Me.ToolStripSeparator9, Me.BFormulación, Me.ToolStripSeparator10, Me.BOP, Me.ToolStripSeparator1, Me.BMateriales, Me.ToolStripSeparator11, Me.BReportes, Me.ToolStripSeparator12, Me.BUsuarios, Me.ToolStripSeparator13, Me.BProductos, Me.ToolStripSeparator14, Me.BMateriaPrimNec, Me.ToolStripSeparator15, Me.BCortesMP, Me.ToolStripSeparator16, Me.BDetalleBache, Me.ToolStripSeparator33, Me.BDetBacheMic, Me.ToolStripSeparator18, Me.BAlarma, Me.ToolStripSeparator3, Me.BEmpMan, Me.ToolStripSeparator20, Me.BRetaque, Me.ToolStripSeparator21, Me.BAceptarEmp, Me.ToolStripSeparator22, Me.BRecPremezclas, Me.ToolStripSeparator39, Me.BSilos, Me.ToolStripSeparator38, Me.BTolvas, Me.ToolStripSeparator24, Me.BSolictudCargue, Me.ToolStripSeparator25, Me.BCargueMan, Me.ToolStripSeparator26, Me.BInventarios, Me.ToolStripSeparator2, Me.BPlanillla, Me.ToolStripSeparator31, Me.BProgProd, Me.ToolStripSeparator28, Me.BDespachos, Me.ToolStripSeparator29, Me.BReportesInv, Me.ToolStripSeparator30, Me.BControlDiario, Me.ToolStripSeparator36, Me.BResInv, Me.ToolStripSeparator35, Me.BProgEmpaque, Me.ToolStripSeparator37, Me.BAuditoria})
+        Me.ToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator5, Me.BSalir, Me.ToolStripSeparator9, Me.BFormulación, Me.ToolStripSeparator10, Me.BOP, Me.ToolStripSeparator1, Me.BMateriales, Me.ToolStripSeparator11, Me.BReportes, Me.ToolStripSeparator12, Me.BUsuarios, Me.ToolStripSeparator13, Me.BProductos, Me.ToolStripSeparator14, Me.BMateriaPrimNec, Me.ToolStripSeparator15, Me.BCortesMP, Me.ToolStripSeparator16, Me.BDetalleBache, Me.ToolStripSeparator33, Me.BDetBacheMic, Me.ToolStripSeparator18, Me.BAlarma, Me.ToolStripSeparator3, Me.BEmpMan, Me.ToolStripSeparator20, Me.BRetaque, Me.ToolStripSeparator21, Me.BAceptarEmp, Me.ToolStripSeparator22, Me.BRecPremezclas, Me.ToolStripSeparator39, Me.BSilos, Me.ToolStripSeparator38, Me.BTolvas, Me.ToolStripSeparator24, Me.BSolictudCargue, Me.ToolStripSeparator25, Me.BCargueMan, Me.ToolStripSeparator26, Me.BInventarios, Me.ToolStripSeparator2, Me.BPlanillla, Me.ToolStripSeparator31, Me.BProgProd, Me.ToolStripSeparator28, Me.BDespachos, Me.ToolStripSeparator29, Me.BReportesInv, Me.ToolStripSeparator30, Me.BControlDiario, Me.ToolStripSeparator36, Me.BResInv, Me.ToolStripSeparator35, Me.BProgEmpaque, Me.ToolStripSeparator37, Me.BAuditoria, Me.BTablaEnsaque})
         Me.ToolStrip.Location = New System.Drawing.Point(0, 28)
         Me.ToolStrip.Name = "ToolStrip"
         Me.ToolStrip.Size = New System.Drawing.Size(1105, 27)
@@ -988,6 +989,15 @@ Partial Class Fondo
         '
         Me.TimSeg.Interval = 1000
         '
+        'BTablaEnsaque
+        '
+        Me.BTablaEnsaque.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BTablaEnsaque.Image = CType(resources.GetObject("BTablaEnsaque.Image"), System.Drawing.Image)
+        Me.BTablaEnsaque.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BTablaEnsaque.Name = "BTablaEnsaque"
+        Me.BTablaEnsaque.Size = New System.Drawing.Size(24, 24)
+        Me.BTablaEnsaque.Text = "ToolStripButton1"
+        '
         'Fondo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -1128,4 +1138,5 @@ Partial Class Fondo
     Friend WithEvents DatosHoraHoraToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents mnDatosEngrasadores As ToolStripMenuItem
     Friend WithEvents ConfiguraciónDescargasToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BTablaEnsaque As ToolStripButton
 End Class

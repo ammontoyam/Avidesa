@@ -52,7 +52,7 @@
     <DocumentationFile>ChronoSoftNet.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -75,10 +75,10 @@
     <DocumentationFile>ChronoSoftNet.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -401,6 +401,18 @@
     <Compile Include="ProductoTerminado\RecPremezclas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ProductoTerminado\TablaEnsaque.designer.vb">
+      <DependentUpon>TablaEnsaque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoTerminado\TablaEnsaque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductoTerminado\TablaModEnsaque.designer.vb">
+      <DependentUpon>TablaModEnsaque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoTerminado\TablaModEnsaque.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reportes\Auditoria.designer.vb">
       <DependentUpon>Auditoria.vb</DependentUpon>
     </Compile>
@@ -708,6 +720,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductoTerminado\RecPremezclas.resx">
       <DependentUpon>RecPremezclas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductoTerminado\TablaEnsaque.resx">
+      <DependentUpon>TablaEnsaque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductoTerminado\TablaModEnsaque.resx">
+      <DependentUpon>TablaModEnsaque.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Auditoria.resx">
       <DependentUpon>Auditoria.vb</DependentUpon>
