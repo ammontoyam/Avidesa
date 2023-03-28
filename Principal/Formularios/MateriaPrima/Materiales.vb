@@ -590,16 +590,6 @@ Public Class Materiales
 
             MermaMaquila.TCodInt.Text = TCodInt.Text.Trim
             MermaMaquila.Show()
-
-        Catch ex As Exception
-            MsgError(ex)
-        End Try
-    End Sub
-
-    Private Sub BMaquilas_Click(sender As Object, e As EventArgs) Handles BMaquilas.Click
-        Try
-            Maquilas.Show()
-
         Catch ex As Exception
             MsgError(ex)
         End Try

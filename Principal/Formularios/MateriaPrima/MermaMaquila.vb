@@ -1,4 +1,7 @@
-﻿Imports ClassLibrary
+﻿Option Explicit On
+
+
+Imports ClassLibrary
 
 Public Class MermaMaquila
 
@@ -8,7 +11,7 @@ Public Class MermaMaquila
     Private Sub MermaMaquila_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             DMermaMaq = New AdoSQL("MERMAMAQUILA")
-            DMaquila = New AdoSQL("MAQUILA")
+            DMaquila = New AdoSQL("MERMAMAQUILA")
 
             DMaquila.Open("select CENTROTRABAJO from MAQUILAS order by CENTROTRABAJO")
             DMermaMaq.Open("select * from MERMAMAQ order by CENTROTRABAJO")
@@ -36,7 +39,7 @@ Public Class MermaMaquila
             End If
 
             If (TCodInt.Text.Trim <> "") Then
-                DMermaMaq.Delete("delete from MERMAMAQ where CENTROTRABAJO ='" + Trim(CMaquila.Text) + "' and CODINT = " + Trim(TCodInt.Text), Me)
+                DMermaMaq.Open("delete MERMAMAQ where CENTROTRABAJO ='" + Trim(CMaquila.Text) + "' and CODINT = " + Trim(TCodInt.Text))
             End If
 
             BActualizar_Click(Nothing, Nothing)
@@ -66,21 +69,12 @@ Public Class MermaMaquila
                 Exit Sub
             End If
 
-            If Val(TPorcMerma.Text) = 0 OrElse Val(TPorcMerma.Text) > 1 Then
-                MsgBox("El porcentaje de merma debe ser un valor entre 0 y 1 (ejemplo 0.01)", MsgBoxStyle.Critical)
-                Exit Sub
-            End If
-
-            If Trim(CMaquila.Text) = "" Then
-                MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO, "de la maquila"), MsgBoxStyle.Critical)
+            If Trim(TCodInt.Text) = "" Or Trim(CMaquila.Text) = "" Then
                 Exit Sub
             End If
 
             DMermaMaq.Open("select * from MERMAMAQ where CENTROTRABAJO ='" + Trim(CMaquila.Text) + "' and CODINT = " + Trim(TCodInt.Text))
-            If DMermaMaq.Count Then
-                Resp = MessageBox.Show(DevuelveEvento(CodEvento.BD_REGYAEXISTE), "ChronoSoft", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-                If Resp = vbNo Then Exit Sub
-            Else
+            If DMermaMaq.Count = 0 Then
                 DMermaMaq.AddNew()
             End If
 
@@ -101,7 +95,7 @@ Public Class MermaMaquila
     Private Sub BActualizar_Click(sender As Object, e As EventArgs) Handles BActualizar.Click
         Try
             DMaquila.Open("select CENTROTRABAJO from MAQUILAS order by CENTROTRABAJO")
-            DMermaMaq.Open("select * from MERMAMAQ order by CODINT")
+            DMermaMaq.Open("select * from MERMAMAQ order by CENTROTRABAJO")
 
             LLenaComboBox(CMaquila, DMaquila.DataTable, "CENTROTRABAJO")
             AsignaDataGrid(DGMermaMaq, DMermaMaq.DataTable)

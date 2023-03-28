@@ -56,7 +56,7 @@ Public Class Acceso
             If Ruta.Last.ToString <> "\" Then Ruta = Ruta + "\"
 
             'Verifica si se está corriendo depuración por parte de tecnimatica
-            If Directory.Exists(Ruta + "Principal") Then
+            If Directory.Exists(Ruta + "Fuentes") Then
                 Fuentes = True
             End If
 
@@ -75,16 +75,11 @@ Public Class Acceso
                 End
             End If
 
-            'Carpeta donde se encuentran alojados los reportes
-            If Fuentes Then
-                UserDB = "Admin"
-                PWD = "NEP"
-            Else
-                UserDB = "sa" '"Admin"
-                PWD = "v1w8QU@83&M#aiz8TRV2" '"NEP"
-            End If
-            'Credenciales para acceso a base de base de datos
 
+            'Credenciales para acceso a base de base de datos
+            UserDB = "sa" '"Admin"
+            PWD = "v1w8QU@83&M#aiz8TRV2" '"NEP"
+            'Carpeta donde se encuentran alojados los reportes
             RutaRep = Ruta + "DB\"
             'Conexión principal a base de datos de cada planta
             RutaDB = "Data Source=" + ServidorSQL + "; Initial Catalog=" + NomDB + "; User Id=" + UserDB + "; Password=" + PWD
@@ -307,7 +302,7 @@ UsuarioTecnimatica:
                 '    MsgBox("Clave de acceso no válida para usuario TECNIMATICA", MsgBoxStyle.Information)
                 '    Return
                 'End If
-                If TClave.Text <> "T3cn1m4t1c@" Then
+                If TClave.Text <> "T3cn1m4t1c4" Then
                     MsgBox("Clave de acceso no válida para usuario TECNIMATICA", MsgBoxStyle.Information)
                     Return
                 End If
