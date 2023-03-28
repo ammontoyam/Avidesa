@@ -22,39 +22,26 @@ Partial Class Materiales
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Materiales))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Materiales))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
-        Me.BSalir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BPrimero = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BAnterior = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnTCuenta = New System.Windows.Forms.ToolStripTextBox()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.mnLCuenta = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BSiguiente = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BUltimo = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BEditar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BNuevo = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BBorrar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BActualizar = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
         Me.CBBuscar = New System.Windows.Forms.ToolStripComboBox()
         Me.TBuscar = New System.Windows.Forms.ToolStripTextBox()
-        Me.BImprimir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator17 = New System.Windows.Forms.ToolStripSeparator()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnSalir = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnInterfazArt = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelDatos = New System.Windows.Forms.Panel()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -73,8 +60,6 @@ Partial Class Materiales
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TTolSupPorc = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.BCancelar = New System.Windows.Forms.Button()
-        Me.BAceptar = New System.Windows.Forms.Button()
         Me.GBNombre = New System.Windows.Forms.GroupBox()
         Me.BMermaMaq = New System.Windows.Forms.Button()
         Me.TPorcMerma = New System.Windows.Forms.TextBox()
@@ -103,6 +88,22 @@ Partial Class Materiales
         Me.a = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Activo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.FRefrescaDG = New System.Windows.Forms.Button()
+        Me.BCancelar = New System.Windows.Forms.Button()
+        Me.BAceptar = New System.Windows.Forms.Button()
+        Me.BSalir = New System.Windows.Forms.ToolStripButton()
+        Me.BPrimero = New System.Windows.Forms.ToolStripButton()
+        Me.BAnterior = New System.Windows.Forms.ToolStripButton()
+        Me.BSiguiente = New System.Windows.Forms.ToolStripButton()
+        Me.BUltimo = New System.Windows.Forms.ToolStripButton()
+        Me.BEditar = New System.Windows.Forms.ToolStripButton()
+        Me.BNuevo = New System.Windows.Forms.ToolStripButton()
+        Me.BBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.BActualizar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabel2 = New System.Windows.Forms.ToolStripLabel()
+        Me.BImprimir = New System.Windows.Forms.ToolStripButton()
+        Me.BMaquilas = New System.Windows.Forms.ToolStripButton()
+        Me.ArchivoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnSalir = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.PanelDatos.SuspendLayout()
@@ -115,49 +116,22 @@ Partial Class Materiales
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BSalir, Me.ToolStripSeparator9, Me.BPrimero, Me.ToolStripSeparator1, Me.BAnterior, Me.ToolStripSeparator2, Me.mnTCuenta, Me.ToolStripLabel1, Me.mnLCuenta, Me.ToolStripSeparator7, Me.BSiguiente, Me.ToolStripSeparator3, Me.BUltimo, Me.ToolStripSeparator4, Me.BEditar, Me.ToolStripSeparator8, Me.BNuevo, Me.ToolStripSeparator5, Me.BBorrar, Me.ToolStripSeparator6, Me.BActualizar, Me.ToolStripLabel2, Me.CBBuscar, Me.TBuscar, Me.BImprimir, Me.ToolStripSeparator17})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BSalir, Me.ToolStripSeparator9, Me.BPrimero, Me.ToolStripSeparator1, Me.BAnterior, Me.ToolStripSeparator2, Me.mnTCuenta, Me.ToolStripLabel1, Me.mnLCuenta, Me.ToolStripSeparator7, Me.BSiguiente, Me.ToolStripSeparator3, Me.BUltimo, Me.ToolStripSeparator4, Me.BEditar, Me.ToolStripSeparator8, Me.BNuevo, Me.ToolStripSeparator5, Me.BBorrar, Me.ToolStripSeparator6, Me.BActualizar, Me.ToolStripLabel2, Me.CBBuscar, Me.TBuscar, Me.BImprimir, Me.ToolStripSeparator17, Me.BMaquilas})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(935, 25)
         Me.ToolStrip1.TabIndex = 28
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'BSalir
-        '
-        Me.BSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BSalir.Image = CType(resources.GetObject("BSalir.Image"), System.Drawing.Image)
-        Me.BSalir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BSalir.Name = "BSalir"
-        Me.BSalir.Size = New System.Drawing.Size(23, 22)
-        Me.BSalir.Text = "Salir"
-        '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
         Me.ToolStripSeparator9.Size = New System.Drawing.Size(6, 25)
         '
-        'BPrimero
-        '
-        Me.BPrimero.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BPrimero.Image = CType(resources.GetObject("BPrimero.Image"), System.Drawing.Image)
-        Me.BPrimero.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BPrimero.Name = "BPrimero"
-        Me.BPrimero.Size = New System.Drawing.Size(23, 22)
-        Me.BPrimero.Text = "First"
-        '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
         Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
-        '
-        'BAnterior
-        '
-        Me.BAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BAnterior.Image = CType(resources.GetObject("BAnterior.Image"), System.Drawing.Image)
-        Me.BAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BAnterior.Name = "BAnterior"
-        Me.BAnterior.Size = New System.Drawing.Size(23, 22)
-        Me.BAnterior.Text = "Previus"
         '
         'ToolStripSeparator2
         '
@@ -191,92 +165,30 @@ Partial Class Materiales
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
         Me.ToolStripSeparator7.Size = New System.Drawing.Size(6, 25)
         '
-        'BSiguiente
-        '
-        Me.BSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BSiguiente.Image = CType(resources.GetObject("BSiguiente.Image"), System.Drawing.Image)
-        Me.BSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BSiguiente.Name = "BSiguiente"
-        Me.BSiguiente.Size = New System.Drawing.Size(23, 22)
-        Me.BSiguiente.Text = "Next"
-        '
         'ToolStripSeparator3
         '
         Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
         Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 25)
-        '
-        'BUltimo
-        '
-        Me.BUltimo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BUltimo.Image = CType(resources.GetObject("BUltimo.Image"), System.Drawing.Image)
-        Me.BUltimo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BUltimo.Name = "BUltimo"
-        Me.BUltimo.Size = New System.Drawing.Size(23, 22)
-        Me.BUltimo.Text = "Last"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
         Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 25)
         '
-        'BEditar
-        '
-        Me.BEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BEditar.Image = CType(resources.GetObject("BEditar.Image"), System.Drawing.Image)
-        Me.BEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BEditar.Name = "BEditar"
-        Me.BEditar.Size = New System.Drawing.Size(23, 22)
-        Me.BEditar.Text = "Editar"
-        '
         'ToolStripSeparator8
         '
         Me.ToolStripSeparator8.Name = "ToolStripSeparator8"
         Me.ToolStripSeparator8.Size = New System.Drawing.Size(6, 25)
-        '
-        'BNuevo
-        '
-        Me.BNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BNuevo.Image = CType(resources.GetObject("BNuevo.Image"), System.Drawing.Image)
-        Me.BNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BNuevo.Name = "BNuevo"
-        Me.BNuevo.Size = New System.Drawing.Size(23, 22)
-        Me.BNuevo.Text = "Nuevo"
         '
         'ToolStripSeparator5
         '
         Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
         Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 25)
         '
-        'BBorrar
-        '
-        Me.BBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BBorrar.Image = CType(resources.GetObject("BBorrar.Image"), System.Drawing.Image)
-        Me.BBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BBorrar.Name = "BBorrar"
-        Me.BBorrar.Size = New System.Drawing.Size(23, 22)
-        Me.BBorrar.Text = "Borrar"
-        '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
         Me.ToolStripSeparator6.Size = New System.Drawing.Size(6, 25)
-        '
-        'BActualizar
-        '
-        Me.BActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BActualizar.Image = CType(resources.GetObject("BActualizar.Image"), System.Drawing.Image)
-        Me.BActualizar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BActualizar.Name = "BActualizar"
-        Me.BActualizar.Size = New System.Drawing.Size(23, 22)
-        Me.BActualizar.Text = "Actualizar"
-        '
-        'ToolStripLabel2
-        '
-        Me.ToolStripLabel2.Image = CType(resources.GetObject("ToolStripLabel2.Image"), System.Drawing.Image)
-        Me.ToolStripLabel2.Name = "ToolStripLabel2"
-        Me.ToolStripLabel2.Size = New System.Drawing.Size(58, 22)
-        Me.ToolStripLabel2.Text = "Buscar"
-        Me.ToolStripLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CBBuscar
         '
@@ -293,15 +205,6 @@ Partial Class Materiales
         Me.TBuscar.Size = New System.Drawing.Size(80, 25)
         Me.TBuscar.ToolTipText = "Digite el valor a consultar"
         '
-        'BImprimir
-        '
-        Me.BImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BImprimir.Image = CType(resources.GetObject("BImprimir.Image"), System.Drawing.Image)
-        Me.BImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BImprimir.Name = "BImprimir"
-        Me.BImprimir.Size = New System.Drawing.Size(23, 22)
-        Me.BImprimir.Text = "Imprimir Materias Primas"
-        '
         'ToolStripSeparator17
         '
         Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
@@ -316,20 +219,6 @@ Partial Class Materiales
         Me.MenuStrip1.Size = New System.Drawing.Size(935, 24)
         Me.MenuStrip1.TabIndex = 29
         Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'ArchivoToolStripMenuItem
-        '
-        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnSalir})
-        Me.ArchivoToolStripMenuItem.Image = CType(resources.GetObject("ArchivoToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
-        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
-        Me.ArchivoToolStripMenuItem.Text = "Archivo"
-        '
-        'mnSalir
-        '
-        Me.mnSalir.Name = "mnSalir"
-        Me.mnSalir.Size = New System.Drawing.Size(98, 22)
-        Me.mnSalir.Text = "Salir"
         '
         'mnInterfazArt
         '
@@ -524,24 +413,6 @@ Partial Class Materiales
         Me.Label6.TabIndex = 17
         Me.Label6.Text = "Sup. (%)"
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'BCancelar
-        '
-        Me.BCancelar.Image = CType(resources.GetObject("BCancelar.Image"), System.Drawing.Image)
-        Me.BCancelar.Location = New System.Drawing.Point(161, 572)
-        Me.BCancelar.Name = "BCancelar"
-        Me.BCancelar.Size = New System.Drawing.Size(35, 31)
-        Me.BCancelar.TabIndex = 21
-        Me.BCancelar.UseVisualStyleBackColor = True
-        '
-        'BAceptar
-        '
-        Me.BAceptar.Image = CType(resources.GetObject("BAceptar.Image"), System.Drawing.Image)
-        Me.BAceptar.Location = New System.Drawing.Point(120, 572)
-        Me.BAceptar.Name = "BAceptar"
-        Me.BAceptar.Size = New System.Drawing.Size(35, 31)
-        Me.BAceptar.TabIndex = 20
-        Me.BAceptar.UseVisualStyleBackColor = True
         '
         'GBNombre
         '
@@ -810,12 +681,12 @@ Partial Class Materiales
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DGArticulos.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DGArticulos.Location = New System.Drawing.Point(353, 86)
+        Me.DGArticulos.Location = New System.Drawing.Point(353, 64)
         Me.DGArticulos.MultiSelect = False
         Me.DGArticulos.Name = "DGArticulos"
         Me.DGArticulos.ReadOnly = True
         Me.DGArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DGArticulos.Size = New System.Drawing.Size(570, 584)
+        Me.DGArticulos.Size = New System.Drawing.Size(570, 606)
         Me.DGArticulos.TabIndex = 31
         '
         'codint
@@ -861,6 +732,146 @@ Partial Class Materiales
         Me.FRefrescaDG.Text = "FRefrescaDG"
         Me.FRefrescaDG.UseVisualStyleBackColor = True
         Me.FRefrescaDG.Visible = False
+        '
+        'BCancelar
+        '
+        Me.BCancelar.Image = CType(resources.GetObject("BCancelar.Image"), System.Drawing.Image)
+        Me.BCancelar.Location = New System.Drawing.Point(161, 572)
+        Me.BCancelar.Name = "BCancelar"
+        Me.BCancelar.Size = New System.Drawing.Size(35, 31)
+        Me.BCancelar.TabIndex = 21
+        Me.BCancelar.UseVisualStyleBackColor = True
+        '
+        'BAceptar
+        '
+        Me.BAceptar.Image = CType(resources.GetObject("BAceptar.Image"), System.Drawing.Image)
+        Me.BAceptar.Location = New System.Drawing.Point(120, 572)
+        Me.BAceptar.Name = "BAceptar"
+        Me.BAceptar.Size = New System.Drawing.Size(35, 31)
+        Me.BAceptar.TabIndex = 20
+        Me.BAceptar.UseVisualStyleBackColor = True
+        '
+        'BSalir
+        '
+        Me.BSalir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BSalir.Image = CType(resources.GetObject("BSalir.Image"), System.Drawing.Image)
+        Me.BSalir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BSalir.Name = "BSalir"
+        Me.BSalir.Size = New System.Drawing.Size(23, 22)
+        Me.BSalir.Text = "Salir"
+        '
+        'BPrimero
+        '
+        Me.BPrimero.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BPrimero.Image = CType(resources.GetObject("BPrimero.Image"), System.Drawing.Image)
+        Me.BPrimero.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BPrimero.Name = "BPrimero"
+        Me.BPrimero.Size = New System.Drawing.Size(23, 22)
+        Me.BPrimero.Text = "First"
+        '
+        'BAnterior
+        '
+        Me.BAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BAnterior.Image = CType(resources.GetObject("BAnterior.Image"), System.Drawing.Image)
+        Me.BAnterior.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BAnterior.Name = "BAnterior"
+        Me.BAnterior.Size = New System.Drawing.Size(23, 22)
+        Me.BAnterior.Text = "Previus"
+        '
+        'BSiguiente
+        '
+        Me.BSiguiente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BSiguiente.Image = CType(resources.GetObject("BSiguiente.Image"), System.Drawing.Image)
+        Me.BSiguiente.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BSiguiente.Name = "BSiguiente"
+        Me.BSiguiente.Size = New System.Drawing.Size(23, 22)
+        Me.BSiguiente.Text = "Next"
+        '
+        'BUltimo
+        '
+        Me.BUltimo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BUltimo.Image = CType(resources.GetObject("BUltimo.Image"), System.Drawing.Image)
+        Me.BUltimo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BUltimo.Name = "BUltimo"
+        Me.BUltimo.Size = New System.Drawing.Size(23, 22)
+        Me.BUltimo.Text = "Last"
+        '
+        'BEditar
+        '
+        Me.BEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BEditar.Image = CType(resources.GetObject("BEditar.Image"), System.Drawing.Image)
+        Me.BEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BEditar.Name = "BEditar"
+        Me.BEditar.Size = New System.Drawing.Size(23, 22)
+        Me.BEditar.Text = "Editar"
+        '
+        'BNuevo
+        '
+        Me.BNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BNuevo.Image = CType(resources.GetObject("BNuevo.Image"), System.Drawing.Image)
+        Me.BNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BNuevo.Name = "BNuevo"
+        Me.BNuevo.Size = New System.Drawing.Size(23, 22)
+        Me.BNuevo.Text = "Nuevo"
+        '
+        'BBorrar
+        '
+        Me.BBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BBorrar.Image = CType(resources.GetObject("BBorrar.Image"), System.Drawing.Image)
+        Me.BBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BBorrar.Name = "BBorrar"
+        Me.BBorrar.Size = New System.Drawing.Size(23, 22)
+        Me.BBorrar.Text = "Borrar"
+        '
+        'BActualizar
+        '
+        Me.BActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BActualizar.Image = CType(resources.GetObject("BActualizar.Image"), System.Drawing.Image)
+        Me.BActualizar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BActualizar.Name = "BActualizar"
+        Me.BActualizar.Size = New System.Drawing.Size(23, 22)
+        Me.BActualizar.Text = "Actualizar"
+        '
+        'ToolStripLabel2
+        '
+        Me.ToolStripLabel2.Image = CType(resources.GetObject("ToolStripLabel2.Image"), System.Drawing.Image)
+        Me.ToolStripLabel2.Name = "ToolStripLabel2"
+        Me.ToolStripLabel2.Size = New System.Drawing.Size(58, 22)
+        Me.ToolStripLabel2.Text = "Buscar"
+        Me.ToolStripLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'BImprimir
+        '
+        Me.BImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BImprimir.Image = CType(resources.GetObject("BImprimir.Image"), System.Drawing.Image)
+        Me.BImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BImprimir.Name = "BImprimir"
+        Me.BImprimir.Size = New System.Drawing.Size(23, 22)
+        Me.BImprimir.Text = "Imprimir Materias Primas"
+        '
+        'BMaquilas
+        '
+        Me.BMaquilas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BMaquilas.Image = Global.ChronoSoftNet.My.Resources.Resources.maquila
+        Me.BMaquilas.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BMaquilas.Name = "BMaquilas"
+        Me.BMaquilas.Size = New System.Drawing.Size(23, 22)
+        Me.BMaquilas.Text = "ToolStripButton1"
+        Me.BMaquilas.ToolTipText = "Máquilas"
+        '
+        'ArchivoToolStripMenuItem
+        '
+        Me.ArchivoToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnSalir})
+        Me.ArchivoToolStripMenuItem.Image = CType(resources.GetObject("ArchivoToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem"
+        Me.ArchivoToolStripMenuItem.Size = New System.Drawing.Size(77, 20)
+        Me.ArchivoToolStripMenuItem.Text = "Archivo"
+        '
+        'mnSalir
+        '
+        Me.mnSalir.Name = "mnSalir"
+        Me.mnSalir.Size = New System.Drawing.Size(98, 22)
+        Me.mnSalir.Text = "Salir"
         '
         'Materiales
         '
@@ -973,4 +984,5 @@ Partial Class Materiales
     Friend WithEvents nombre As DataGridViewTextBoxColumn
     Friend WithEvents a As DataGridViewTextBoxColumn
     Friend WithEvents Activo As DataGridViewCheckBoxColumn
+    Friend WithEvents BMaquilas As ToolStripButton
 End Class

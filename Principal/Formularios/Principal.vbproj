@@ -52,7 +52,7 @@
     <DocumentationFile>ChronoSoftNet.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -75,10 +75,10 @@
     <DocumentationFile>ChronoSoftNet.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -203,6 +203,12 @@
     <Compile Include="Configuracion\TablasSecuenciaMezcla.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Configuracion\TamDescarga.Designer.vb">
+      <DependentUpon>TamDescarga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Configuracion\TamDescarga.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dosificacion\AdicReproc.designer.vb">
       <DependentUpon>AdicReproc.vb</DependentUpon>
     </Compile>
@@ -299,6 +305,12 @@
     <Compile Include="Dosificacion\DatosMuestras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MateriaPrima\Maquilas.Designer.vb">
+      <DependentUpon>Maquilas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaPrima\Maquilas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MateriaPrima\MermaMaquila.Designer.vb">
       <DependentUpon>MermaMaquila.vb</DependentUpon>
     </Compile>
@@ -387,6 +399,18 @@
       <DependentUpon>RecPremezclas.vb</DependentUpon>
     </Compile>
     <Compile Include="ProductoTerminado\RecPremezclas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductoTerminado\TablaEnsaque.designer.vb">
+      <DependentUpon>TablaEnsaque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoTerminado\TablaEnsaque.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductoTerminado\TablaModEnsaque.designer.vb">
+      <DependentUpon>TablaModEnsaque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoTerminado\TablaModEnsaque.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\Auditoria.designer.vb">
@@ -593,6 +617,9 @@
     <EmbeddedResource Include="Configuracion\TablasSecuenciaMezcla.resx">
       <DependentUpon>TablasSecuenciaMezcla.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Configuracion\TamDescarga.resx">
+      <DependentUpon>TamDescarga.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dosificacion\AdicReproc.resx">
       <DependentUpon>AdicReproc.vb</DependentUpon>
     </EmbeddedResource>
@@ -646,6 +673,9 @@
     <EmbeddedResource Include="Dosificacion\DatosMuestras.resx">
       <DependentUpon>DatosMuestras.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MateriaPrima\Maquilas.resx">
+      <DependentUpon>Maquilas.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MateriaPrima\MermaMaquila.resx">
       <DependentUpon>MermaMaquila.vb</DependentUpon>
     </EmbeddedResource>
@@ -690,6 +720,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ProductoTerminado\RecPremezclas.resx">
       <DependentUpon>RecPremezclas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductoTerminado\TablaEnsaque.resx">
+      <DependentUpon>TablaEnsaque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductoTerminado\TablaModEnsaque.resx">
+      <DependentUpon>TablaModEnsaque.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Auditoria.resx">
       <DependentUpon>Auditoria.vb</DependentUpon>
@@ -832,6 +868,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="02 Network.ico" />
+    <None Include="Resources\editar-48.png" />
+    <None Include="Resources\vehiculo_granel.png" />
+    <None Include="Resources\maquila.jpg" />
     <None Include="Resources\logo_mac_pollo.png" />
     <None Include="Web References\wsCentralbascula\Central.disco" />
   </ItemGroup>
