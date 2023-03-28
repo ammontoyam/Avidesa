@@ -180,6 +180,7 @@ Public Class TablaEnsaque
 
 
             DEmpaque.Open(Sentencia)
+            AsignaDataGrid(DGEnsaque, DEmpaque.DataTable)
 
             LGranel.Visible = False
             LEmpaque.Visible = False
