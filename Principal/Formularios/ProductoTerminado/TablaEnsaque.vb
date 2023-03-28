@@ -26,7 +26,9 @@ Public Class TablaEnsaque
             Campos = {"OP@OP", "NomProd@Nombre Prod.", "FechaIni@Fecha"}
             Campos = AsignaItemsCB(Campos, CBBuscar.ComboBox, DEmpaque.DataTable)
 
-            'If DGEnsaque.Rows.Count > 0 Then DGBasculas_CellClick(Nothing, Nothing)
+            GBLinea1.Visible = False
+            GBLinea2.Visible = False
+            'GBTotales.Visible = False
 
         Catch ex As Exception
             MsgError(ex)
@@ -42,10 +44,8 @@ Public Class TablaEnsaque
                 Exit Sub
             End If
 
-            If TBuscar.Text = "" Then
-                'FRefrescaDG_Click(Nothing, Nothing)
-                Exit Sub
-            End If
+            If TBuscar.Text = "" Then Exit Sub
+
 
             Dim x As Integer
             Dim Hallado As Boolean
@@ -181,140 +181,199 @@ Public Class TablaEnsaque
 
             DEmpaque.Open(Sentencia)
 
-            'TGranel.Visible = False
-            'TEmpaque.Visible = False
-            'TGranel = "Gr."
-            'TEmpaque = "Emp."
+            LGranel.Visible = False
+            LEmpaque.Visible = False
+            LGranel.Text = "Gr."
+            LEmpaque.Text = "Emp."
+
             If RBDosificado.Checked Then
-                GBLinea1.visible = True
-                GBLinea1.Visible = True
+                LGranel.Visible = True
+                LEmpaque.Visible = True
+                LGranel1.Visible = True
+                LEmpaque1.Visible = True
+                LGranel2.Visible = True
+                LEmpaque2.Visible = True
+
             End If
 
-            TTotSacosL1.Text = 0
-            TKgL1.Text = 0
+            TTotSacos.Text = 0
+            TTotKg.Text = 0
 
-            'TGranel1.Caption = "Granel"
-            'TGranel2.Caption = "Granel"
-            'TEmpaque1.Caption = "Empaque"
-            'TEmpaque2.Caption = "Empaque"
-            'TTotSacos1 = 0
-            'TKg1 = 0
-            'TTotSacos2 = 0
-            'TKg2 = 0
+            LGranel1.Text = "Granel"
+            LGranel2.Text = "Granel"
+            LEmpaque1.Text = "Empaque"
+            LEmpaque2.Text = "Empaque"
+            TTotSacos1.Text = 0
+            TKg1.Text = 0
+            TTotSacos2.Text = 0
+            TKg2.Text = 0
 
 
-            DVarios.Open("select round(sum(Peso),3) as TotalKg, round(sum(Sacos + SacosDev),3) as TotalSacos from EMPAQUE where " + filtro)
+            DVarios.Open("select round(sum(PESO),3) as TOTALKG, round(sum(SACOS + SACOSDEV),3) as TOTALSACOS from EMPAQUE where " + filtro)
 
-            If DVarios.EOF = False Then
+            If Not IsDBNull(DVarios.RecordSet("TOTALSACOS")) Then
                 TTotSacos.Text = Val(DVarios.RecordSet("TOTALSACOS"))
-                TTotKg.Text = Format(Val(DVarios.RecordSet("TOTALKG")), "# ### ###.00") 'TKg = Val(DVarios!TotalKg)
+                TTotKg.Text = Format(Val(DVarios.RecordSet("TOTALKG")), "# ### ###.00")
             End If
 
 
-            DVarios.Open("select round(sum(PesoDev),3) as TotalKg from EMPAQUE where " + filtro + " and sacos > 0")
+            DVarios.Open("select round(sum(PESODEV),3) as TOTALKG from EMPAQUE where " + filtro + " and SACOS > 0")
 
-            If DVarios.EOF = False Then
-                If Not IsDBNull(DVarios.RecordSet("TOTALKG")) Then TTotKg.Text = Format(Val(TTotKg.Text) + Val(DVarios.RecordSet("TOTALKG")), "# ### ###.00") 'TKg = Val(DVarios!TotalKg)
+            If Not IsDBNull(DVarios.RecordSet("TOTALKG")) Then
+                TTotKg.Text = Format(Val(TTotKg.Text) + Val(DVarios.RecordSet("TOTALKG")), "# ### ###.00")
             End If
 
 
-            DVarios.Open("select round(sum(Peso),3) as Peso, CODEMP from EMPAQUE where " + filtro + " group by CODEMP")
+            DVarios.Open("select round(sum(PESO),3) as TOTALPESO, CODEMP from EMPAQUE where " + filtro + " group by CODEMP")
 
-            '        If DVarios.EOF = False Then
-            '            Do While Not DVarios.EOF
-            '                If UCase(DVarios.RecordSet("CODEMP")) = "GRANEL" Then
-            '                    TGranel.Caption = "Gr. " + Format(Round((DVarios!Peso), 3), "# ### ###.00")
-            '                ElseIf UCase(DVarios!CodEmp) = "EMPAQUE" Then
-            '                    TEmpaque.Caption = "Emp. " + Format(Round(Val(DVarios!Peso), 3), "# ### ###.00")
-            '                End If
-            '                DVarios.MoveNext
-            '            Loop
-            '        End If
+            If (DVarios.Count) AndAlso (Not IsDBNull(DVarios.RecordSet("TOTALPESO"))) Then
 
-            '        If OPLiq.Value = 0 Then TDest.Visible = False
+                For Each RecordSet In DVarios.Rows
 
-            '        If OPMaq2 = True Or OPDosificado = True Then
+                    If UCase(RecordSet("CODEMP")) = "GRANEL" Then
+                        LGranel.Text = "Gr. " + Format(Math.Round(RecordSet("TOTALPESO"), 3), "# ### ###.00")
+                    ElseIf UCase(DVarios.RecordSet("CODEMP")) = "EMPAQUE" Then
+                        LEmpaque.Text = "Emp. " + Format(Math.Round(Val(RecordSet("TOTALPESO")), 3), "# ### ###.00")
+                    End If
 
-            '            If DVarios.State Then DVarios.Close
-            '            DVarios.Open "select sum(Peso) as Peso, CODEMP, MAQUINA from EMPAQUE where " + filtro + " group by CODEMP, MAQUINA"
+                Next
+            End If
 
-            'If DVarios.EOF = False Then
-            '                Do While Not DVarios.EOF
-            '                    If UCase(DVarios!CodEmp) = "GRANEL" Then
-            '                        If Val(DVarios!Maquina) = 7 Then TGranel1.Caption = "Gr. " + Format(Round(Val(DVarios!Peso), 3), "# ### ###.00")
-            '                        If Val(DVarios!Maquina) = 71 Then TGranel2.Caption = "Gr. " + Format(Round(Val(DVarios!Peso), 3), "# ### ###.00")
-            '                    ElseIf UCase(DVarios!CodEmp) = "EMPAQUE" Then
-            '                        If Val(DVarios!Maquina) = 7 Then TEmpaque1.Caption = "Emp. " + Format(Round(Val(DVarios!Peso), 3), "# ### ###.00")
-            '                        If Val(DVarios!Maquina) = 71 Then TEmpaque2.Caption = "Emp. " + Format(Round(Val(DVarios!Peso), 3), "# ### ###.00")
-            '                    End If
-            '                    DVarios.MoveNext
-            '                Loop
-            '            End If
+            If RBLiquidos.Checked = 0 Then CBDestino.Visible = False
+
+            If RBEnsacadora.Checked = True OrElse RBDosificado.Checked = True Then
+
+                DVarios.Open("select sum(PESO) as PESO, CODEMP, MAQUINA from EMPAQUE where " + filtro + " group by CODEMP, MAQUINA")
+
+                If (DVarios.Count) AndAlso (Not IsDBNull(DVarios.RecordSet("PESO"))) Then
+                    For Each RecordSet In DVarios.Rows
+                        If UCase(RecordSet("CODEMP")) = "GRANEL" Then
+                            If Val(RecordSet("MAQUINA")) = 7 Then
+                                LGranel1.Text = "Gr. " + Format(Math.Round(Val(RecordSet("PESO")), 3), "# ### ###.00")
+                            ElseIf Val(RecordSet("MAQUINA")) = 71 Then
+                                LGranel2.Text = "Gr. " + Format(Math.Round(Val(RecordSet("PESO")), 3), "# ### ###.00")
+                            End If
+
+                        ElseIf UCase(RecordSet("CODEMP")) = "EMPAQUE" Then
+                            If Val(RecordSet("MAQUINA")) = 7 Then
+                                LEmpaque1.Text = "Emp. " + Format(Math.Round(Val(RecordSet("PESO")), 3), "# ### ###.00")
+
+                            ElseIf Val(RecordSet("MAQUINA")) = 71 Then
+                                LEmpaque2.Text = "Emp. " + Format(Math.Round(Val(RecordSet("PESO")), 3), "# ### ###.00")
+                            End If
+                        End If
+                    Next
+                End If
 
 
-            '            If DVarios.State Then DVarios.Close
-            '            DVarios.Open "select sum(peso) as TotalKg, sum(sacos + sacosdev) as TotalSacos, maquina from EMPAQUE where " + filtro + " group by maquina"
+                DVarios.Open("select sum(PESO) as TOTALKG, sum(SACOS + SACOSDEV) as TOTALSACOS, MAQUINA from EMPAQUE where " + filtro + " group by MAQUINA")
 
-            'Do While DVarios.EOF = False
-            '                If DVarios.EOF = False Then
-            '                    If Val(DVarios!Maquina) = 7 Then
-            '                        TTotSacos1 = Val(DVarios!TotalSacos)
-            '                        TKg1 = Format(Val(DVarios!totalkg), "# ### ###.00")
-            '                    ElseIf Val(DVarios!Maquina) = 2 Then
-            '                        TTotSacos1 = Val(DVarios!TotalSacos)
-            '                        TKg1 = Format(Val(DVarios!totalkg), "# ### ###.00")
-            '                    End If
-            '                    If Val(DVarios!Maquina) = 71 Then
-            '                        TTotSacos2 = Val(DVarios!TotalSacos)
-            '                        TKg2 = Format(Val(DVarios!totalkg), "# ### ###.00")
-            '                    ElseIf Val(DVarios!Maquina) = 21 Then
-            '                        TTotSacos2 = Val(DVarios!TotalSacos)
-            '                        TKg2 = Format(Val(DVarios!totalkg), "# ### ###.00")
-            '                    End If
-            '                End If
-            '                DVarios.MoveNext
-            '            Loop
+                If (DVarios.Count) AndAlso (Not IsDBNull(DVarios.RecordSet("TOTALSACOS"))) Then
+                    For Each RecordSet In DVarios.Rows
+                        If Val(RecordSet("MAQUINA")) = 7 Then
+                            TTotSacos1.Text = Val(RecordSet("TOTALSACOS"))
+                            TKg1.Text = Format(Val(RecordSet("TOTALKG")), "# ### ###.00")
+                        ElseIf Val(RecordSet("MAQUINA")) = 2 Then
+                            TTotSacos1.Text = Val(RecordSet("TOTALSACOS"))
+                            TKg1.Text = Format(Val(RecordSet("TOTALKG")), "# ### ###.00")
+                            '
+                        ElseIf Val(RecordSet("MAQUINA")) = 71 Then
+                            TTotSacos2.Text = Val(RecordSet("TOTALSACOS"))
+                            TKg2.Text = Format(Val(RecordSet("TOTALKG")), "# ### ###.00")
+                        ElseIf Val(DVarios.RecordSet("MAQUINA")) = 21 Then
+                            TTotSacos2.Text = Val(RecordSet("TOTALSACOS"))
+                            TKg2.Text = Format(Val(RecordSet("TOTALKG")), "# ### ###.00")
+                        End If
+                    Next
+                End If
 
-            '            If DVarios.State Then DVarios.Close
-            '            DVarios.Open "select sum(PesoDev) as TotalKg, maquina from EMPAQUE where " + filtro + " and sacos > 0 group by maquina"
 
-            'Do While DVarios.EOF = False
-            '                If DVarios.EOF = False Then
-            '                    If Val(DVarios!Maquina) = 7 Then
-            '                        If Not IsNull(DVarios!totalkg) Then TKg1 = Format(Val(TKg1) + Val(DVarios!totalkg), "# ### ###.00")
-            '                    ElseIf Val(DVarios!Maquina) = 2 Then
-            '                        If Not IsNull(DVarios!totalkg) Then TKg1 = Format(Val(TKg1) + Val(DVarios!totalkg), "# ### ###.00")
-            '                    End If
-            '                    If Val(DVarios!Maquina) = 71 Then
-            '                        If Not IsNull(DVarios!totalkg) Then TKg2 = Format(Val(TKg2) + Val(DVarios!totalkg), "# ### ###.00")
-            '                    ElseIf Val(DVarios!Maquina) = 21 Then
-            '                        If Not IsNull(DVarios!totalkg) Then TKg2 = Format(Val(TKg2) + Val(DVarios!totalkg), "# ### ###.00")
-            '                    End If
-            '                End If
-            '                DVarios.MoveNext
-            '            Loop
+                DVarios.Open("select sum(PESODEV) as TOTALKG, MAQUINA from EMPAQUE where " + filtro + " and SACOS > 0 group by MAQUINA")
 
-            '            '
-            '            If OPMaq2 = True Then
-            '                FrLinea1.Caption = "Ensacadora 1"
-            '                FrLinea2.Caption = "Ensacadora 2"
-            '            Else
-            '                FrLinea1.Caption = "Dosificado 1"
-            '                FrLinea2.Caption = "Dosificado 2"
-            '            End If
+                If (DVarios.Count) AndAlso (Not IsDBNull(DVarios.RecordSet("TOTALKG"))) Then
+                    For Each RecordSet In DVarios.Rows
+                        If Val(RecordSet("MAQUINA")) = 7 Then
+                            If Not IsDBNull(RecordSet("TOTALKG")) Then
+                                TKg1.Text = Format(Val(TKg1.Text) + Val(RecordSet("TOTALKG")), "# ### ###.00")
+                            End If
 
-            '            FrLinea1.Visible = True
-            '            FrLinea2.Visible = True
-            '        Else
-            '            FrLinea1.Visible = False
-            '            FrLinea2.Visible = False
-            '        End If
+                        ElseIf Val(RecordSet("MAQUINA")) = 2 Then
+                            If Not IsDBNull(RecordSet("TOTALKG")) Then
+                                TKg1.Text = Format(Val(TKg1.Text) + Val(RecordSet("TOTALKG")), "# ### ###.00")
+                            End If
+
+                        ElseIf Val(RecordSet("MAQUINA")) = 71 Then
+                            If Not IsDBNull(RecordSet("TOTALKG")) Then
+                                TKg2.Text = Format(Val(TKg2.Text) + Val(RecordSet("TOTALKG")), "# ### ###.00")
+                            End If
+
+                        ElseIf Val(RecordSet("MAQUINA")) = 21 Then
+                            If Not IsDBNull(RecordSet("TOTALKG")) Then
+                                TKg2.Text = Format(Val(TKg2.Text) + Val(RecordSet("TOTALKG")), "# ### ###.00")
+                            End If
+
+                        End If
+                    Next
+                End If
+
+                If RBEnsacadora.Checked = True Then
+                    GBLinea1.Text = "Ensacadora 1"
+                    GBLinea2.Text = "Ensacadora 2"
+                Else
+                    GBLinea1.Text = "Dosificado 1"
+                    GBLinea2.Text = "Dosificado 2"
+                End If
+
+                GBLinea1.Visible = True
+                GBLinea2.Visible = True
+            Else
+                GBLinea1.Visible = False
+                GBLinea2.Visible = False
+            End If
 
 
         Catch ex As Exception
             MsgError(ex)
         End Try
     End Sub
+
+    Private Sub RBGranelera_Click(sender As Object, e As EventArgs) Handles RBGranelera.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBGranelera2_Click(sender As Object, e As EventArgs) Handles RBGranelera2.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBEnsacadora_Click(sender As Object, e As EventArgs) Handles RBEnsacadora.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBMolienda_Click(sender As Object, e As EventArgs) Handles RBMolienda.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBDosificado_Click(sender As Object, e As EventArgs) Handles RBDosificado.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBHarinas_Click(sender As Object, e As EventArgs) Handles RBHarinas.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBSoya_Click(sender As Object, e As EventArgs) Handles RBSoya.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBManual_Click(sender As Object, e As EventArgs) Handles RBManual.Click
+        BFTotal_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub RBLiquidos_Click(sender As Object, e As EventArgs) Handles RBLiquidos.Click
+        CBDestino.Visible = True
+    End Sub
+
+
 
 
     'Private Sub DGBasculas_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGEnsaque.CellClick

@@ -868,6 +868,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="02 Network.ico" />
+    <None Include="Resources\editar-48.png" />
     <None Include="Resources\vehiculo_granel.png" />
     <None Include="Resources\maquila.jpg" />
     <None Include="Resources\logo_mac_pollo.png" />
