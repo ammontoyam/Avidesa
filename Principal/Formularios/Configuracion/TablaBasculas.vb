@@ -131,9 +131,18 @@ Public Class TablaBasculas
         Limpiar_Habilitar_TextBox(Me.Controls, AccionTextBox.Habilitar)
     End Sub
 
-    Private Sub BSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAceptar.KeyUp
+    Private Sub BSalir_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.Close()
         Me.Dispose()
+    End Sub
+
+    Private Sub AcercaDeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        AcercaD.ShowDialog()
+    End Sub
+
+    Private Sub TLinea_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+        If e.KeyCode <> Keys.Enter Then Return
+        TBascula.Focus()
     End Sub
 
     Private Sub TBascula_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TBascula.KeyUp
@@ -151,7 +160,12 @@ Public Class TablaBasculas
         BAceptar.Focus()
     End Sub
 
-    Private Sub BAceptar_KeyUp(sender As Object, e As KeyEventArgs)
+    Private Sub BSalir_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSalir.Click
+        Me.Close()
+        Me.Dispose()
+    End Sub
+
+    Private Sub BAceptar_KeyUp(sender As Object, e As KeyEventArgs) Handles BAceptar.KeyUp
         If e.KeyCode <> Keys.Enter Then Return
         BAceptar_Click(Nothing, Nothing)
     End Sub

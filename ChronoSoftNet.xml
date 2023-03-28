@@ -22,22 +22,7 @@ ChronoSoftNet
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
 </member>
-<member name="P:ChronoSoftNet.My.Resources.Resources.editar_48">
-<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member>
 <member name="P:ChronoSoftNet.My.Resources.Resources.logo_mac_pollo">
-<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:ChronoSoftNet.My.Resources.Resources.maquila">
-<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member>
-<member name="P:ChronoSoftNet.My.Resources.Resources.vehiculo_granel">
 <summary>
   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 </summary>
