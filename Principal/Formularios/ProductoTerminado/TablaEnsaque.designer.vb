@@ -321,7 +321,7 @@ Partial Class TablaEnsaque
         '
         Me.CBDestino.FormattingEnabled = True
         Me.CBDestino.Items.AddRange(New Object() {"1", "2", "3", "5", "10"})
-        Me.CBDestino.Location = New System.Drawing.Point(380, 36)
+        Me.CBDestino.Location = New System.Drawing.Point(391, 36)
         Me.CBDestino.Name = "CBDestino"
         Me.CBDestino.Size = New System.Drawing.Size(39, 21)
         Me.CBDestino.TabIndex = 36
@@ -339,7 +339,7 @@ Partial Class TablaEnsaque
         'RBManual
         '
         Me.RBManual.AutoSize = True
-        Me.RBManual.Location = New System.Drawing.Point(212, 38)
+        Me.RBManual.Location = New System.Drawing.Point(226, 38)
         Me.RBManual.Name = "RBManual"
         Me.RBManual.Size = New System.Drawing.Size(60, 17)
         Me.RBManual.TabIndex = 35
@@ -350,7 +350,7 @@ Partial Class TablaEnsaque
         'RBLiquidos
         '
         Me.RBLiquidos.AutoSize = True
-        Me.RBLiquidos.Location = New System.Drawing.Point(311, 38)
+        Me.RBLiquidos.Location = New System.Drawing.Point(320, 38)
         Me.RBLiquidos.Name = "RBLiquidos"
         Me.RBLiquidos.Size = New System.Drawing.Size(66, 17)
         Me.RBLiquidos.TabIndex = 34
@@ -361,7 +361,7 @@ Partial Class TablaEnsaque
         'RBSoya
         '
         Me.RBSoya.AutoSize = True
-        Me.RBSoya.Location = New System.Drawing.Point(113, 38)
+        Me.RBSoya.Location = New System.Drawing.Point(120, 38)
         Me.RBSoya.Name = "RBSoya"
         Me.RBSoya.Size = New System.Drawing.Size(89, 17)
         Me.RBSoya.TabIndex = 33
@@ -372,7 +372,7 @@ Partial Class TablaEnsaque
         'RBHarinas
         '
         Me.RBHarinas.AutoSize = True
-        Me.RBHarinas.Location = New System.Drawing.Point(15, 38)
+        Me.RBHarinas.Location = New System.Drawing.Point(13, 38)
         Me.RBHarinas.Name = "RBHarinas"
         Me.RBHarinas.Size = New System.Drawing.Size(95, 17)
         Me.RBHarinas.TabIndex = 32
@@ -383,7 +383,7 @@ Partial Class TablaEnsaque
         'RBDosificado
         '
         Me.RBDosificado.AutoSize = True
-        Me.RBDosificado.Location = New System.Drawing.Point(433, 15)
+        Me.RBDosificado.Location = New System.Drawing.Point(439, 15)
         Me.RBDosificado.Name = "RBDosificado"
         Me.RBDosificado.Size = New System.Drawing.Size(75, 17)
         Me.RBDosificado.TabIndex = 31
@@ -394,7 +394,7 @@ Partial Class TablaEnsaque
         'RBMolienda
         '
         Me.RBMolienda.AutoSize = True
-        Me.RBMolienda.Location = New System.Drawing.Point(311, 15)
+        Me.RBMolienda.Location = New System.Drawing.Point(320, 15)
         Me.RBMolienda.Name = "RBMolienda"
         Me.RBMolienda.Size = New System.Drawing.Size(95, 17)
         Me.RBMolienda.TabIndex = 30
@@ -405,7 +405,7 @@ Partial Class TablaEnsaque
         'RBGranelera2
         '
         Me.RBGranelera2.AutoSize = True
-        Me.RBGranelera2.Location = New System.Drawing.Point(113, 15)
+        Me.RBGranelera2.Location = New System.Drawing.Point(120, 15)
         Me.RBGranelera2.Name = "RBGranelera2"
         Me.RBGranelera2.Size = New System.Drawing.Size(80, 17)
         Me.RBGranelera2.TabIndex = 29
@@ -416,7 +416,7 @@ Partial Class TablaEnsaque
         'RBEnsacadora
         '
         Me.RBEnsacadora.AutoSize = True
-        Me.RBEnsacadora.Location = New System.Drawing.Point(212, 15)
+        Me.RBEnsacadora.Location = New System.Drawing.Point(226, 15)
         Me.RBEnsacadora.Name = "RBEnsacadora"
         Me.RBEnsacadora.Size = New System.Drawing.Size(82, 17)
         Me.RBEnsacadora.TabIndex = 28
@@ -427,7 +427,7 @@ Partial Class TablaEnsaque
         'RBGranelera
         '
         Me.RBGranelera.AutoSize = True
-        Me.RBGranelera.Location = New System.Drawing.Point(15, 15)
+        Me.RBGranelera.Location = New System.Drawing.Point(13, 15)
         Me.RBGranelera.Name = "RBGranelera"
         Me.RBGranelera.Size = New System.Drawing.Size(71, 17)
         Me.RBGranelera.TabIndex = 27
