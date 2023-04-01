@@ -102,9 +102,17 @@ Public Class TablaEnsaque
 
     Private Sub BEditar_Click(sender As Object, e As EventArgs) Handles BEditar.Click
         Try
-            TablaModEnsaque.TContador.Text = DEmpaque.RecordSet("CONT")
+            'TablaModEnsaque.TContador.Text = DEmpaque.RecordSet("CONT")
+            If RBEnsacadora.Checked Then
+                TablaModEnsaque.TPeso.ReadOnly = True
+                TablaModEnsaque.TSacos.ReadOnly = False
+            End If
+            TablaModEnsaque.TContador.Text = DGEnsaque.Rows(DGEnsaque.CurrentRow.Index).Cells("CONT").Value.ToString()
             TablaModEnsaque.ShowDialog()
             BActualizar_Click(Nothing, Nothing)
+
+            TablaModEnsaque.TPeso.ReadOnly = False
+            TablaModEnsaque.TSacos.ReadOnly = True
 
         Catch ex As Exception
             MsgError(ex)
@@ -281,7 +289,7 @@ Public Class TablaEnsaque
                         ElseIf Val(RecordSet("MAQUINA")) = 71 Then
                             TTotSacos2.Text = Val(RecordSet("TOTALSACOS"))
                             TKg2.Text = Format(Val(RecordSet("TOTALKG")), "# ### ###.00")
-                        ElseIf Val(DVarios.RecordSet("MAQUINA")) = 21 Then
+                        ElseIf Val(RecordSet("MAQUINA")) = 21 Then
                             TTotSacos2.Text = Val(RecordSet("TOTALSACOS"))
                             TKg2.Text = Format(Val(RecordSet("TOTALKG")), "# ### ###.00")
                         End If
@@ -373,8 +381,6 @@ Public Class TablaEnsaque
     Private Sub RBLiquidos_Click(sender As Object, e As EventArgs) Handles RBLiquidos.Click
         CBDestino.Visible = True
     End Sub
-
-
 
 
     'Private Sub DGBasculas_CellClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DGEnsaque.CellClick

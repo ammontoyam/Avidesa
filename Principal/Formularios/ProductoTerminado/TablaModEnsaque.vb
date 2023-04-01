@@ -78,17 +78,17 @@ Public Class TablaModEnsaque
                 Exit Sub
             End If
 
-            If Eval(TPromedio.Text) = 0 Then
+            If Eval(TPromedio.Text) < 0 Then
                 MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO) + " Promedio")
                 Exit Sub
             End If
 
-            If Eval(TResiduo.Text) = 0 Then
+            If Eval(TResiduo.Text) < 0 Then
                 MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO) + " Residuo")
                 Exit Sub
             End If
 
-            If Eval(TSacosDev.Text) = 0 Then
+            If Eval(TSacosDev.Text) < 0 Then
                 MsgBox(DevuelveEvento(CodEvento.SISTEMA_FALTACAMPO) + " Sacos Dev.")
                 Exit Sub
             End If
@@ -117,6 +117,7 @@ Public Class TablaModEnsaque
             DEmpaqueMod.RecordSet("PESODEV") = Val(TPesoDev.Text)
             DEmpaqueMod.RecordSet("PRESENT") = Val(TPresentacion.Text)
             DEmpaqueMod.RecordSet("MAQUINA") = TMaquina.Text
+            DEmpaqueMod.RecordSet("SACOS") = TSacos.Text
 
             DEmpaqueMod.Update()
 
@@ -148,7 +149,11 @@ Public Class TablaModEnsaque
         Try
 
             TPesoDev.Text = Val(TSacosDev.Text) * Val(TPresentacion.Text)
-            If Val(TMaquina.Text) = 2 Then TPeso.Text = Val(TSacos.Text) * Val(TPresentacion.Text)
+
+            If Val(TMaquina.Text) = 2 OrElse Val(TMaquina.Text) = 21 Then
+                TPeso.Text = Val(TSacos.Text) * Val(TPresentacion.Text)
+            End If
+
 
             DOPs.Open("select * from OPs where OP=" + TOP.Text)
 
@@ -182,7 +187,6 @@ Public Class TablaModEnsaque
 
     Private Sub TOP_KeyUp(sender As Object, e As KeyEventArgs) Handles TOP.KeyUp
         If Val(TOP.Text) = 0 Then Return
-
         BFCambiar_Click(Nothing, Nothing)
     End Sub
 
@@ -193,6 +197,11 @@ Public Class TablaModEnsaque
 
     Private Sub TSacosDev_KeyUp(sender As Object, e As KeyEventArgs) Handles TSacosDev.KeyUp
         If Val(TSacosDev.Text) = 0 Then Return
+        BFCambiar_Click(Nothing, Nothing)
+    End Sub
+
+    Private Sub TSacos_KeyUp(sender As Object, e As KeyEventArgs) Handles TSacos.KeyUp
+        If Val(TSacos.Text) = 0 Then Return
         BFCambiar_Click(Nothing, Nothing)
     End Sub
 End Class

@@ -24,6 +24,11 @@ Partial Class TablaModEnsaque
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(TablaModEnsaque))
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TNomForm = New System.Windows.Forms.TextBox()
+        Me.TCodForm = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.BFCambiar = New System.Windows.Forms.Button()
         Me.TSacosDev = New System.Windows.Forms.TextBox()
         Me.TPesoDev = New System.Windows.Forms.TextBox()
         Me.TCodHilaza = New System.Windows.Forms.TextBox()
@@ -64,11 +69,6 @@ Partial Class TablaModEnsaque
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.BSalir = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
-        Me.BFCambiar = New System.Windows.Forms.Button()
-        Me.TNomForm = New System.Windows.Forms.TextBox()
-        Me.TCodForm = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label20 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -122,6 +122,56 @@ Partial Class TablaModEnsaque
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(343, 538)
         Me.Panel1.TabIndex = 29
+        '
+        'TNomForm
+        '
+        Me.TNomForm.Location = New System.Drawing.Point(116, 169)
+        Me.TNomForm.Name = "TNomForm"
+        Me.TNomForm.ReadOnly = True
+        Me.TNomForm.Size = New System.Drawing.Size(97, 20)
+        Me.TNomForm.TabIndex = 57
+        '
+        'TCodForm
+        '
+        Me.TCodForm.Location = New System.Drawing.Point(116, 144)
+        Me.TCodForm.Name = "TCodForm"
+        Me.TCodForm.ReadOnly = True
+        Me.TCodForm.Size = New System.Drawing.Size(97, 20)
+        Me.TCodForm.TabIndex = 56
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label17.Location = New System.Drawing.Point(17, 172)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(93, 14)
+        Me.Label17.TabIndex = 55
+        Me.Label17.Text = "Nomb. Fórmula:"
+        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.Label20.Location = New System.Drawing.Point(17, 147)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(80, 14)
+        Me.Label20.TabIndex = 54
+        Me.Label20.Text = "Cóf. Fórmula:"
+        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'BFCambiar
+        '
+        Me.BFCambiar.Location = New System.Drawing.Point(260, 147)
+        Me.BFCambiar.Name = "BFCambiar"
+        Me.BFCambiar.Size = New System.Drawing.Size(73, 21)
+        Me.BFCambiar.TabIndex = 53
+        Me.BFCambiar.Text = "FCambiar"
+        Me.BFCambiar.UseVisualStyleBackColor = True
+        Me.BFCambiar.Visible = False
         '
         'TSacosDev
         '
@@ -203,6 +253,7 @@ Partial Class TablaModEnsaque
         '
         Me.TPresentacion.Location = New System.Drawing.Point(116, 269)
         Me.TPresentacion.Name = "TPresentacion"
+        Me.TPresentacion.ReadOnly = True
         Me.TPresentacion.Size = New System.Drawing.Size(97, 20)
         Me.TPresentacion.TabIndex = 42
         '
@@ -507,56 +558,6 @@ Partial Class TablaModEnsaque
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
         Me.ToolStripSeparator7.Size = New System.Drawing.Size(6, 25)
-        '
-        'BFCambiar
-        '
-        Me.BFCambiar.Location = New System.Drawing.Point(260, 147)
-        Me.BFCambiar.Name = "BFCambiar"
-        Me.BFCambiar.Size = New System.Drawing.Size(73, 21)
-        Me.BFCambiar.TabIndex = 53
-        Me.BFCambiar.Text = "FCambiar"
-        Me.BFCambiar.UseVisualStyleBackColor = True
-        Me.BFCambiar.Visible = False
-        '
-        'TNomForm
-        '
-        Me.TNomForm.Location = New System.Drawing.Point(116, 169)
-        Me.TNomForm.Name = "TNomForm"
-        Me.TNomForm.ReadOnly = True
-        Me.TNomForm.Size = New System.Drawing.Size(97, 20)
-        Me.TNomForm.TabIndex = 57
-        '
-        'TCodForm
-        '
-        Me.TCodForm.Location = New System.Drawing.Point(116, 144)
-        Me.TCodForm.Name = "TCodForm"
-        Me.TCodForm.ReadOnly = True
-        Me.TCodForm.Size = New System.Drawing.Size(97, 20)
-        Me.TCodForm.TabIndex = 56
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label17.Location = New System.Drawing.Point(17, 172)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(93, 14)
-        Me.Label17.TabIndex = 55
-        Me.Label17.Text = "Nomb. Fórmula:"
-        Me.Label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.Label20.Location = New System.Drawing.Point(17, 147)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(80, 14)
-        Me.Label20.TabIndex = 54
-        Me.Label20.Text = "Cóf. Fórmula:"
-        Me.Label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'TablaModEnsaque
         '
